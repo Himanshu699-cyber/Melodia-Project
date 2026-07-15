@@ -1,0 +1,99 @@
+{
+  "projectId": "4339375244343857382",
+  "title": "Melodify Professional SaaS Application",
+  "deviceType": "DESKTOP",
+  "Last Sync Time": "2026-07-14T09:02:44Z",
+  "screens": {
+    "d14fd2348b234184bd77edc0b85dda4c": {
+      "id": "d14fd2348b234184bd77edc0b85dda4c",
+      "label": "Melodify Landing Page",
+      "sourceScreen": "projects/4339375244343857382/screens/d14fd2348b234184bd77edc0b85dda4c",
+      "width": 2560,
+      "height": 4362
+    },
+    "1f26eb8662b84ed7a6509fe64b9f7617": {
+      "id": "1f26eb8662b84ed7a6509fe64b9f7617",
+      "label": "AI Playlist Generator",
+      "sourceScreen": "projects/4339375244343857382/screens/1f26eb8662b84ed7a6509fe64b9f7617",
+      "width": 2560,
+      "height": 2048
+    },
+    "1e9b1c217e8d4cb289191406d7e368d8": {
+      "id": "1e9b1c217e8d4cb289191406d7e368d8",
+      "label": "Settings",
+      "sourceScreen": "projects/4339375244343857382/screens/1e9b1c217e8d4cb289191406d7e368d8",
+      "width": 2560,
+      "height": 2178
+    },
+    "ec01ccecd88d4332a095d5668b6c87a4": {
+      "id": "ec01ccecd88d4332a095d5668b6c87a4",
+      "label": "Sign Up",
+      "sourceScreen": "projects/4339375244343857382/screens/ec01ccecd88d4332a095d5668b6c87a4",
+      "width": 2560,
+      "height": 2048
+    },
+    "c889b1f4248e4c9dbcd99b6fd69eee9f": {
+      "id": "c889b1f4248e4c9dbcd99b6fd69eee9f",
+      "label": "Signup Illustration",
+      "sourceScreen": "projects/4339375244343857382/screens/c889b1f4248e4c9dbcd99b6fd69eee9f",
+      "width": 896,
+      "height": 1200
+    },
+    "689331c330ce4797a00cbc3a7ce9e52d": {
+      "id": "689331c330ce4797a00cbc3a7ce9e52d",
+      "label": "Login Illustration",
+      "sourceScreen": "projects/4339375244343857382/screens/689331c330ce4797a00cbc3a7ce9e52d",
+      "width": 896,
+      "height": 1200
+    },
+    "d3d80b7a66c64162aca5badf00e1b926": {
+      "id": "d3d80b7a66c64162aca5badf00e1b926",
+      "label": "Search",
+      "sourceScreen": "projects/4339375244343857382/screens/d3d80b7a66c64162aca5badf00e1b926",
+      "width": 2560,
+      "height": 2478
+    },
+    "e87a774ef34a487ca5025e44671a7a2a": {
+      "id": "e87a774ef34a487ca5025e44671a7a2a",
+      "label": "Melodify Dashboard",
+      "sourceScreen": "projects/4339375244343857382/screens/e87a774ef34a487ca5025e44671a7a2a",
+      "width": 2560,
+      "height": 2048
+    },
+    "1ba857710f4d441eb89914349218c7be": {
+      "id": "1ba857710f4d441eb89914349218c7be",
+      "label": "My Library",
+      "sourceScreen": "projects/4339375244343857382/screens/1ba857710f4d441eb89914349218c7be",
+      "width": 2560,
+      "height": 2048
+    },
+    "f43c587aaea44efbaceb31665d16c7ff": {
+      "id": "f43c587aaea44efbaceb31665d16c7ff",
+      "label": "Playlist Details",
+      "sourceScreen": "projects/4339375244343857382/screens/f43c587aaea44efbaceb31665d16c7ff",
+      "width": 2560,
+      "height": 2048
+    },
+    "4736c0a3cee247b292b9a612afc1c8ba": {
+      "id": "4736c0a3cee247b292b9a612afc1c8ba",
+      "label": "User Profile",
+      "sourceScreen": "projects/4339375244343857382/screens/4736c0a3cee247b292b9a612afc1c8ba",
+      "width": 2560,
+      "height": 2478
+    },
+    "50eafb1e36ca42c28850d3f670a4921c": {
+      "id": "50eafb1e36ca42c28850d3f670a4921c",
+      "label": "Login",
+      "sourceScreen": "projects/4339375244343857382/screens/50eafb1e36ca42c28850d3f670a4921c",
+      "width": 2560,
+      "height": 2048
+    },
+    "8e183a0e935345b981ba7d8d6e488346": {
+      "id": "8e183a0e935345b981ba7d8d6e488346",
+      "label": "Full Music Player",
+      "sourceScreen": "projects/4339375244343857382/screens/8e183a0e935345b981ba7d8d6e488346",
+      "width": 2560,
+      "height": 2048
+    }
+  }
+}

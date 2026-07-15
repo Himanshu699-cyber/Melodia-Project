@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Melodify - Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+</head><body class="bg-background text-on-background font-body-md text-body-md flex h-screen overflow-hidden selection:bg-primary-container selection:text-on-primary-container">{{DATA:DESIGN_SYSTEM:DESIGN_SYSTEM_1}}
+
+    <style>
+        /* Custom scrollbar for a sleek look */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #131313;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #353534;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #474746;
+        }
+    </style>
+<!-- SideNavBar -->
+<nav class="w-[280px] h-full fixed left-0 top-0 bg-surface dark:bg-surface border-r border-outline-variant dark:border-outline-variant flex flex-col py-margin gap-base z-30 hidden md:flex">
+<!-- Brand Logo -->
+<div class="px-margin mb-md flex items-center gap-base">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-on-primary-container" style="font-variation-settings: 'FILL' 1;">graphic_eq</span>
+</div>
+<div>
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary">Melodify</h1>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Pro Studio</p>
+</div>
+</div>
+<!-- Navigation Tabs -->
+<div class="flex-1 overflow-y-auto px-md flex flex-col gap-xs">
+<p class="px-sm py-xs font-label-sm text-label-sm text-on-surface-variant uppercase mt-sm">Discover</p>
+<a class="flex items-center gap-md px-sm py-2 rounded-md hover:bg-surface-container-high dark:hover:bg-surface-container-high transition-colors active:scale-95 text-primary dark:text-primary font-bold border-l-2 border-primary bg-surface-container-low" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home</span>
+<span>Home</span>
+</a>
+<a class="flex items-center gap-md px-sm py-2 rounded-md hover:bg-surface-container-high dark:hover:bg-surface-container-high transition-colors active:scale-95 text-on-surface-variant dark:text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">search</span>
+<span>Search</span>
+</a>
+<a class="flex items-center gap-md px-sm py-2 rounded-md hover:bg-surface-container-high dark:hover:bg-surface-container-high transition-colors active:scale-95 text-on-surface-variant dark:text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">trending_up</span>
+<span>Trending</span>
+</a>
+<a class="flex items-center gap-md px-sm py-2 rounded-md hover:bg-surface-container-high dark:hover:bg-surface-container-high transition-colors active:scale-95 text-on-surface-variant dark:text-on-surface-variant flex justify-between w-full group" href="#">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined">auto_awesome</span>
+<span>AI Playlist</span>
+</div>
+<span class="material-symbols-outlined text-primary text-sm opacity-0 group-hover:opacity-100 transition-opacity">magic_button</span>
+</a>
+<p class="px-sm py-xs font-label-sm text-label-sm text-on-surface-variant uppercase mt-md">Your Collection</p>
+<a class="flex items-center gap-md px-sm py-2 rounded-md hover:bg-surface-container-high dark:hover:bg-surface-container-high transition-colors active:scale-95 text-on-surface-variant dark:text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">library_music</span>
+<span>Library</span>
+</a>
+<a class="flex items-center gap-md px-sm py-2 rounded-md hover:bg-surface-container-high dark:hover:bg-surface-container-high transition-colors active:scale-95 text-on-surface-variant dark:text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">favorite</span>
+<span>Liked Songs</span>
+</a>
+<a class="flex items-center gap-md px-sm py-2 rounded-md hover:bg-surface-container-high dark:hover:bg-surface-container-high transition-colors active:scale-95 text-on-surface-variant dark:text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">playlist_play</span>
+<span>Playlists</span>
+</a>
+<p class="px-sm py-xs font-label-sm text-label-sm text-on-surface-variant uppercase mt-md">Account</p>
+<a class="flex items-center gap-md px-sm py-2 rounded-md hover:bg-surface-container-high dark:hover:bg-surface-container-high transition-colors active:scale-95 text-on-surface-variant dark:text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">person</span>
+<span>Profile</span>
+</a>
+<a class="flex items-center gap-md px-sm py-2 rounded-md hover:bg-surface-container-high dark:hover:bg-surface-container-high transition-colors active:scale-95 text-on-surface-variant dark:text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span>Settings</span>
+</a>
+</div>
+<!-- CTA -->
+<div class="px-margin mt-auto">
+<button class="w-full bg-primary-container text-on-primary-container font-label-md text-label-md py-2 rounded-full hover:bg-inverse-primary transition-colors flex items-center justify-center gap-xs">
+<span class="material-symbols-outlined text-[18px]">workspace_premium</span>
+                Upgrade to Pro
+            </button>
+</div>
+</nav>
+<!-- Main Container -->
+<div class="flex-1 flex flex-col md:ml-[280px] w-full relative pb-20 md:pb-[90px]">
+<!-- TopNavBar -->
+<header class="h-16 fixed top-0 right-0 w-full md:w-[calc(100%-280px)] z-40 bg-surface/95 backdrop-blur-md border-b border-outline-variant dark:border-outline-variant flex items-center justify-between px-lg">
+<!-- Mobile Menu Toggle -->
+<button class="md:hidden text-on-surface mr-md">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<!-- Search -->
+<div class="flex-1 max-w-xl relative hidden sm:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full bg-surface-container-low border border-surface-container-highest rounded-full py-2 pl-10 pr-4 text-body-sm focus:outline-none focus:border-primary-container focus:ring-0 transition-colors placeholder-on-surface-variant text-on-surface" placeholder="Search for artists, songs, or podcasts..." type="text"/>
+</div>
+<!-- Trailing Actions -->
+<div class="flex items-center gap-md ml-auto">
+<button class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors cursor-pointer relative group">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-primary-container rounded-full border border-surface"></span>
+</button>
+<button class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors cursor-pointer hidden sm:flex">
+<span class="material-symbols-outlined">cast</span>
+</button>
+<button class="hidden lg:flex items-center justify-center border border-outline-variant text-on-surface px-4 py-1.5 rounded-full hover:bg-surface-container-high transition-colors font-label-md text-label-md gap-xs">
+<span class="material-symbols-outlined text-[18px]">upload</span>
+                    Upload
+                </button>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant ml-sm shrink-0">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="A close-up portrait of a professional electronic music producer wearing sleek headphones in a dimly lit studio environment. The lighting is cinematic, featuring dark background shadows contrasted with a sharp, vibrant red edge light that highlights the side of their face, creating a high-contrast, modern, and serious mood consistent with a premium audio application's dark theme." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDSCjSMprXeVCYJLCQEw20BoKI4OYAdOjXK_nONNqL7ADLho2ewZpjXjAPlpsWA02imrvnq5Of2CykS0HDdhLOVIq-gn-7ihczOMFb8yAwfYqpRAy90tun92LQmApOIkVM7-tLMOxAmp82dLf2MKWQlebe8r_JXPbYU4lmsFHf7mSkWWpoWqCfWbdSrXRLyB30Frwgco9o5uCqyhzs63D3awbrA4EfWhYbSp0Usbr5vMH76Sp7omZRgNu-pvqDapOPcgsUtIzMAoCk"/>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-1 overflow-y-auto mt-16 p-md sm:p-margin bg-background">
+<div class="max-w-[1400px] mx-auto flex flex-col gap-xl">
+<!-- Featured Banner (Hero) -->
+<section class="relative w-full h-[280px] sm:h-[340px] rounded-xl overflow-hidden border border-outline-variant group">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" data-alt="A wide cinematic landscape banner featuring an abstract 3D visualization of sound waves. The visual style is highly technical and precise, rendering sharp geometric waveforms in absolute black and dark charcoal grey, pierced by intense, glowing crimson red laser-like lines tracing the peaks of the waves. The aesthetic is extremely high-contrast, modern, and professional, perfectly suited for an audiophile dashboard." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC5ZGUB7Qk6XbGrEpyow3sLtaTuUOJgLXyvRiGyZwuNyZMXrum-6bxJb5v-OjHCXiCVA7hRwKPBrXsZXgHafTqNdbABxiicy8rNxGkkmsVy5MtqMOAPeBFGRvTdwk9-xJ7zYYb_Pl3uG1sqv4bP_TS0p36bAD5RUa1yRs44Re1ov9t9Rtt5TEc7dnaKEuJTiwBRzpglg7bGEZSOwXbz9m5KrBjufouOd3bgAWagqzIaI3PDeqdf8YracNv8DeFVhm09D6D5eHHxmJo')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/80 to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-lg w-full flex flex-col sm:flex-row justify-between items-end gap-md">
+<div class="max-w-2xl">
+<span class="inline-block px-2 py-1 bg-primary-container text-on-primary-container font-label-sm text-label-sm rounded uppercase tracking-wider mb-sm">Exclusive Release</span>
+<h2 class="font-headline-xl text-headline-xl text-white mb-xs leading-tight">SYNTHETIC DREAMS</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant line-clamp-2">The highly anticipated new electronic instrumental album from globally renowned producer AVA. A masterful blend of analog warmth and surgical digital precision.</p>
+</div>
+<div class="flex items-center gap-md shrink-0 w-full sm:w-auto">
+<button class="flex-1 sm:flex-none flex items-center justify-center gap-xs bg-primary-container text-on-primary-container px-6 py-3 rounded-full font-label-md text-label-md hover:bg-inverse-primary transition-colors">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+                                Play Now
+                            </button>
+<button class="w-12 h-12 rounded-full border border-outline-variant flex items-center justify-center text-on-surface hover:bg-surface-container transition-colors backdrop-blur-sm">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+</div>
+</section>
+<div class="grid grid-cols-1 xl:grid-cols-3 gap-xl">
+<!-- Trending Songs (List) -->
+<section class="xl:col-span-2 flex flex-col gap-md">
+<div class="flex items-center justify-between">
+<h3 class="font-headline-lg text-headline-lg text-on-surface">Trending Tracks</h3>
+<button class="text-primary font-label-sm text-label-sm hover:underline uppercase tracking-wide">See All</button>
+</div>
+<div class="flex flex-col gap-[2px] bg-surface rounded-lg border border-outline-variant overflow-hidden">
+<!-- Track Row 1 (Active) -->
+<div class="group flex items-center p-sm hover:bg-surface-container-high transition-colors relative bg-surface-container-low">
+<div class="absolute left-0 top-0 bottom-0 w-[2px] bg-primary-container"></div>
+<div class="w-8 flex justify-center text-primary-container mr-sm font-label-sm text-label-sm">
+<span class="material-symbols-outlined animate-pulse text-[18px]" style="font-variation-settings: 'FILL' 1;">graphic_eq</span>
+</div>
+<div class="w-10 h-10 rounded overflow-hidden mr-md shrink-0 relative">
+<img alt="Track Art" class="w-full h-full object-cover" data-alt="A minimalist album cover featuring a stark black background with a single, sharp geometric shape, perhaps a fractured triangle, rendered in vibrant, saturated red. The design is clean, high-contrast, and deeply professional, avoiding clutter while conveying a sense of electronic precision." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCG9NAdXpk_wIvlNsqpy8v5h4prV5aV0eAI-1eTZdpcN26NzSu4-KMTJVUoZlEPqBv4bwBJkll8RlAvAbrMtS-XSRZKJCJCqOJUoy8L-g2Vb6nZGeiVnaMxthMtVRgYMS-rQnJpsxk-tF8sUAHYO0Tj09vvJ4fYxtPszzN935F-hp6qTl7yuaIfXbHlfMS6zhrLvqjtahGDgpwiz_6g9JHTkZ7qMbssooZh-QNQ93novlTOM5mLpot_FkP5ZBZQBwffYaV0uFAUUaM"/>
+<div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</div>
+</div>
+<div class="flex-1 min-w-0 pr-md">
+<h4 class="font-label-md text-label-md text-on-surface truncate">Neon Nights</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant truncate">The Midnight Riders</p>
+</div>
+<div class="hidden sm:block flex-1 min-w-0 pr-md text-on-surface-variant font-body-sm text-body-sm truncate">
+                                    Midnight EP
+                                </div>
+<div class="flex items-center gap-4 text-on-surface-variant">
+<button class="opacity-0 group-hover:opacity-100 transition-opacity hover:text-primary">
+<span class="material-symbols-outlined text-[18px]">favorite</span>
+</button>
+<span class="font-body-sm text-body-sm w-12 text-right">03:45</span>
+<button class="opacity-0 group-hover:opacity-100 transition-opacity hover:text-on-surface">
+<span class="material-symbols-outlined text-[20px]">more_horiz</span>
+</button>
+</div>
+</div>
+<!-- Track Row 2 -->
+<div class="group flex items-center p-sm hover:bg-surface-container-high transition-colors bg-surface">
+<div class="w-8 flex justify-center text-on-surface-variant group-hover:hidden font-label-sm text-label-sm">2</div>
+<div class="w-8 hidden group-hover:flex justify-center text-on-surface mr-sm">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</div>
+<div class="w-10 h-10 rounded overflow-hidden mr-md shrink-0">
+<img alt="Track Art" class="w-full h-full object-cover" data-alt="An album cover displaying extreme minimalism: a dark charcoal grid pattern over an absolute black background. In the exact center, a tiny, intense red dot. The overall feel is architectural, cold, and highly designed for a premium audio interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDm4kMqw3RcN_9_k1_jLY835n5N9UMggRlALCYC0zYaydL9xzOcc0h1zcO2DMOpcoyR5CptWxqsEeJAcqtd-_jwqQ6vxYgcspIOipiqgjUAhwMpTV5QHEhtsjdrG7JupfCeL7trPZJcxFkh9tAdvogdVnsj4ol0tYAzNCCA_XbCmk15rzynED58u5AWIJ0kpXfHpSwUce8jlNEHiXiUbCDM7w_e5mJwjTuQegbmFMB3C3Oew9RalaIet1dAZPZNUL0u7XLnmQGHsvw"/>
+</div>
+<div class="flex-1 min-w-0 pr-md">
+<h4 class="font-label-md text-label-md text-on-surface truncate">Voltage Control</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant truncate">KINETIC</p>
+</div>
+<div class="hidden sm:block flex-1 min-w-0 pr-md text-on-surface-variant font-body-sm text-body-sm truncate">
+                                    Analog Sequences
+                                </div>
+<div class="flex items-center gap-4 text-on-surface-variant">
+<button class="opacity-0 group-hover:opacity-100 transition-opacity hover:text-primary">
+<span class="material-symbols-outlined text-[18px]">favorite</span>
+</button>
+<span class="font-body-sm text-body-sm w-12 text-right">05:12</span>
+<button class="opacity-0 group-hover:opacity-100 transition-opacity hover:text-on-surface">
+<span class="material-symbols-outlined text-[20px]">more_horiz</span>
+</button>
+</div>
+</div>
+<!-- Track Row 3 -->
+<div class="group flex items-center p-sm hover:bg-surface-container-high transition-colors bg-surface">
+<div class="w-8 flex justify-center text-on-surface-variant group-hover:hidden font-label-sm text-label-sm">3</div>
+<div class="w-8 hidden group-hover:flex justify-center text-on-surface mr-sm">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</div>
+<div class="w-10 h-10 rounded overflow-hidden mr-md shrink-0">
+<img alt="Track Art" class="w-full h-full object-cover" data-alt="A sophisticated album cover showing an abstract macro shot of metallic textures. Deep blacks and dark greys dominate, with a sleek, reflective crimson red line cutting diagonally across the frame, emphasizing a surgical, high-tech aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCTYr5AX5-7Ok6OgYMgK9llGWRRhxenv4pMauijYatgVsVDNA8aSvqYmBFfdL9eBw8Cm0L8vOSIDJY2N-JZfgnb_m3Bmrh70NxhF4Cv2E5KrwlzZPbIFv1Y-ET9gTCHRrVCi4B1VSnOaZ5C1yZGZVv3yrl3NY8FKx8oxm7FKxtnmTiNfEI8G8IkdzUAJc9vQH68kE81dcXoUokNr5k6PeBgFlSeIyVBvKkd3YuG3atVU-Kfwaz5d4hSyKph2fQlK9rPXfjtkTh9BUg"/>
+</div>
+<div class="flex-1 min-w-0 pr-md">
+<h4 class="font-label-md text-label-md text-on-surface truncate">Dark Matter</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant truncate">Sector 7</p>
+</div>
+<div class="hidden sm:block flex-1 min-w-0 pr-md text-on-surface-variant font-body-sm text-body-sm truncate">
+                                    Singularity
+                                </div>
+<div class="flex items-center gap-4 text-on-surface-variant">
+<button class="opacity-0 group-hover:opacity-100 transition-opacity hover:text-primary">
+<span class="material-symbols-outlined text-[18px]">favorite</span>
+</button>
+<span class="font-body-sm text-body-sm w-12 text-right">04:20</span>
+<button class="opacity-0 group-hover:opacity-100 transition-opacity hover:text-on-surface">
+<span class="material-symbols-outlined text-[20px]">more_horiz</span>
+</button>
+</div>
+</div>
+<!-- Track Row 4 -->
+<div class="group flex items-center p-sm hover:bg-surface-container-high transition-colors bg-surface">
+<div class="w-8 flex justify-center text-on-surface-variant group-hover:hidden font-label-sm text-label-sm">4</div>
+<div class="w-8 hidden group-hover:flex justify-center text-on-surface mr-sm">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</div>
+<div class="w-10 h-10 rounded overflow-hidden mr-md shrink-0">
+<img alt="Track Art" class="w-full h-full object-cover" data-alt="An album cover composed entirely of typography. Stark white, highly structured sans-serif text aligned perfectly on a pitch-black background. A single word is highlighted in deep red. The design embodies high-density information architecture and professional utility." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCPCBD3jt9b4KYkZokxdE4GnWvV7PCpGJ-5gQZCCjZ5ZZxMXUn7k8G8GfzELD1D-9RY2UR2iOYDIR0EURUDstqLsY_elmthtH6LwzoJ93KOF_N9QyVuQABHRALruiIkGB-jRM-S3-mwxdb2gVz5cj5ZBmyY24WraEqYZicDKbtPtxw5mV6_rkL1e8vk5EvLtDUQ96SI-GMKLAxbjNaP7jmgyMP4WLUhjQdP1wAlp5uVzS-u_X1Q5qNRsGsBaYQzb-WguKyXy7VVPDo"/>
+</div>
+<div class="flex-1 min-w-0 pr-md">
+<h4 class="font-label-md text-label-md text-on-surface truncate">Algorithms</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant truncate">Dataflow</p>
+</div>
+<div class="hidden sm:block flex-1 min-w-0 pr-md text-on-surface-variant font-body-sm text-body-sm truncate">
+                                    Machine Learning
+                                </div>
+<div class="flex items-center gap-4 text-on-surface-variant">
+<button class="opacity-0 group-hover:opacity-100 transition-opacity hover:text-primary">
+<span class="material-symbols-outlined text-[18px]">favorite</span>
+</button>
+<span class="font-body-sm text-body-sm w-12 text-right">06:01</span>
+<button class="opacity-0 group-hover:opacity-100 transition-opacity hover:text-on-surface">
+<span class="material-symbols-outlined text-[20px]">more_horiz</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- AI Picks & Right Column -->
+<div class="flex flex-col gap-xl">
+<!-- AI Recommendations Bento Card -->
+<section class="bg-surface rounded-xl border border-outline-variant p-md relative overflow-hidden group">
+<div class="absolute -right-10 -top-10 w-40 h-40 bg-primary/10 rounded-full blur-3xl group-hover:bg-primary/20 transition-all duration-700"></div>
+<div class="flex items-center gap-sm mb-md relative z-10">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<h3 class="font-headline-md text-headline-md text-on-surface">AI DJ Mix</h3>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-md relative z-10">Based on your intense listening history of dark synth and industrial techno.</p>
+<div class="flex items-center gap-md bg-surface-container-low p-sm rounded-lg border border-surface-container-highest relative z-10">
+<div class="w-16 h-16 rounded overflow-hidden shrink-0 shadow-lg">
+<img alt="AI Playlist Art" class="w-full h-full object-cover" data-alt="A surreal, AI-generated landscape serving as playlist cover art. The scene shows a desolate, dark gray urban canyon with impossibly high monolithic buildings. The only light source is a glowing red neon wire that snakes through the streets, conveying a sense of automated, machine-driven curation." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCacDUAzg4BjvRLqSD70if4P8dvQpOhtNrF3BxZ380GtfMdtYLhJEcagAGkRiIuShGCFeNzlK40rL3jLxu5IGQCQhJyLJaQeCTqhRH-j0yIVt8Pq0kqFNkwaTfVbZH1zr7w9z87wp1GCSayYueShivqgpcokrh8EBd-THdZj1xZBkMEma2C0mOUufUawwuMygCZBl_Nudq_XsDrbvnNqWkdSsgqn-nWoqFwXtRvE_wISHCAopXE77rFGXvpmhoFEblWQhzSJn1LM6E"/>
+</div>
+<div class="flex-1 min-w-0">
+<h4 class="font-label-md text-label-md text-on-surface truncate">Deep Focus Protocol</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant truncate">Updates every 4 hours</p>
+</div>
+<button class="w-10 h-10 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center hover:bg-inverse-primary transition-colors shrink-0">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</button>
+</div>
+</section>
+<!-- Popular Artists -->
+<section class="flex flex-col gap-md">
+<h3 class="font-headline-lg text-headline-lg text-on-surface">Top Artists</h3>
+<div class="grid grid-cols-3 gap-sm">
+<div class="flex flex-col items-center gap-xs p-sm rounded-lg hover:bg-surface-container-low transition-colors cursor-pointer group">
+<div class="w-16 h-16 rounded-full overflow-hidden border border-outline-variant group-hover:border-primary-container transition-colors p-[2px]">
+<img alt="Artist 1" class="w-full h-full rounded-full object-cover" data-alt="A high-contrast black and white portrait of a musician. The lighting is harsh, casting deep shadows across their face. A subtle red tint is applied to the darkest shadows, maintaining the strict professional color palette of the application." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAxHxR2WNgcuoNlDIZuAjkN4RFqfKrgTvjPNEpFkGRvSPlZ3JshuItsUbj7TbAyLdEfQtgKgFWnYAz6ugOp3xKy4Z_mryA0JFpB4ewPUl-3jYnsbcnx_mp1CUYiMBJSysd0ED271vY9F_St79NHkmfozock-JoQkWtddT3oobKSGKhku8VavpBVEvk3AXvLVezd-DG-Nun4NpsSAaLXrtPEZBv0ciWpMHPZmCoxDtcioanUgTal2Luu1WtSN5HIQGb4L-ewXM0MvFs"/>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface text-center truncate w-full">KINETIC</span>
+</div>
+<div class="flex flex-col items-center gap-xs p-sm rounded-lg hover:bg-surface-container-low transition-colors cursor-pointer group">
+<div class="w-16 h-16 rounded-full overflow-hidden border border-outline-variant group-hover:border-primary-container transition-colors p-[2px]">
+<img alt="Artist 2" class="w-full h-full rounded-full object-cover" data-alt="A stylized portrait of an artist in silhouette against a dim, charcoal grey background. The edges of the silhouette are illuminated by a sharp, thin red rim light. The overall mood is enigmatic and focused, fitting for a dark-mode audio platform." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAkM7a_cBC_zJsQoHkscuKiYNH_ElZU8ZtJsjlNdt6RCLZVo9eJu3k3nlCOoAcwc2QbsnYBZ10IvCQfLJuKp1yCkBMCWE-Hs1kvcsmDuQS-vLhFsJyyL9Cbk3Q3enwqOGm10moRhEq7Nut9MpQUj7BYjHENfJcPzeVOLxSDrQdzt4O8xdaLwcNbJSiXSDl399LJkW2K2S_KnEzio9BmVaM77IOXaiZgzchoQc7-wgZ1Wfo6fKeY7Hrjee3IAYoihS5sxvSPMBy5dLY"/>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface text-center truncate w-full">Sector 7</span>
+</div>
+<div class="flex flex-col items-center gap-xs p-sm rounded-lg hover:bg-surface-container-low transition-colors cursor-pointer group">
+<div class="w-16 h-16 rounded-full overflow-hidden border border-outline-variant group-hover:border-primary-container transition-colors p-[2px]">
+<img alt="Artist 3" class="w-full h-full rounded-full object-cover" data-alt="An abstract representation of an artist, perhaps a highly geometric mask or helmet rendered in dark metals, placed against a pure black backdrop. The eyes or visors glow with an intense, warning red, maintaining a sleek, modern aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAGAiOUlYGClykvHrSY4tXmf2KhjcFeglAxG5v_fgvPfjeIiEGSQn5SmG1npadNCHDdZDOdS8d7TOEG6D02KEKUggUzYWoIwgb9Jxxaa7Z5etgwwcYJ5bmeVnUn1yhPLpbgZYoC9667pPxIJRvBwTwNGaVXu0yJdu2AIKIGrFU6eRj1RZE8F4wxYFaUDXLAbotGnHyO8uLDCV2EIHl0WI5xUfKOr4do35FKdS_iPgCCpSYqrR7YYfvrGonoUJvpaGbD1CTPAZQi_pk"/>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface text-center truncate w-full">AVA</span>
+</div>
+</div>
+</section>
+</div>
+</div>
+<!-- Recently Played (Horizontal Scroll) -->
+<section class="flex flex-col gap-md mb-md">
+<h3 class="font-headline-lg text-headline-lg text-on-surface">Recently Played</h3>
+<div class="flex gap-md overflow-x-auto pb-sm snap-x no-scrollbar">
+<!-- Card 1 -->
+<div class="w-40 sm:w-48 shrink-0 flex flex-col gap-sm p-sm rounded-lg hover:bg-surface-container transition-colors cursor-pointer group snap-start bg-surface border border-transparent hover:border-outline-variant">
+<div class="w-full aspect-square rounded-md overflow-hidden relative shadow-lg">
+<img alt="Recent 1" class="w-full h-full object-cover" data-alt="A minimalist album cover design featuring a stark black background intersected by thin, precise, vertical grey lines, resembling a digital audio spectrum analyzer. One single line peaks dramatically, colored in bright, saturated crimson red. The aesthetic is clean, technical, and professional." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDLZcYhEDLN544kWoE8ukWZXl1FKVxarAk9tl-8ty92o2eXWCxkGc2_X6mKEV97ruCHUN4_RMGTYiIR930JOWM1pHxQzEBmVh1DGWL1W_d9zW-KbmC6q4BU3nQ3jx7iTkmhPbaghNr0zoZYpRZKlsXY3uyyfc8dD8A-pJvZkSBjDj798OLH8S1gUxzz7vRP6XziEdtUTYXdmSJMCXw0tPspakQjTG03Q6QUM42W0JNrnqOVphr0ibgCX2q91ADeoKcx64If2oVbpyk"/>
+<div class="absolute inset-0 bg-black/40 flex items-end justify-end p-sm opacity-0 group-hover:opacity-100 transition-opacity">
+<div class="w-10 h-10 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center hover:scale-105 transition-transform shadow-xl">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</div>
+</div>
+</div>
+<div>
+<h4 class="font-label-md text-label-md text-on-surface truncate">Frequency Shift</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant truncate mt-xs">Album • KINETIC</p>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="w-40 sm:w-48 shrink-0 flex flex-col gap-sm p-sm rounded-lg hover:bg-surface-container transition-colors cursor-pointer group snap-start bg-surface border border-transparent hover:border-outline-variant">
+<div class="w-full aspect-square rounded-md overflow-hidden relative shadow-lg">
+<img alt="Recent 2" class="w-full h-full object-cover" data-alt="Album art showing a macro close-up of vinyl record grooves, lit dramatically from a low angle. The grooves are deep black, but a thin ray of red light sweeps across them, creating sharp highlights. The mood is classic yet modernized through strict color control." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBGyWQIgKDOhiKcCZrx83vsbyUJx3Z3foNhbJM7MAGAJRQZmfm5QfSZfBuFNvmhB0wAAyr4KSHoSCIn0JsMD9tc44Ku8ABwX9y7Wx8F1dSO1XULHcnmK-Cin1f23P21nEH5PrAqOEQiVtPaZs4HfyiMJ3G10FHEJyOrCcs4HAdJWh5UHqSECY9SS8of7ClqeXyAl2cS6iRCsRqialeD-Idv1vDGCp6BC2yn4s6Br3NzvmLu-tN8z7jgJgzCKjRPjLlYck6fU8bbbVU"/>
+<div class="absolute inset-0 bg-black/40 flex items-end justify-end p-sm opacity-0 group-hover:opacity-100 transition-opacity">
+<div class="w-10 h-10 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center hover:scale-105 transition-transform shadow-xl">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</div>
+</div>
+</div>
+<div>
+<h4 class="font-label-md text-label-md text-on-surface truncate">Analog Sessions</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant truncate mt-xs">Playlist • Curated</p>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="w-40 sm:w-48 shrink-0 flex flex-col gap-sm p-sm rounded-lg hover:bg-surface-container transition-colors cursor-pointer group snap-start bg-surface border border-transparent hover:border-outline-variant">
+<div class="w-full aspect-square rounded-md overflow-hidden relative shadow-lg">
+<img alt="Recent 3" class="w-full h-full object-cover" data-alt="A dark, moody album cover featuring blurred, long-exposure headlights of cars passing through a tunnel at night. The environment is dark grey, and the tail lights leave vibrant, sharp red trails. The image conveys speed, flow, and modern urban electronica." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBFP7wXf0VWhh1WPU2yKvROJ4c9HDgah7erlghO8voxoNuMW3rntyDA5nnIXhfDANJlcpS-EOdpax8AWZVJUNN05XwdTcQohoqU38oVO4lF1jbUQZD8ZIPynH12TW1CyfqjUsaG8uL_cHdBZhSqLRqR8h-6JknC-WGlzoCMQifsvEv10oXPg28Do7bNcWnY2IhQDI6sNlZzC3iGg6JZs31ILBbl_0DAWUdBaVRtJg8uCaVM1MQq3eCUGF5Rf1cZClH7cisZJA3BSSc"/>
+<div class="absolute inset-0 bg-black/40 flex items-end justify-end p-sm opacity-0 group-hover:opacity-100 transition-opacity">
+<div class="w-10 h-10 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center hover:scale-105 transition-transform shadow-xl">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</div>
+</div>
+</div>
+<div>
+<h4 class="font-label-md text-label-md text-on-surface truncate">Night Drive</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant truncate mt-xs">Mix • 2h 15m</p>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="w-40 sm:w-48 shrink-0 flex flex-col gap-sm p-sm rounded-lg hover:bg-surface-container transition-colors cursor-pointer group snap-start bg-surface border border-transparent hover:border-outline-variant">
+<div class="w-full aspect-square rounded-md overflow-hidden relative shadow-lg">
+<img alt="Recent 4" class="w-full h-full object-cover" data-alt="A highly structured, grid-based album cover. Nine dark grey squares on a pitch black background. The center square is a solid, flat, intense red. No gradients. Pure, raw, high-contrast structural design." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBtKGV6HLIZhYeZ1U6RjDZnnN4KiA1jNGps6yiSZ-9VtipB33rHOdh9zsc747_TxUy7X3BnmXcf-mrt0Nk0Xmpbmhk2-4vPQum1h8KmjKTAies0jNyLg9is3YpK86xbG1u1mkNFrmxJxbjC9cqxIYOx_2tYsf5Pn-GHgsLCkdVa_DVOMl8D7uZfOhqbNnNeddNWOZg6Uufort5457ZUo101i7TO4RXCMUy1EK_di3uhqOrrlCOw7Fh0gIHbQ7CcGqK3q5kxNONtnqc"/>
+<div class="absolute inset-0 bg-black/40 flex items-end justify-end p-sm opacity-0 group-hover:opacity-100 transition-opacity">
+<div class="w-10 h-10 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center hover:scale-105 transition-transform shadow-xl">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</div>
+</div>
+</div>
+<div>
+<h4 class="font-label-md text-label-md text-on-surface truncate">Structural Mix</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant truncate mt-xs">Album • Null</p>
+</div>
+</div>
+<!-- Card 5 -->
+<div class="w-40 sm:w-48 shrink-0 flex flex-col gap-sm p-sm rounded-lg hover:bg-surface-container transition-colors cursor-pointer group snap-start bg-surface border border-transparent hover:border-outline-variant">
+<div class="w-full aspect-square rounded-md overflow-hidden relative shadow-lg">
+<img alt="Recent 5" class="w-full h-full object-cover" data-alt="An album cover displaying extreme minimalism: a dark charcoal grid pattern over an absolute black background. In the exact center, a tiny, intense red dot. The overall feel is architectural, cold, and highly designed for a premium audio interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDh8oceCGrdL1x0Q1WuBViGaO26KDpbZfrrda-mSGogh74vS6cXtbuBuoH0etUsKx1GRXcffS14K9rnhrTJj6YbKztLpOqbFgh2CWHG43Zz9fqFpb-b9MftKx7Xlkqv6DO76qhlUXAgksVpo5UENfPE7B1LHlw9zfm-u0xd856RkiqiFiiqznfPEmS6I3PiLakVLy3MCgapafzwVpixdbrgHsy7PW-A0HIQMD2vgGN4M9OVntH-xKvhwzg4rZKMHvgD_oOJg4MJlio"/>
+<div class="absolute inset-0 bg-black/40 flex items-end justify-end p-sm opacity-0 group-hover:opacity-100 transition-opacity">
+<div class="w-10 h-10 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center hover:scale-105 transition-transform shadow-xl">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</div>
+</div>
+</div>
+<div>
+<h4 class="font-label-md text-label-md text-on-surface truncate">Voltage Control</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant truncate mt-xs">Single • KINETIC</p>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+</div>
+<!-- BottomNavBar (Player Controls) -->
+<div class="h-[90px] md:h-20 fixed bottom-0 left-0 w-full z-50 bg-surface-container dark:bg-surface-container border-t border-outline-variant dark:border-outline-variant shadow-[0_-4px_24px_rgba(0,0,0,0.5)] px-sm sm:px-xl flex items-center justify-between">
+<!-- Track Info (Left) -->
+<div class="flex items-center gap-sm sm:gap-md w-1/3 min-w-0">
+<div class="w-12 h-12 sm:w-14 sm:h-14 rounded overflow-hidden shrink-0 shadow-md relative group cursor-pointer">
+<img alt="Now Playing Art" class="w-full h-full object-cover" data-alt="A minimalist album cover featuring a stark black background with a single, sharp geometric shape, perhaps a fractured triangle, rendered in vibrant, saturated red. The design is clean, high-contrast, and deeply professional, avoiding clutter while conveying a sense of electronic precision." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAutZ_XigbW4oy6-x89bgyEsu2Mwao4cPjfgdSPVtZx5UG2oyy7ACGPMrZsuJWX4wwC2hyhtHKIGoQDF3l0p-dAePi4n8WNupvGfaRfgB39N9tZgyOq3O9gKRRiVHrFnx0eMs-WdlwqCmYpKjF8mIPkas0zzdbpS60KooH-n4mU4gRuUGnBUpy7IfpZbvknWZwOOl8haiv9enN8SSGXKt2mwcXt-QCn4p9DXS7s5wevVT075Sov7R-_0nSwbfa7hswAWsRimKaqAXA"/>
+<div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity">
+<span class="material-symbols-outlined text-white">expand_less</span>
+</div>
+</div>
+<div class="flex-1 min-w-0">
+<a class="font-label-md text-label-md text-on-surface hover:underline truncate block" href="#">Neon Nights</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface truncate block" href="#">The Midnight Riders</a>
+</div>
+<button class="text-primary hover:text-primary-container transition-colors hidden sm:block shrink-0">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">favorite</span>
+</button>
+</div>
+<!-- Player Controls (Center) -->
+<div class="flex flex-col items-center justify-center w-full max-w-[40%] px-sm">
+<div class="flex items-center gap-4 sm:gap-6 mb-1">
+<button class="text-on-surface-variant hover:text-on-surface transition-colors hidden sm:block">
+<span class="material-symbols-outlined text-[20px]">shuffle</span>
+</button>
+<button class="text-on-surface-variant hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined text-[24px]" style="font-variation-settings: 'FILL' 1;">skip_previous</span>
+</button>
+<button class="w-10 h-10 rounded-full bg-on-surface text-surface flex items-center justify-center hover:scale-105 active:scale-95 transition-transform shadow-lg">
+<span class="material-symbols-outlined text-[24px]" style="font-variation-settings: 'FILL' 1;">pause</span>
+</button>
+<button class="text-on-surface-variant hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined text-[24px]" style="font-variation-settings: 'FILL' 1;">skip_next</span>
+</button>
+<button class="text-primary hover:text-primary-container transition-colors hidden sm:block relative">
+<span class="material-symbols-outlined text-[20px]">repeat</span>
+<span class="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 bg-primary rounded-full"></span>
+</button>
+</div>
+<div class="w-full flex items-center gap-sm">
+<span class="font-label-sm text-label-sm text-on-surface-variant min-w-[35px] text-right">01:24</span>
+<div class="flex-1 h-1.5 bg-surface-container-highest rounded-full overflow-hidden cursor-pointer group relative">
+<div class="h-full bg-on-surface group-hover:bg-primary-container transition-colors relative w-1/3">
+<div class="absolute right-0 top-1/2 -translate-y-1/2 w-3 h-3 bg-white rounded-full opacity-0 group-hover:opacity-100 shadow-md"></div>
+</div>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant min-w-[35px]">03:45</span>
+</div>
+</div>
+<!-- Extra Controls (Right) -->
+<div class="flex items-center justify-end gap-sm sm:gap-md w-1/3 hidden md:flex">
+<button class="text-on-surface-variant hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined text-[20px]">mic_external_on</span>
+</button>
+<button class="text-on-surface-variant hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined text-[20px]">queue_music</span>
+</button>
+<div class="flex items-center gap-xs w-24 group">
+<button class="text-on-surface-variant hover:text-on-surface transition-colors shrink-0">
+<span class="material-symbols-outlined text-[20px]">volume_up</span>
+</button>
+<div class="flex-1 h-1.5 bg-surface-container-highest rounded-full overflow-hidden cursor-pointer relative">
+<div class="h-full bg-on-surface group-hover:bg-primary-container transition-colors w-[70%]"></div>
+</div>
+</div>
+<button class="text-on-surface-variant hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined text-[20px]">open_in_full</span>
+</button>
+</div>
+</div>
+</body></html>

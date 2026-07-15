@@ -1,0 +1,54 @@
+{
+  "theme": {
+    "colors": {
+      "background": "#0B0B0B",
+      "surface": "#0B0B0B",
+      "surface-dim": "#131313",
+      "surface-bright": "#3A3939",
+      "surface-container-lowest": "#0E0E0E",
+      "surface-container-low": "#131313",
+      "surface-container": "#181818",
+      "surface-container-high": "#2A2A2A",
+      "surface-container-highest": "#353534",
+      "on-surface": "#FFFFFF",
+      "on-surface-variant": "#E5BDBE",
+      "inverse-surface": "#E5E2E1",
+      "inverse-on-surface": "#313030",
+      "outline": "#AC8889",
+      "outline-variant": "#262626",
+      "surface-tint": "#FFB3B6",
+      "primary": "#E50914",
+      "on-primary": "#FFFFFF",
+      "primary-container": "#E50914",
+      "on-primary-container": "#FFFFFF",
+      "inverse-primary": "#BE0037",
+      "secondary": "#C8C6C5",
+      "on-secondary": "#303030",
+      "secondary-container": "#474746",
+      "on-secondary-container": "#B7B5B4",
+      "tertiary": "#74D8BD",
+      "on-tertiary": "#00382D",
+      "tertiary-container": "#00836C",
+      "on-tertiary-container": "#EEFFF7",
+      "error": "#FFB4AB",
+      "on-error": "#690005",
+      "error-container": "#93000A",
+      "on-error-container": "#FFDAD6",
+      "on-background": "#FFFFFF",
+      "surface-variant": "#353534"
+    },
+    "typography": {
+      "fontFamily": {
+        "sans": ["Inter", "sans-serif"],
+        "mono": ["JetBrains Mono", "monospace"]
+      }
+    },
+    "spacing": {
+      "unit": "8px",
+      "container-padding": "24px",
+      "gutter": "16px",
+      "component-gap": "8px",
+      "stack-tight": "4px"
+    }
+  }
+}

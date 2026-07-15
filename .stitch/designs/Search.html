@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Melodify - Search</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-container-lowest": "#0e0e0e",
+                      "primary-fixed": "#ffdada",
+                      "surface-dim": "#131313",
+                      "inverse-surface": "#e5e2e1",
+                      "secondary-container": "#474746",
+                      "surface": "#131313",
+                      "on-secondary-fixed": "#1b1c1c",
+                      "primary": "#ffb3b6",
+                      "surface-variant": "#353534",
+                      "surface-container-low": "#1c1b1b",
+                      "surface-container-highest": "#353534",
+                      "on-surface": "#e5e2e1",
+                      "surface-bright": "#3a3939",
+                      "on-tertiary-fixed-variant": "#005142",
+                      "tertiary-container": "#00836c",
+                      "tertiary": "#74d8bd",
+                      "on-primary-fixed": "#40000c",
+                      "error-container": "#93000a",
+                      "background": "#131313",
+                      "secondary-fixed": "#e4e2e1",
+                      "outline-variant": "#5c3f40",
+                      "inverse-primary": "#be0037",
+                      "surface-tint": "#ffb3b6",
+                      "secondary-fixed-dim": "#c8c6c5",
+                      "tertiary-fixed-dim": "#74d8bd",
+                      "on-tertiary-container": "#eefff7",
+                      "on-secondary-fixed-variant": "#474746",
+                      "on-error": "#690005",
+                      "error": "#ffb4ab",
+                      "primary-container": "#e11d48",
+                      "on-secondary": "#303030",
+                      "primary-fixed-dim": "#ffb3b6",
+                      "secondary": "#c8c6c5",
+                      "on-tertiary": "#00382d",
+                      "on-error-container": "#ffdad6",
+                      "on-primary-container": "#fffaf9",
+                      "on-tertiary-fixed": "#002019",
+                      "on-surface-variant": "#e5bdbe",
+                      "surface-container": "#201f1f",
+                      "on-primary-fixed-variant": "#920028",
+                      "inverse-on-surface": "#313030",
+                      "on-primary": "#68001a",
+                      "surface-container-high": "#2a2a2a",
+                      "outline": "#ac8889",
+                      "on-background": "#e5e2e1",
+                      "on-secondary-container": "#b7b5b4",
+                      "tertiary-fixed": "#90f5d9"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "lg": "24px",
+                      "xl": "32px",
+                      "md": "16px",
+                      "margin": "24px",
+                      "xs": "4px",
+                      "sm": "8px",
+                      "base": "8px",
+                      "gutter": "16px"
+              },
+              "fontFamily": {
+                      "headline-md": ["Inter"],
+                      "body-lg": ["Inter"],
+                      "headline-xl": ["Inter"],
+                      "headline-lg": ["Inter"],
+                      "body-sm": ["Inter"],
+                      "label-sm": ["Inter"],
+                      "body-md": ["Inter"],
+                      "label-md": ["Inter"]
+              },
+              "fontSize": {
+                      "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                      "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "headline-xl": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "headline-lg": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                      "body-sm": ["12px", {"lineHeight": "18px", "fontWeight": "400"}],
+                      "label-sm": ["11px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                      "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                      "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}]
+              }
+            }
+          }
+        }
+    </script>
+<style>
+        /* Custom scrollbar for a darker, cleaner look */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #131313; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #262626; 
+            border-radius: 0;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #353534; 
+        }
+        /* Focus styles for strict red border */
+        .search-input:focus {
+            outline: none;
+            border-color: #e11d48;
+            box-shadow: none;
+        }
+        /* No scrollbar for horizontal lists */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-[#000000] text-on-surface font-body-md min-h-screen overflow-x-hidden selection:bg-primary-container selection:text-white">
+<!-- TopNavBar -->
+<header class="h-16 fixed top-0 right-0 w-full md:w-[calc(100%-280px)] z-40 border-b border-[#262626] bg-[#0a0a0a] flex items-center justify-between px-lg transition-all duration-300">
+<div class="flex items-center w-full md:hidden">
+<span class="font-headline-md text-headline-md font-bold text-primary mr-auto">Melodify</span>
+</div>
+<div class="hidden md:flex items-center gap-md w-full justify-end">
+<button class="text-on-surface-variant hover:text-primary transition-colors flex items-center justify-center p-sm">
+<span class="material-symbols-outlined" data-icon="notifications" style="font-variation-settings: 'FILL' 0;">notifications</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors flex items-center justify-center p-sm">
+<span class="material-symbols-outlined" data-icon="cast" style="font-variation-settings: 'FILL' 0;">cast</span>
+</button>
+<button class="bg-primary-container text-white px-md py-sm rounded-DEFAULT font-label-md text-label-md hover:bg-inverse-primary transition-colors">
+                Upload
+            </button>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-[#262626] ml-sm cursor-pointer">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="A tightly cropped headshot of a music producer in a dimly lit studio, sharp focus, professional lighting, dark and moody aesthetic with a subtle red rim light, high contrast." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCVJ0-dwepzDz7pYmheFsswOWBRGFy4O0uWD8QKFwSH_Nyu7X6f87QSE5dbWNpvE3R1m4-hjUBfpQvchCki894r-ltOezzIXrJ699XMu5flS_vuH4bRtPbl4ODvW2y54-TjkSWF7PM2vM0LzdAA511r1TCcKktTqlJETse8-cxnBrUH1B9wX01ivQOJdXLps7LpijXe7RAcK2EGGt6d_bA0O9W0DyaiISUp_cnuWO72V828Lmmnd6Js1-xEF2Phiu_p0XOUqWuVq_U"/>
+</div>
+</div>
+</header>
+<!-- SideNavBar -->
+<nav class="hidden md:flex w-[280px] h-full fixed left-0 top-0 border-r border-[#262626] bg-[#0a0a0a] flex-col py-margin gap-base z-50">
+<div class="px-margin mb-md">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 bg-primary-container rounded-DEFAULT flex items-center justify-center text-white font-bold">M</div>
+<div>
+<h1 class="font-headline-md text-headline-md font-bold text-primary">Melodify</h1>
+<span class="text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider">Pro Studio</span>
+</div>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto px-sm">
+<ul class="space-y-xs">
+<li>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-[#171717] hover:text-white transition-colors rounded-DEFAULT" href="#">
+<span class="material-symbols-outlined" data-icon="home" style="font-variation-settings: 'FILL' 0;">home</span>
+<span class="font-label-md text-label-md">Home</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm text-primary font-bold border-l-2 border-primary bg-[#171717] transition-colors rounded-r-DEFAULT" href="#">
+<span class="material-symbols-outlined" data-icon="search" style="font-variation-settings: 'FILL' 1;">search</span>
+<span class="font-label-md text-label-md">Search</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-[#171717] hover:text-white transition-colors rounded-DEFAULT" href="#">
+<span class="material-symbols-outlined" data-icon="library_music" style="font-variation-settings: 'FILL' 0;">library_music</span>
+<span class="font-label-md text-label-md">Library</span>
+</a>
+</li>
+<li class="mt-lg pt-sm">
+<span class="px-md font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Collection</span>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-[#171717] hover:text-white transition-colors rounded-DEFAULT" href="#">
+<span class="material-symbols-outlined text-primary" data-icon="favorite" style="font-variation-settings: 'FILL' 0;">favorite</span>
+<span class="font-label-md text-label-md">Liked Songs</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-[#171717] hover:text-white transition-colors rounded-DEFAULT" href="#">
+<span class="material-symbols-outlined" data-icon="playlist_play" style="font-variation-settings: 'FILL' 0;">playlist_play</span>
+<span class="font-label-md text-label-md">Playlists</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-[#171717] hover:text-white transition-colors rounded-DEFAULT" href="#">
+<span class="material-symbols-outlined" data-icon="auto_awesome" style="font-variation-settings: 'FILL' 0;">auto_awesome</span>
+<span class="font-label-md text-label-md">AI Playlist</span>
+</a>
+</li>
+<li class="mt-lg pt-sm">
+<span class="px-md font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Discover</span>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-[#171717] hover:text-white transition-colors rounded-DEFAULT" href="#">
+<span class="material-symbols-outlined" data-icon="trending_up" style="font-variation-settings: 'FILL' 0;">trending_up</span>
+<span class="font-label-md text-label-md">Trending</span>
+</a>
+</li>
+</ul>
+</div>
+<div class="px-margin mt-auto pt-lg border-t border-[#262626]">
+<ul class="space-y-xs mb-md">
+<li>
+<a class="flex items-center gap-md px-sm py-sm text-on-surface-variant hover:text-white transition-colors rounded-DEFAULT" href="#">
+<span class="material-symbols-outlined" data-icon="person" style="font-variation-settings: 'FILL' 0;">person</span>
+<span class="font-label-md text-label-md">Profile</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md px-sm py-sm text-on-surface-variant hover:text-white transition-colors rounded-DEFAULT" href="#">
+<span class="material-symbols-outlined" data-icon="settings" style="font-variation-settings: 'FILL' 0;">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+</li>
+</ul>
+<button class="w-full bg-primary-container text-white py-sm rounded-DEFAULT font-label-md text-label-md hover:bg-inverse-primary transition-colors flex items-center justify-center gap-sm">
+<span>Upgrade to Pro</span>
+<span class="material-symbols-outlined text-[16px]" data-icon="bolt">bolt</span>
+</button>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="md:ml-[280px] pt-[80px] pb-[100px] min-h-screen">
+<div class="max-w-7xl mx-auto px-margin md:px-lg">
+<!-- Search Header -->
+<div class="mb-xl text-center max-w-2xl mx-auto pt-xl">
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-md top-1/2 -translate-y-1/2 text-on-surface-variant group-focus-within:text-primary transition-colors" data-icon="search">search</span>
+<input autofocus="" class="search-input w-full bg-[#0a0a0a] border border-[#262626] rounded-DEFAULT py-md pl-12 pr-md text-white font-body-lg text-body-lg placeholder:text-on-surface-variant transition-colors" placeholder="Search for tracks, artists, or albums" type="text"/>
+</div>
+</div>
+<!-- Genre Filters -->
+<div class="mb-xl">
+<div class="flex gap-sm overflow-x-auto no-scrollbar pb-sm border-b border-[#171717]">
+<button class="whitespace-nowrap px-md py-sm bg-[#171717] border border-[#262626] rounded-DEFAULT font-label-md text-label-md hover:border-[#5c3f40] transition-colors text-white">All Results</button>
+<button class="whitespace-nowrap px-md py-sm bg-[#0a0a0a] border border-primary text-primary rounded-DEFAULT font-label-md text-label-md">Synthwave</button>
+<button class="whitespace-nowrap px-md py-sm bg-[#0a0a0a] border border-[#262626] rounded-DEFAULT font-label-md text-label-md hover:border-[#5c3f40] transition-colors text-on-surface-variant hover:text-white">Techno</button>
+<button class="whitespace-nowrap px-md py-sm bg-[#0a0a0a] border border-[#262626] rounded-DEFAULT font-label-md text-label-md hover:border-[#5c3f40] transition-colors text-on-surface-variant hover:text-white">Cinematic</button>
+<button class="whitespace-nowrap px-md py-sm bg-[#0a0a0a] border border-[#262626] rounded-DEFAULT font-label-md text-label-md hover:border-[#5c3f40] transition-colors text-on-surface-variant hover:text-white">Ambient</button>
+<button class="whitespace-nowrap px-md py-sm bg-[#0a0a0a] border border-[#262626] rounded-DEFAULT font-label-md text-label-md hover:border-[#5c3f40] transition-colors text-on-surface-variant hover:text-white">Lo-Fi</button>
+<button class="whitespace-nowrap px-md py-sm bg-[#0a0a0a] border border-[#262626] rounded-DEFAULT font-label-md text-label-md hover:border-[#5c3f40] transition-colors text-on-surface-variant hover:text-white">Deep House</button>
+<button class="whitespace-nowrap px-md py-sm bg-[#0a0a0a] border border-[#262626] rounded-DEFAULT font-label-md text-label-md hover:border-[#5c3f40] transition-colors text-on-surface-variant hover:text-white">Industrial</button>
+</div>
+</div>
+<!-- Top Results & Songs -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter mb-xl">
+<!-- Top Result (Bento style) -->
+<div class="lg:col-span-4 flex flex-col">
+<h2 class="font-headline-lg text-headline-lg font-semibold text-white mb-md">Top Result</h2>
+<div class="bg-[#0a0a0a] border border-[#171717] p-lg rounded-DEFAULT flex-1 flex flex-col group hover:border-[#262626] transition-colors relative overflow-hidden">
+<div class="w-24 h-24 rounded-DEFAULT overflow-hidden mb-md border border-[#262626]">
+<img class="w-full h-full object-cover" data-alt="A moody, high-contrast portrait of an electronic music producer surrounded by analog synthesizers. Cinematic lighting, deep shadows, subtle red ambient glow." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAz3xjEnh37XsIIdQEE_hiDF4FXfB_NVpGiX8ElOEYefGigPSB6NuEpwvuZuqsB8-llynGUGy9ItfnG7ByZ46q7wxNfdxv0I04b7iiDKl6LkEHgPyvfbR95d2zItW0Vw32H7nfl7AkQ5iXFoUxQ9AinZRJz-7WqTWLHvqzztKWSUz1jpuzwJQmYgi7smPVoTnZlkXMOu_HvKL-OF99Dt76mrBHe3t4gBLi79AIo1eVfSBXcO_X7T5xxpL73hrTKV17HT1Vf85XNyUo"/>
+</div>
+<h3 class="font-headline-xl text-headline-xl text-white font-bold mt-auto mb-xs truncate">Kavinsky</h3>
+<div class="flex items-center gap-sm">
+<span class="bg-[#171717] px-sm py-xs rounded text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wide">Artist</span>
+</div>
+<button class="absolute bottom-lg right-lg w-12 h-12 bg-primary-container text-white rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all shadow-lg hover:bg-inverse-primary hover:scale-105">
+<span class="material-symbols-outlined text-[24px]" data-icon="play_arrow" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</button>
+</div>
+</div>
+<!-- Songs List -->
+<div class="lg:col-span-8 flex flex-col">
+<h2 class="font-headline-lg text-headline-lg font-semibold text-white mb-md">Songs</h2>
+<div class="flex-1 flex flex-col gap-xs">
+<!-- Song Item -->
+<div class="group flex items-center p-sm hover:bg-[#171717] rounded-DEFAULT transition-colors border border-transparent hover:border-[#262626]">
+<div class="w-10 h-10 bg-[#262626] rounded-sm mr-md relative overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="Abstract synthwave album art featuring dark grid lines fading into an endless black horizon, punctuated by sharp red geometric shapes. Minimalist, high contrast, digital." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHSlvrZQRj0OScdNKFeUd3CXgWUMeDF5YHfH26z2ifgpFccG_jUpEjQrqEiZWeug-_krVe41vTTsueuw2LGBKcOL8W_4v24auTOR_WLC7rsuqiwVOBN4ah1wBPDZ1UBfMJWN03SMVCKR83oPRjLdoAVMjoiuZudjBT7nMB19cjB35Wcf43uxznzLmoG34smRJOYYW50aORV1bXVOzXZBXo0aoEFuB0Ah9Rqtf2erJlPZUnB6lZfaA06K8qAoHlsXgm2ZFjolNP8E4"/>
+<div class="absolute inset-0 bg-black/50 hidden group-hover:flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-[20px]" data-icon="play_arrow" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</div>
+</div>
+<div class="flex-1 min-w-0 mr-md">
+<p class="font-label-md text-label-md text-white truncate group-hover:text-primary transition-colors">Nightcall</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant truncate">Kavinsky</p>
+</div>
+<div class="hidden md:block flex-1 min-w-0 mr-md">
+<p class="font-body-sm text-body-sm text-on-surface-variant truncate">OutRun</p>
+</div>
+<div class="text-on-surface-variant font-body-sm text-body-sm mr-md">4:19</div>
+<button class="text-on-surface-variant hover:text-white opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-[20px]" data-icon="more_horiz">more_horiz</span>
+</button>
+</div>
+<!-- Song Item -->
+<div class="group flex items-center p-sm hover:bg-[#171717] rounded-DEFAULT transition-colors border border-transparent hover:border-[#262626]">
+<div class="w-10 h-10 bg-[#262626] rounded-sm mr-md relative overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="Dark techno album cover art. Absolute black background with a single, aggressive red waveform cutting horizontally through the center. Minimalist, sharp, intense." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAUBDPWxTL4qLIfE7qWXiqIICZYa1Avr41h4w96-Egi-7M76aYnEfsIKKytDnjpJu7_MA_PYkL2zsa0Sf2ieGFyJ-OLPu5CRWOjdKK8GrOO1fEm-mLHuIVOB0UBHDK9mlRVzHd-G4n4ca7IqA7-ZwmKJ11BplZjH7AFTK5Qpc4G3Yipq8xh2VeQP2YAk4Cr2V6red_R42fMTCI7sy_TsN1CKy1wfxQ7kKeLoEliqnHPmJ0P1qgI2bXUhDMay_yiMTK8_lPva35ybvs"/>
+<div class="absolute inset-0 bg-black/50 hidden group-hover:flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-[20px]" data-icon="play_arrow" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</div>
+</div>
+<div class="flex-1 min-w-0 mr-md">
+<p class="font-label-md text-label-md text-white truncate group-hover:text-primary transition-colors">Odd Look</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant truncate">Kavinsky, The Weeknd</p>
+</div>
+<div class="hidden md:block flex-1 min-w-0 mr-md">
+<p class="font-body-sm text-body-sm text-on-surface-variant truncate">OutRun</p>
+</div>
+<div class="text-on-surface-variant font-body-sm text-body-sm mr-md">4:12</div>
+<button class="text-on-surface-variant hover:text-white opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-[20px]" data-icon="more_horiz">more_horiz</span>
+</button>
+</div>
+<!-- Song Item -->
+<div class="group flex items-center p-sm hover:bg-[#171717] rounded-DEFAULT transition-colors border border-transparent hover:border-[#262626]">
+<div class="w-10 h-10 bg-[#262626] rounded-sm mr-md relative overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="Cinematic electronic album cover. A stark, brutalist concrete structure rising from a black void, illuminated by a single red spotlight. High contrast, modern architectural." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDAHc5_CRFu3SwN1TUcbdOWacGZf_PZ3JnfDyfeQZOzPSy5UcR2S9AdU91Zqm5GEjIAXEmhoTHctwGrjApAhXqY2PL9fcmUqPZSdFmt_pPwG01WfO_bDbJIIoeC6x3XGhqz71Lqoj-P1YAzWZVl5QADLXGL84LwlgFDv6imR_zyjqtdLSyJUP2_tmF61-svWgiN6YiNQmQEXiUjwv_XP_kayqkQ8WD3Gzxa-VznAkTIFH-5_Y1uD7hu-ldOgQEAW96JHeQe_1xEqKc"/>
+<div class="absolute inset-0 bg-black/50 hidden group-hover:flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-[20px]" data-icon="play_arrow" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</div>
+</div>
+<div class="flex-1 min-w-0 mr-md">
+<p class="font-label-md text-label-md text-white truncate group-hover:text-primary transition-colors">Roadgame</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant truncate">Kavinsky</p>
+</div>
+<div class="hidden md:block flex-1 min-w-0 mr-md">
+<p class="font-body-sm text-body-sm text-on-surface-variant truncate">OutRun</p>
+</div>
+<div class="text-on-surface-variant font-body-sm text-body-sm mr-md">3:44</div>
+<button class="text-on-surface-variant hover:text-white opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-[20px]" data-icon="more_horiz">more_horiz</span>
+</button>
+</div>
+<!-- Song Item -->
+<div class="group flex items-center p-sm hover:bg-[#171717] rounded-DEFAULT transition-colors border border-transparent hover:border-[#262626]">
+<div class="w-10 h-10 bg-[#262626] rounded-sm mr-md relative overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="Minimalist ambient album cover. Deep charcoal texture with a thin, vertical red line slicing through the center. Intense, focused, surgical aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCqN-e9BM6AYZ7UEJx0MDGdblHBrYWQBnEXpk9LTSpGeP9-9QaPjnguBDhf-LlsFGO715QB8pyB-FlvlQAs8q3MGzjuOu4NOadeTqmVdtQ12zUePCKplKwOxuKyuFzKZcpyEK7BnqkqZQs5i3YcoBOgqEzQAAaRgVxZHcvRM32tq4jqk9K4Hn1RyTU0bjJjfTX3ilBInRq7BdI6Xhjj0HZNIwH-n7Fqsf90Mr-IE-QiI9gW7fyIizn5fLsgKo8OeNgYNW6Z-ZqNBag"/>
+<div class="absolute inset-0 bg-black/50 hidden group-hover:flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-[20px]" data-icon="play_arrow" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</div>
+</div>
+<div class="flex-1 min-w-0 mr-md">
+<p class="font-label-md text-label-md text-white truncate group-hover:text-primary transition-colors">Pacific Coast Highway</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant truncate">Kavinsky</p>
+</div>
+<div class="hidden md:block flex-1 min-w-0 mr-md">
+<p class="font-body-sm text-body-sm text-on-surface-variant truncate">OutRun</p>
+</div>
+<div class="text-on-surface-variant font-body-sm text-body-sm mr-md">3:23</div>
+<button class="text-on-surface-variant hover:text-white opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-[20px]" data-icon="more_horiz">more_horiz</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Artists Section -->
+<div class="mb-xl">
+<h2 class="font-headline-lg text-headline-lg font-semibold text-white mb-md">Artists</h2>
+<div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-md">
+<!-- Artist Card -->
+<div class="bg-[#0a0a0a] border border-[#171717] hover:border-[#262626] p-md rounded-DEFAULT flex flex-col items-center text-center group cursor-pointer transition-colors">
+<div class="w-24 h-24 rounded-full overflow-hidden mb-sm border border-[#262626] relative">
+<img class="w-full h-full object-cover" data-alt="Monochrome studio portrait of a techno DJ, sharp focus, deep shadows, wearing dark minimal clothing. A slight red rim light creates separation from the black background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC8hzykw4iq-XHs8sedNA-V4KtuSGnvLxJXYtLxqeTXDnVIytxuVAr-lsFyztGtDiX9qzi-rIUa_hKILVCjCR6MQLD36E1dOBumufa1z2-UQ_UcYO2gBT8tOFaMwOLZBBZjNkML1l-Dhfnaa90tkSgwnz86px-i6fMqcNHPaBLlX5FT14kI2X-AJInuNPo1p2z5rDWcxoZF_wNZmp4iTJtbbSQOgnH57IGwkrySvQ0KtftdksioB7LgQvtTscDqHlkKjxbdpWA7928"/>
+<div class="absolute inset-0 bg-black/40 hidden group-hover:flex items-center justify-center transition-all">
+<span class="material-symbols-outlined text-white text-[24px]" data-icon="play_arrow" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</div>
+</div>
+<h4 class="font-label-md text-label-md text-white group-hover:text-primary transition-colors truncate w-full">Justice</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-xs uppercase tracking-wider">Artist</p>
+</div>
+<!-- Artist Card -->
+<div class="bg-[#0a0a0a] border border-[#171717] hover:border-[#262626] p-md rounded-DEFAULT flex flex-col items-center text-center group cursor-pointer transition-colors">
+<div class="w-24 h-24 rounded-full overflow-hidden mb-sm border border-[#262626] relative">
+<img class="w-full h-full object-cover" data-alt="High contrast black and white photo of an electronic music duo standing in front of a massive wall of modular synthesizers. Intense, serious mood." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAfB3cMGxhKFK6ht4CYFbplET-uR35qf63nZaHNHE45lGsQYMBZIv0y0mCEy10CiGFkFtwXYFmCWjy4bM42cgRUSBqUHZkjEVYwEzcAh_7wYZWjtuH10k5sEtX6QsZ16MaqAXCr3ZfOPMLuEyn_ZCIxVyhrhzfsqithoR50En85DfVr-YUjZ_XTpQv1wINAfgccDgbMf-htRi1WnQfkrLRuHDg1yJ_jDnYNOudAe88ykcTw-_Hu2ngefWCYX0GeFey--q032TEt_DQ"/>
+<div class="absolute inset-0 bg-black/40 hidden group-hover:flex items-center justify-center transition-all">
+<span class="material-symbols-outlined text-white text-[24px]" data-icon="play_arrow" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</div>
+</div>
+<h4 class="font-label-md text-label-md text-white group-hover:text-primary transition-colors truncate w-full">Daft Punk</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-xs uppercase tracking-wider">Artist</p>
+</div>
+<!-- Artist Card -->
+<div class="bg-[#0a0a0a] border border-[#171717] hover:border-[#262626] p-md rounded-DEFAULT flex flex-col items-center text-center group cursor-pointer transition-colors">
+<div class="w-24 h-24 rounded-full overflow-hidden mb-sm border border-[#262626] relative">
+<img class="w-full h-full object-cover" data-alt="Abstract silhouette of a female DJ performing in a dark club environment. Harsh, angular lighting cutting through smoke, primarily black with sharp red lasers." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDGRaxr-Wmn9abKyCterp0LF-SJc5tLAB4gfa3-tR9ZHTZaLcvJpzNTj9JCmrFKTt_lLNqXXg6tYwPxIapW3ly1D5EZEJFiCvcMCwAnpuy-AB7PaqYXjJY6guR0hHWRTeE8-oSRSlf2orPU6lhwMJli-kDNFPxTzABW3_HyfuPiVI4c-7ZOJu1uGSE22aXv15wG86C-4aEUKOIy71A2PB5ev91Q6tsU7rMiKIZYDlunFMGtbrGU7yxdfskoAk3oxOQwU0yPNEQArgI"/>
+<div class="absolute inset-0 bg-black/40 hidden group-hover:flex items-center justify-center transition-all">
+<span class="material-symbols-outlined text-white text-[24px]" data-icon="play_arrow" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</div>
+</div>
+<h4 class="font-label-md text-label-md text-white group-hover:text-primary transition-colors truncate w-full">Gesaffelstein</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-xs uppercase tracking-wider">Artist</p>
+</div>
+</div>
+</div>
+<!-- Albums Section -->
+<div>
+<h2 class="font-headline-lg text-headline-lg font-semibold text-white mb-md">Albums</h2>
+<div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-md">
+<!-- Album Card -->
+<div class="bg-[#0a0a0a] border border-[#171717] hover:border-[#262626] p-sm rounded-DEFAULT group cursor-pointer transition-colors flex flex-col">
+<div class="aspect-square w-full rounded-sm overflow-hidden mb-sm border border-[#262626] relative">
+<img class="w-full h-full object-cover" data-alt="High-end electronic album art. A perfectly rendered, glossy black geometric cube resting on a matte black surface. A single thin red line dissects the cube diagonally." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAkYDire_qIePOIZYB206juDXqbVPht_zp5SWf8hzXJHKfeRs9Pra3g4lQBTzefv6bTpdvM2pxvjOFh9B0DYdoPKoKBiV_Aam7vMvG6C9YFO--iqDQbGdFBaUCVQb7G6iYzXqqQIvaCUyjZVozh152VjLH4VG9GDz-UEJcqx2eqqNYd7KDZpp_-Tbn-ydto49dq4p2V74Yc2APKQUK-_rDyO3wySTs2HPN-J1xCc4c2OS6F8zl1NWtbyOIQfTx1Z4zui1RKnNoCqO0"/>
+<button class="absolute bottom-sm right-sm w-10 h-10 bg-primary-container text-white rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all shadow-lg hover:bg-inverse-primary hover:scale-105">
+<span class="material-symbols-outlined text-[20px]" data-icon="play_arrow" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</button>
+</div>
+<h4 class="font-label-md text-label-md text-white group-hover:text-primary transition-colors truncate">Cross</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant truncate mt-xs">Justice</p>
+</div>
+<!-- Album Card -->
+<div class="bg-[#0a0a0a] border border-[#171717] hover:border-[#262626] p-sm rounded-DEFAULT group cursor-pointer transition-colors flex flex-col">
+<div class="aspect-square w-full rounded-sm overflow-hidden mb-sm border border-[#262626] relative">
+<img class="w-full h-full object-cover" data-alt="Dark, moody album art showing a deserted night highway stretching into darkness. lit only by the distant red taillights of a sports car. Cinematic, outrun aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAD1vRElkXVzGZoFNcROl3wx4a3CDY2fIJnn9UFskRITeSzCF2Zznxgd5XCeUGjQ0LBw4jIhfXn2jGZkSnKE39AafnRjTm8lByNsjzyepllQQXIABevglYUhZda5KUcmXigTZXwK580svQUA5GDWzmPt481OngibgzsiYgL1Q1MDH-BfOyjGNzurqc0eizpoatfhOGzEtEfC8gTLHJstf3vaexJupYIbBxfhsdTCeHjeO1MNQct8Wv6ToSab3-UBhCgzDB2nMmWI60"/>
+<button class="absolute bottom-sm right-sm w-10 h-10 bg-primary-container text-white rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all shadow-lg hover:bg-inverse-primary hover:scale-105">
+<span class="material-symbols-outlined text-[20px]" data-icon="play_arrow" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</button>
+</div>
+<h4 class="font-label-md text-label-md text-white group-hover:text-primary transition-colors truncate">OutRun</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant truncate mt-xs">Kavinsky</p>
+</div>
+<!-- Album Card -->
+<div class="bg-[#0a0a0a] border border-[#171717] hover:border-[#262626] p-sm rounded-DEFAULT group cursor-pointer transition-colors flex flex-col">
+<div class="aspect-square w-full rounded-sm overflow-hidden mb-sm border border-[#262626] relative">
+<img class="w-full h-full object-cover" data-alt="Minimal techno album cover. A stark, solid black square with a microscopic red dot in the exact center. Intentionally bleak, structural, and hyper-focused." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBfYyOB4eRLpH7GSUuKlUrf8zB7-amAEyr6T0l6EIlAtSyQ8QNrL32jsRachCmNvfzKV1liHnobF2KWJNe2dhnQbiKUceHzJrw82N1jHmePtoObeczX1Ttei9EC5iaYwnWiqqoHp4iCXJrxvABnwVBWYAhrJ6uZVB6eB5v0q19G3hP0wizn8LBWb0c-mI_Urd73x3fR75k4T_6KNnky9e-R9nivSqHCnbANnR9LoqSCKWdMGpixpGY4NzZtH4LPOaWxZICCGaHv670"/>
+<button class="absolute bottom-sm right-sm w-10 h-10 bg-primary-container text-white rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all shadow-lg hover:bg-inverse-primary hover:scale-105">
+<span class="material-symbols-outlined text-[20px]" data-icon="play_arrow" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</button>
+</div>
+<h4 class="font-label-md text-label-md text-white group-hover:text-primary transition-colors truncate">Aleph</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant truncate mt-xs">Gesaffelstein</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Player Controls) -->
+<nav class="h-20 fixed bottom-0 left-0 w-full z-50 bg-[#201f1f] border-t border-[#262626] shadow-xl flex items-center justify-between px-xl transition-all">
+<!-- Now Playing Info -->
+<div class="flex items-center w-1/3 min-w-0">
+<div class="w-14 h-14 bg-[#131313] rounded-sm border border-[#262626] mr-md overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="Abstract synthwave album art featuring dark grid lines fading into an endless black horizon, punctuated by sharp red geometric shapes. Minimalist, high contrast, digital." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzWn8Vwn_aTDmneLtHBHdVX65c766ZRT7TxoE6QFAulm3uidHC8kuxiVgd96YAfh6Pqwa61LVcLh7kaNbGCc16c3Nia94y2cS4ZxNoQyI1bd00fFbWP23uIiLG-prxD69yqCY084ZaSNhEq9w7q7UVXBN7Vb83WQz9AEIf9h6SQLDjD-om2NHA0FAb-DntjPu2zsl_I2ES6w5rvAkoFiOok-LuePhnjPhgWNrDWPMS64-MSwFXLH4e_5J80BDYIrf9or-j-WzZh6U"/>
+</div>
+<div class="flex flex-col min-w-0 mr-md">
+<a class="font-label-md text-label-md text-white hover:underline truncate" href="#">Nightcall</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:underline truncate" href="#">Kavinsky</a>
+</div>
+<button class="text-on-surface-variant hover:text-primary transition-colors p-xs flex-shrink-0">
+<span class="material-symbols-outlined" data-icon="favorite" style="font-variation-settings: 'FILL' 0;">favorite</span>
+</button>
+</div>
+<!-- Player Controls -->
+<div class="flex flex-col items-center justify-center w-1/3 max-w-[400px]">
+<div class="flex items-center gap-md mb-xs">
+<button class="text-on-surface-variant hover:text-white transition-colors p-xs">
+<span class="material-symbols-outlined text-[20px]" data-icon="shuffle">shuffle</span>
+</button>
+<button class="text-on-surface-variant hover:text-white transition-colors p-xs">
+<span class="material-symbols-outlined text-[24px]" data-icon="skip_previous" style="font-variation-settings: 'FILL' 1;">skip_previous</span>
+</button>
+<button class="w-10 h-10 bg-white text-black rounded-full flex items-center justify-center hover:scale-105 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-[24px]" data-icon="play_arrow" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</button>
+<button class="text-on-surface-variant hover:text-white transition-colors p-xs">
+<span class="material-symbols-outlined text-[24px]" data-icon="skip_next" style="font-variation-settings: 'FILL' 1;">skip_next</span>
+</button>
+<button class="text-on-surface-variant hover:text-white transition-colors p-xs">
+<span class="material-symbols-outlined text-[20px]" data-icon="repeat">repeat</span>
+</button>
+</div>
+<div class="w-full flex items-center gap-sm">
+<span class="font-label-sm text-label-sm text-on-surface-variant tabular-nums">1:24</span>
+<div class="h-1 flex-1 bg-[#353534] rounded-full overflow-hidden group cursor-pointer relative">
+<div class="h-full bg-white group-hover:bg-primary transition-colors w-1/3 rounded-full relative"></div>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant tabular-nums">4:19</span>
+</div>
+</div>
+<!-- Extra Controls -->
+<div class="flex items-center justify-end w-1/3 gap-sm">
+<button class="text-on-surface-variant hover:text-white transition-colors p-xs">
+<span class="material-symbols-outlined text-[20px]" data-icon="mic">mic</span>
+</button>
+<button class="text-on-surface-variant hover:text-white transition-colors p-xs">
+<span class="material-symbols-outlined text-[20px]" data-icon="queue_music">queue_music</span>
+</button>
+<div class="flex items-center gap-xs w-24 group">
+<button class="text-on-surface-variant hover:text-white transition-colors p-xs">
+<span class="material-symbols-outlined text-[20px]" data-icon="volume_up">volume_up</span>
+</button>
+<div class="h-1 flex-1 bg-[#353534] rounded-full overflow-hidden cursor-pointer">
+<div class="h-full bg-white group-hover:bg-primary transition-colors w-2/3 rounded-full"></div>
+</div>
+</div>
+<button class="text-on-surface-variant hover:text-white transition-colors p-xs hidden md:block">
+<span class="material-symbols-outlined text-[20px]" data-icon="open_in_full">open_in_full</span>
+</button>
+</div>
+</nav>
+</body></html>

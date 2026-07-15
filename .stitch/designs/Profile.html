@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Melodify - User Profile</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet"/>
+<!-- Tailwind Theme Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-surface-variant": "#e5bdbe",
+                        "surface-dim": "#131313",
+                        "on-secondary-container": "#b7b5b4",
+                        "surface-variant": "#353534",
+                        "secondary-fixed": "#e4e2e1",
+                        "primary-fixed": "#ffdada",
+                        "surface-bright": "#3a3939",
+                        "on-primary-fixed": "#40000c",
+                        "tertiary": "#74d8bd",
+                        "primary-fixed-dim": "#ffb3b6",
+                        "on-tertiary": "#00382d",
+                        "on-surface": "#e5e2e1",
+                        "on-primary": "#68001a",
+                        "tertiary-container": "#00836c",
+                        "surface-container-low": "#1c1b1b",
+                        "surface-container": "#201f1f",
+                        "outline": "#ac8889",
+                        "on-secondary": "#303030",
+                        "secondary-fixed-dim": "#c8c6c5",
+                        "primary": "#ffb3b6",
+                        "secondary-container": "#474746",
+                        "background": "#131313",
+                        "primary-container": "#e11d48",
+                        "surface-tint": "#ffb3b6",
+                        "secondary": "#c8c6c5",
+                        "on-tertiary-fixed-variant": "#005142",
+                        "on-secondary-fixed-variant": "#474746",
+                        "error-container": "#93000a",
+                        "on-background": "#e5e2e1",
+                        "on-primary-container": "#fffaf9",
+                        "inverse-primary": "#be0037",
+                        "on-error-container": "#ffdad6",
+                        "inverse-surface": "#e5e2e1",
+                        "tertiary-fixed-dim": "#74d8bd",
+                        "tertiary-fixed": "#90f5d9",
+                        "on-secondary-fixed": "#1b1c1c",
+                        "on-primary-fixed-variant": "#920028",
+                        "surface-container-high": "#2a2a2a",
+                        "on-tertiary-container": "#eefff7",
+                        "on-error": "#690005",
+                        "surface": "#131313",
+                        "inverse-on-surface": "#313030",
+                        "surface-container-lowest": "#0e0e0e",
+                        "error": "#ffb4ab",
+                        "on-tertiary-fixed": "#002019",
+                        "surface-container-highest": "#353534",
+                        "outline-variant": "#5c3f40"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "sm": "8px",
+                        "md": "16px",
+                        "lg": "24px",
+                        "margin": "24px",
+                        "xs": "4px",
+                        "xl": "32px",
+                        "base": "8px",
+                        "gutter": "16px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-xl": ["Inter"],
+                        "label-sm": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-md": ["14px", { "lineHeight": "20px", "fontWeight": "500" }],
+                        "headline-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "body-sm": ["12px", { "lineHeight": "18px", "fontWeight": "400" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "headline-xl": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-sm": ["11px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        /* Base styles applied via Tailwind config, but ensuring dark mode text color as fallback */
+        body {
+            background-color: #131313;
+            color: #e5e2e1;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md antialiased overflow-x-hidden selection:bg-primary-container selection:text-on-primary-container">
+<!-- JSON Component: SideNavBar -->
+<nav class="hidden md:flex fixed left-0 top-0 h-full w-[280px] bg-surface border-r border-secondary-container flex-col py-lg z-40">
+<!-- Header -->
+<div class="px-lg pb-xl">
+<h1 class="font-headline-lg text-headline-lg font-bold text-primary">Melodify</h1>
+<p class="font-label-sm text-label-sm text-on-secondary-container mt-xs uppercase tracking-widest">Professional Audio</p>
+</div>
+<!-- Navigation Links -->
+<ul class="flex flex-col gap-sm px-md flex-1">
+<li>
+<a class="flex items-center gap-md text-on-secondary-container px-md py-sm hover:bg-surface-variant transition-colors duration-200 cursor-pointer active:opacity-80 rounded" href="#">
+<span class="material-symbols-outlined font-label-md text-label-md">home</span>
+<span class="font-label-md text-label-md">Home</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md text-on-secondary-container px-md py-sm hover:bg-surface-variant transition-colors duration-200 cursor-pointer active:opacity-80 rounded" href="#">
+<span class="material-symbols-outlined font-label-md text-label-md">search</span>
+<span class="font-label-md text-label-md">Search</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md text-on-secondary-container px-md py-sm hover:bg-surface-variant transition-colors duration-200 cursor-pointer active:opacity-80 rounded" href="#">
+<span class="material-symbols-outlined font-label-md text-label-md">library_music</span>
+<span class="font-label-md text-label-md">Library</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md text-on-secondary-container px-md py-sm hover:bg-surface-variant transition-colors duration-200 cursor-pointer active:opacity-80 rounded" href="#">
+<span class="material-symbols-outlined font-label-md text-label-md">auto_awesome</span>
+<span class="font-label-md text-label-md">AI Playlist</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md text-on-secondary-container px-md py-sm hover:bg-surface-variant transition-colors duration-200 cursor-pointer active:opacity-80 rounded" href="#">
+<span class="material-symbols-outlined font-label-md text-label-md">trending_up</span>
+<span class="font-label-md text-label-md">Trending</span>
+</a>
+</li>
+<!-- ACTIVE NAVIGATION ITEM (Profile Page context) -->
+<li>
+<a class="flex items-center gap-md text-primary border-l-[3px] border-primary-container bg-surface-container-high px-md py-sm cursor-pointer active:opacity-80 rounded-r" href="#">
+<span class="material-symbols-outlined font-label-md text-label-md" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="font-label-md text-label-md font-bold">Profile</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md text-on-secondary-container px-md py-sm hover:bg-surface-variant transition-colors duration-200 cursor-pointer active:opacity-80 rounded mt-md" href="#">
+<span class="material-symbols-outlined font-label-md text-label-md">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+</li>
+</ul>
+</nav>
+<!-- Content Canvas Wrapper -->
+<div class="flex-1 flex flex-col md:ml-[280px] pb-[80px] min-h-screen">
+<!-- JSON Component: TopNavBar -->
+<header class="hidden md:flex sticky top-0 bg-surface-container-lowest/95 backdrop-blur-sm border-b border-secondary-container justify-between items-center h-16 px-margin w-full z-30 transition-all duration-200">
+<div class="flex items-center gap-md w-1/3">
+<div class="relative w-full max-w-xs group">
+<span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-on-secondary-container group-focus-within:text-primary-container">search</span>
+<input class="w-full bg-surface-container border border-secondary-container rounded-DEFAULT py-[6px] pl-[36px] pr-sm font-body-sm text-body-sm text-on-surface focus:outline-none focus:border-primary-container focus:ring-0 transition-colors placeholder-on-secondary-container" placeholder="Search profiles, tracks, genres..." type="text"/>
+</div>
+</div>
+<div class="flex items-center justify-center w-1/3">
+<h2 class="font-headline-md text-headline-md font-black text-on-surface">User Profile</h2>
+</div>
+<div class="flex items-center justify-end gap-md w-1/3">
+<button class="text-on-surface-variant hover:text-primary transition-colors flex items-center justify-center w-8 h-8 rounded-full hover:bg-surface-variant">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-surface-variant overflow-hidden border border-secondary-container cursor-pointer">
+<img alt="User Profile Avatar" class="w-full h-full object-cover" data-alt="A cinematic close-up headshot of a modern music professional named Alex Rivera, dramatic dark studio lighting with a subtle red rim light on the edge of the face, intense and focused mood, dark charcoal background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAGEn5kcxveJLOuQ7XwE_wkx2fT2WI_Yfrs8fCFukzLAZSBgXLGglxviBmenSYZddmhPLj6VKA1CE7-ikyK6K0TEIRCg2vuCq8Vff2LGRIZCFrS3VRAuVcFlGOrhRN8ckQPpeobh4H_EiuD8kTpyXtWueHYlZHWN48GrfIYXshWalFutZMjxsgJQoBQRAZIwKx1_vauiz-yzfvlV2N1x42tritJkn1OVmKknD2WywlNp__0hrithTGY20Omv5OpBT8rwCGqvB6v-9E"/>
+</div>
+</div>
+</header>
+<!-- Main Profile Content -->
+<main class="flex-1 p-margin flex flex-col gap-xl max-w-7xl mx-auto w-full">
+<!-- Hero Header Section -->
+<section class="flex flex-col md:flex-row items-start md:items-center gap-lg border-b border-secondary-container pb-xl">
+<div class="w-32 h-32 md:w-40 md:h-40 shrink-0 rounded-full overflow-hidden border-2 border-surface-variant bg-surface-container relative group">
+<img alt="Alex Rivera Avatar" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A cinematic close-up headshot of a modern music professional named Alex Rivera, dramatic dark studio lighting with a subtle red rim light on the edge of the face, intense and focused mood, dark charcoal background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB3ZkHuDmrQySzhn7OemGV1I8ptU1n4RwRMBq4wCUApQNm5zIvidcU6KcJnOTdnSe6PYtHAWLX6H4mYiEqqSTRaH6UQOAnyZsAdVw2OsuPsZT6WcMiCFCAMgvBsmdcQoX5YVhhx3hB5TVvkGRg8OI4dw9f4BgGr6apcP8q8Xgj2T3of1WrC6Ij3IEdfkiBe0JW8-MuaqUIYVxszl6s6r7oIGpgWO1XpF2n-Bp8R-fY20OJ_hE5OZf7ccaEZVrGtxaPjcMsbBjuUllM"/>
+<div class="absolute inset-0 bg-black/40 hidden group-hover:flex items-center justify-center cursor-pointer transition-opacity">
+<span class="material-symbols-outlined text-white">photo_camera</span>
+</div>
+</div>
+<div class="flex-1 flex flex-col gap-sm">
+<div class="flex items-center gap-md flex-wrap">
+<h1 class="font-headline-xl text-headline-xl text-on-surface">Alex Rivera</h1>
+<span class="bg-primary-container text-on-primary-container font-label-sm text-label-sm px-2 py-1 rounded-sm uppercase tracking-wider flex items-center gap-xs">
+<span class="material-symbols-outlined text-[14px]">star</span> Premium
+                        </span>
+</div>
+<p class="font-body-md text-body-md text-on-secondary-container max-w-2xl">
+                        Electronic music enthusiast, curator, and producer based in Berlin. Always hunting for the perfect nocturnal groove.
+                    </p>
+<div class="flex items-center gap-sm mt-sm">
+<button class="bg-primary-container hover:bg-inverse-primary text-on-primary-container font-label-md text-label-md px-md py-sm rounded-DEFAULT transition-colors border border-transparent">
+                            Edit Profile
+                        </button>
+<button class="bg-surface hover:bg-surface-variant text-on-surface border border-secondary-container font-label-md text-label-md px-md py-sm rounded-DEFAULT transition-colors flex items-center gap-xs">
+<span class="material-symbols-outlined text-[18px]">settings</span> Settings
+                        </button>
+<div class="flex-1"></div>
+<button class="text-on-surface-variant hover:text-error font-label-md text-label-md px-sm py-sm transition-colors flex items-center gap-xs">
+<span class="material-symbols-outlined text-[18px]">logout</span> Logout
+                        </button>
+</div>
+</div>
+</section>
+<!-- Grid Layout: Stats & Genres -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-lg">
+<!-- Listening Statistics (Bento Grid Style) -->
+<section class="lg:col-span-2 flex flex-col gap-md">
+<h3 class="font-headline-md text-headline-md text-on-surface border-b border-secondary-container pb-xs mb-xs">Listening Statistics</h3>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-md">
+<!-- Stat Card 1 -->
+<div class="bg-surface-container-low border border-secondary-container p-lg rounded-DEFAULT flex flex-col gap-sm relative overflow-hidden group">
+<div class="absolute top-0 left-0 w-1 h-full bg-primary-container transform -translate-x-full group-hover:translate-x-0 transition-transform"></div>
+<span class="font-label-sm text-label-sm text-on-secondary-container uppercase tracking-wider">Hours Streamed</span>
+<div class="flex items-baseline gap-xs">
+<span class="font-headline-xl text-headline-xl text-on-surface">1,240</span>
+<span class="font-body-sm text-body-sm text-tertiary flex items-center"><span class="material-symbols-outlined text-[14px]">arrow_upward</span> 12%</span>
+</div>
+</div>
+<!-- Stat Card 2 -->
+<div class="bg-surface-container-low border border-secondary-container p-lg rounded-DEFAULT flex flex-col gap-sm relative overflow-hidden group">
+<div class="absolute top-0 left-0 w-1 h-full bg-surface-variant transform -translate-x-full group-hover:translate-x-0 transition-transform"></div>
+<span class="font-label-sm text-label-sm text-on-secondary-container uppercase tracking-wider">Top Artist</span>
+<div class="flex items-center gap-sm mt-xs">
+<div class="w-10 h-10 rounded-full bg-surface-variant overflow-hidden border border-secondary-container shrink-0">
+<img class="w-full h-full object-cover" data-alt="A stylized, moody portrait of the electronic artist Kavinsky, wearing iconic dark sunglasses and a red varsity jacket, standing against a dark synthwave city background illuminated by neon red lights, cinematic grading." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCsRuOF3MWWOcl8lB2G4ZRu1jfM2puqNB0XxLfM2NuyWzgakvNbuVsg7fm9TWHTmRRDvdfWvOCiFGCTEQmzDMZbLiIKHmerMS3D7xMRSQam7FU910tkooye1oFyoV09rCUfsPAiGAcMG-ttc9CZXUQxXxnrcI7jA4hwcbfru90yYUQRLcwcJBf5a_JoIkHXEyrv7foN7NJFRPgrDTvj7ASyP55uS1zzDxGQJeInB1qsqTigu2nj9um1WeoZvibiKqHRm3EvDVIPgxg"/>
+</div>
+<span class="font-headline-md text-headline-md text-on-surface truncate">Kavinsky</span>
+</div>
+</div>
+<!-- Stat Card 3 -->
+<div class="bg-surface-container-low border border-secondary-container p-lg rounded-DEFAULT flex flex-col gap-sm relative overflow-hidden group">
+<div class="absolute top-0 left-0 w-1 h-full bg-tertiary transform -translate-x-full group-hover:translate-x-0 transition-transform"></div>
+<span class="font-label-sm text-label-sm text-on-secondary-container uppercase tracking-wider">New Discoveries</span>
+<div class="flex items-baseline gap-xs">
+<span class="font-headline-xl text-headline-xl text-on-surface">86</span>
+<span class="font-body-sm text-body-sm text-on-secondary-container">Tracks this month</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Favorite Genres -->
+<section class="flex flex-col gap-md">
+<h3 class="font-headline-md text-headline-md text-on-surface border-b border-secondary-container pb-xs mb-xs">Favorite Genres</h3>
+<div class="bg-surface-container-low border border-secondary-container p-lg rounded-DEFAULT h-full">
+<div class="flex flex-wrap gap-sm">
+<span class="bg-surface-variant border border-secondary-container text-on-surface px-md py-[6px] rounded-full font-label-sm text-label-sm cursor-default hover:border-primary-container transition-colors">Synthwave</span>
+<span class="bg-surface-variant border border-secondary-container text-on-surface px-md py-[6px] rounded-full font-label-sm text-label-sm cursor-default hover:border-primary-container transition-colors">Dark Synth</span>
+<span class="bg-surface-variant border border-secondary-container text-on-surface px-md py-[6px] rounded-full font-label-sm text-label-sm cursor-default hover:border-primary-container transition-colors">Techno</span>
+<span class="bg-surface-variant border border-secondary-container text-on-surface px-md py-[6px] rounded-full font-label-sm text-label-sm cursor-default hover:border-primary-container transition-colors">Ambient</span>
+<span class="bg-surface border border-secondary-container text-on-secondary-container px-md py-[6px] rounded-full font-label-sm text-label-sm cursor-pointer hover:text-on-surface hover:bg-surface-variant transition-colors flex items-center gap-xs">
+<span class="material-symbols-outlined text-[14px]">add</span> Add
+                            </span>
+</div>
+</div>
+</section>
+</div>
+<!-- Playlists Created -->
+<section class="flex flex-col gap-md">
+<div class="flex justify-between items-end border-b border-secondary-container pb-xs mb-xs">
+<h3 class="font-headline-md text-headline-md text-on-surface">Playlists Created</h3>
+<a class="font-label-sm text-label-sm text-on-secondary-container hover:text-primary transition-colors uppercase tracking-wider" href="#">View All</a>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-md">
+<!-- Playlist Card 1 -->
+<div class="group cursor-pointer flex flex-col gap-sm">
+<div class="w-full aspect-square bg-surface-variant rounded-DEFAULT overflow-hidden relative border border-secondary-container group-hover:border-primary-container transition-colors">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="Abstract geometric album cover art for an electronic music playlist titled 'Midnight Drive'. The image features a stylized dark, endless highway grid fading into a deep black background, illuminated by intense, glowing red neon grid lines and distant cyan highlights. Professional commercial vector aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB3plaDn7wMmZoYAlyRDW0ggqwtKra6DfMXLDvv0SjPioNGREfXOVa5kDQLQjYMawyTzSkp1n-cKdgHClQpCaCf2zoxnRg-DhpYCCuGfFdFxJOqL20yZMypHt0PBJzH9-7vcWZ-OlxrawGCdyJg4g1xQIxq8KvJQKbr8R-vP6LoPMTpU1c3u5WQAoFeuVztSoSvMx7xO_YEy5zddH9_45P3-3gfJSRSRWbHkW9hyhkYUnJu67yYxU6_pzRwXHc1dy5LxdUy2P_8Uys"/>
+<div class="absolute bottom-sm right-sm bg-primary-container text-on-primary-container rounded-full w-10 h-10 flex items-center justify-center opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all shadow-lg">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</div>
+</div>
+<div>
+<h4 class="font-label-md text-label-md text-on-surface truncate group-hover:text-primary transition-colors">Midnight Drive</h4>
+<p class="font-body-sm text-body-sm text-on-secondary-container">42 Tracks</p>
+</div>
+</div>
+<!-- Playlist Card 2 -->
+<div class="group cursor-pointer flex flex-col gap-sm">
+<div class="w-full aspect-square bg-surface-variant rounded-DEFAULT overflow-hidden relative border border-secondary-container group-hover:border-primary-container transition-colors">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="Abstract minimalist album cover art for a playlist titled 'Late Night Focus'. The composition is mostly pure black, featuring a single, sharp, glowing red horizontal line dissecting a subtle, dark grey circular gradient in the center. Extremely clean, surgical SaaS aesthetic, high contrast." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAYbQNfL0kX56nUP2fvZPGxastqowmzD9IbvWZnS1RCH47blIWL6qczfEtmG94acZvX_fY7COF0Oz9UPEZFj_uipoKwhcdVB_NwW4fTrVejYN94wuYDUcyhQHQyl8XX_EFNxNqgboXx0I3YtTHa2Xdpoygx3R30QEDJqV225tYVaPhe4M14CXLiumpt425pIH96mk8BFN71Y_WLTSi6PnBjZHjbKckGFCQTEjhmMTZov59_L74JRrgFUPLLxwuZF4qe7X0RpYjyCXY"/>
+<div class="absolute bottom-sm right-sm bg-primary-container text-on-primary-container rounded-full w-10 h-10 flex items-center justify-center opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all shadow-lg">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</div>
+</div>
+<div>
+<h4 class="font-label-md text-label-md text-on-surface truncate group-hover:text-primary transition-colors">Late Night Focus</h4>
+<p class="font-body-sm text-body-sm text-on-secondary-container">28 Tracks</p>
+</div>
+</div>
+<!-- Playlist Card 3 -->
+<div class="group cursor-pointer flex flex-col gap-sm">
+<div class="w-full aspect-square bg-surface-variant rounded-DEFAULT overflow-hidden relative border border-secondary-container group-hover:border-primary-container transition-colors">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="Brutalism inspired album cover art for a playlist titled 'System Prime'. Deep charcoal textured background with bold, fragmented typographic elements forming abstract shapes in striking red and pure white. High-density, professional industrial design aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCrZjnY351B_zLMC6_vOuLwSLCJukZIzls3L14SEhzMEROEgJfGRRnqO_mQW6QhxXKEyM7xxAtX7PZQoumOq2VnoWTcSA8owdUMQupHxpq-My_aTcgGkR1Oij-w8YIOw0Mz5TC3EUwfZBb7Iu9PytTgGC43aeMW-u5irouasllsnYhAlROHgSRSb8Hr6wtoAL1M0g4yt5cG93-CikhHM-3EQGOwlS1CDeUpykbuM81RKtln0U85Gdw7hxNC2VJ3sIhN129XTZCf21Y"/>
+<div class="absolute bottom-sm right-sm bg-primary-container text-on-primary-container rounded-full w-10 h-10 flex items-center justify-center opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all shadow-lg">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</div>
+</div>
+<div>
+<h4 class="font-label-md text-label-md text-on-surface truncate group-hover:text-primary transition-colors">System Prime</h4>
+<p class="font-body-sm text-body-sm text-on-secondary-container">55 Tracks</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Recently Played (High-Density List) -->
+<section class="flex flex-col gap-sm">
+<div class="flex justify-between items-end border-b border-secondary-container pb-xs mb-xs">
+<h3 class="font-headline-md text-headline-md text-on-surface">Recently Played</h3>
+</div>
+<div class="flex flex-col border border-secondary-container rounded-DEFAULT bg-surface-container-low overflow-hidden">
+<!-- List Header -->
+<div class="grid grid-cols-[40px_1fr_1fr_80px] gap-md px-md py-sm bg-surface border-b border-secondary-container text-on-secondary-container font-label-sm text-label-sm uppercase tracking-wider">
+<div>#</div>
+<div>Track Title</div>
+<div>Artist</div>
+<div class="text-right">Time</div>
+</div>
+<!-- Track Row 1 -->
+<div class="grid grid-cols-[40px_1fr_1fr_80px] items-center gap-md px-md h-12 hover:bg-surface-variant transition-colors group cursor-pointer border-l-2 border-transparent hover:border-primary-container">
+<div class="font-body-sm text-on-secondary-container group-hover:hidden">1</div>
+<div class="hidden group-hover:flex text-primary-container"><span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">play_arrow</span></div>
+<div class="font-label-md text-on-surface truncate">Nightcall</div>
+<div class="font-body-md text-on-secondary-container truncate">Kavinsky</div>
+<div class="font-body-sm text-on-secondary-container text-right">4:18</div>
+</div>
+<!-- Track Row 2 -->
+<div class="grid grid-cols-[40px_1fr_1fr_80px] items-center gap-md px-md h-12 hover:bg-surface-variant transition-colors group cursor-pointer border-l-2 border-transparent hover:border-primary-container">
+<div class="font-body-sm text-on-secondary-container group-hover:hidden">2</div>
+<div class="hidden group-hover:flex text-primary-container"><span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">play_arrow</span></div>
+<div class="font-label-md text-on-surface truncate">Turbo Killer</div>
+<div class="font-body-md text-on-secondary-container truncate">Carpenter Brut</div>
+<div class="font-body-sm text-on-secondary-container text-right">3:28</div>
+</div>
+<!-- Track Row 3 -->
+<div class="grid grid-cols-[40px_1fr_1fr_80px] items-center gap-md px-md h-12 hover:bg-surface-variant transition-colors group cursor-pointer border-l-2 border-transparent hover:border-primary-container">
+<div class="font-body-sm text-on-secondary-container group-hover:hidden">3</div>
+<div class="hidden group-hover:flex text-primary-container"><span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">play_arrow</span></div>
+<div class="font-label-md text-on-surface truncate">Venger</div>
+<div class="font-body-md text-on-secondary-container truncate">Perturbator</div>
+<div class="font-body-sm text-on-secondary-container text-right">5:08</div>
+</div>
+</div>
+</section>
+</main>
+</div>
+<!-- JSON Component: BottomNavBar (Persistent Player) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 h-[80px] bg-surface-container border-t border-secondary-container flex justify-between items-center px-lg">
+<!-- Now Playing (Left) -->
+<div class="flex items-center gap-md w-1/3 min-w-[200px]">
+<div class="w-12 h-12 rounded-sm bg-surface-variant overflow-hidden border border-secondary-container shrink-0 relative group cursor-pointer">
+<img class="w-full h-full object-cover" data-alt="Close up crop of the Nightcall album cover by Kavinsky. Dark blue night sky, red glowing taillights of a sports car. Cinematic, high contrast." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC98i3X3eZzTecyROcIGGlEtrsAr7W30yfOcfRe50R3E08pb2ZE4LO47n39MvAABWcvTKr1uYAPf0WuliFjAsdD6qwu9WWw1w8pD4ZieySW85IiAYVIOpch7KW0Bm6Zp0rmUu86I5drq_sfz4jnSHus21Tx1vYAYaVjm8HW4PKcSpSXVMl1MdX4tTNj15nIB3HlceDj8Ny9TeNvVrKr9lQhteMfV6ni6U_ciS0s2GuWVT0E9_asraN-fu7m-YQOnLS_Uld9QMtFUpA"/>
+<div class="absolute inset-0 bg-black/60 hidden group-hover:flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-[20px]">keyboard_arrow_up</span>
+</div>
+</div>
+<div class="flex flex-col overflow-hidden">
+<span class="font-label-md text-label-md text-on-surface truncate hover:underline cursor-pointer">Nightcall</span>
+<span class="font-body-sm text-body-sm text-on-secondary-container truncate hover:underline cursor-pointer">Kavinsky</span>
+</div>
+<button class="text-on-surface-variant hover:text-primary transition-colors ml-sm active:scale-95">
+<span class="material-symbols-outlined font-label-sm text-label-sm">favorite</span>
+</button>
+</div>
+<!-- Controls (Center) -->
+<div class="flex flex-col items-center justify-center w-1/3 gap-xs">
+<div class="flex items-center gap-lg">
+<button class="text-on-secondary-container hover:text-on-surface transition-colors active:scale-95">
+<span class="material-symbols-outlined font-label-md text-label-md">shuffle</span>
+</button>
+<button class="text-on-secondary-container hover:text-on-surface transition-colors active:scale-95">
+<span class="material-symbols-outlined font-headline-md text-headline-md" style="font-variation-settings: 'FILL' 1;">skip_previous</span>
+</button>
+<button class="text-on-surface hover:text-primary hover:scale-105 transition-all active:scale-95 bg-primary-container text-on-primary-container rounded-full w-10 h-10 flex items-center justify-center">
+<span class="material-symbols-outlined font-headline-lg text-headline-lg" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</button>
+<button class="text-on-secondary-container hover:text-on-surface transition-colors active:scale-95">
+<span class="material-symbols-outlined font-headline-md text-headline-md" style="font-variation-settings: 'FILL' 1;">skip_next</span>
+</button>
+<button class="text-on-secondary-container hover:text-on-surface transition-colors active:scale-95">
+<span class="material-symbols-outlined font-label-md text-label-md">repeat</span>
+</button>
+</div>
+<!-- Progress Bar -->
+<div class="w-full max-w-md flex items-center gap-sm">
+<span class="font-label-sm text-label-sm text-on-secondary-container text-[10px]">1:24</span>
+<div class="flex-1 h-1 bg-surface-variant rounded-full relative cursor-pointer group">
+<div class="absolute top-0 left-0 h-full bg-primary-container rounded-full w-1/3 group-hover:bg-primary transition-colors"></div>
+<div class="absolute top-1/2 left-1/3 -translate-x-1/2 -translate-y-1/2 w-3 h-3 bg-on-surface rounded-full opacity-0 group-hover:opacity-100 transition-opacity shadow"></div>
+</div>
+<span class="font-label-sm text-label-sm text-on-secondary-container text-[10px]">4:18</span>
+</div>
+</div>
+<!-- Volume & Extras (Right) -->
+<div class="flex items-center justify-end gap-sm w-1/3 min-w-[150px]">
+<button class="text-on-secondary-container hover:text-on-surface transition-colors active:scale-95">
+<span class="material-symbols-outlined font-label-md text-label-md">mic</span>
+</button>
+<button class="text-on-secondary-container hover:text-on-surface transition-colors active:scale-95">
+<span class="material-symbols-outlined font-label-md text-label-md">queue_music</span>
+</button>
+<button class="text-on-secondary-container hover:text-on-surface transition-colors active:scale-95">
+<span class="material-symbols-outlined font-label-md text-label-md">devices</span>
+</button>
+<div class="flex items-center gap-xs ml-sm w-24 group cursor-pointer">
+<span class="material-symbols-outlined font-label-sm text-label-sm text-on-secondary-container">volume_up</span>
+<div class="flex-1 h-1 bg-surface-variant rounded-full relative">
+<div class="absolute top-0 left-0 h-full bg-on-surface rounded-full w-2/3 group-hover:bg-primary transition-colors"></div>
+</div>
+</div>
+</div>
+</nav>
+</body></html>

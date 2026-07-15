@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Melodify - Settings</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-highest": "#353534",
+                        "on-tertiary-fixed-variant": "#005142",
+                        "on-error": "#690005",
+                        "surface-dim": "#131313",
+                        "outline-variant": "#5c3f40",
+                        "surface-container-lowest": "#0e0e0e",
+                        "on-tertiary-fixed": "#002019",
+                        "on-secondary-fixed": "#1b1c1c",
+                        "outline": "#ac8889",
+                        "surface-bright": "#3a3939",
+                        "on-primary": "#68001a",
+                        "on-secondary": "#303030",
+                        "tertiary": "#74d8bd",
+                        "surface": "#131313",
+                        "secondary-fixed-dim": "#c8c6c5",
+                        "on-tertiary": "#00382d",
+                        "tertiary-fixed-dim": "#74d8bd",
+                        "secondary-fixed": "#e4e2e1",
+                        "primary": "#ffb3b6",
+                        "surface-container": "#201f1f",
+                        "error-container": "#93000a",
+                        "on-primary-fixed": "#40000c",
+                        "surface-container-high": "#2a2a2a",
+                        "secondary": "#c8c6c5",
+                        "on-tertiary-container": "#eefff7",
+                        "on-primary-fixed-variant": "#920028",
+                        "background": "#131313",
+                        "surface-variant": "#353534",
+                        "primary-container": "#e11d48",
+                        "on-surface": "#e5e2e1",
+                        "on-background": "#e5e2e1",
+                        "surface-container-low": "#1c1b1b",
+                        "primary-fixed-dim": "#ffb3b6",
+                        "on-surface-variant": "#e5bdbe",
+                        "on-primary-container": "#fffaf9",
+                        "primary-fixed": "#ffdada",
+                        "on-secondary-fixed-variant": "#474746",
+                        "on-secondary-container": "#b7b5b4",
+                        "inverse-on-surface": "#313030",
+                        "surface-tint": "#ffb3b6",
+                        "inverse-primary": "#be0037",
+                        "tertiary-fixed": "#90f5d9",
+                        "tertiary-container": "#00836c",
+                        "on-error-container": "#ffdad6",
+                        "error": "#ffb4ab",
+                        "secondary-container": "#474746",
+                        "inverse-surface": "#e5e2e1"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "xl": "32px",
+                        "margin": "24px",
+                        "xs": "4px",
+                        "lg": "24px",
+                        "md": "16px",
+                        "base": "8px",
+                        "gutter": "16px",
+                        "sm": "8px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Inter"],
+                        "headline-xl": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-md": ["14px", { "lineHeight": "20px", "fontWeight": "500" }],
+                        "headline-xl": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "label-sm": ["11px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "headline-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-sm": ["12px", { "lineHeight": "18px", "fontWeight": "400" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        /* Toggle styling */
+        .toggle-checkbox:checked { right: 0; border-color: #e11d48; }
+        .toggle-checkbox:checked + .toggle-label { background-color: #e11d48; }
+        .toggle-checkbox:checked + .toggle-label:after { transform: translateX(100%); border-color: white; }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex selection:bg-primary-container selection:text-on-primary-container">
+<!-- SideNavBar -->
+<nav class="w-[280px] h-full fixed left-0 top-0 bg-surface dark:bg-surface border-r border-outline-variant dark:border-outline-variant hidden md:flex flex-col py-margin gap-base z-30">
+<div class="px-margin mb-lg">
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary">Melodify</h1>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Pro Studio</p>
+</div>
+<div class="flex-1 overflow-y-auto px-md flex flex-col gap-xs">
+<a class="flex items-center gap-md px-md py-3 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-high transition-colors active:scale-95 transition-transform font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined">home</span>Home
+            </a>
+<a class="flex items-center gap-md px-md py-3 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-high transition-colors active:scale-95 transition-transform font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined">search</span>Search
+            </a>
+<a class="flex items-center gap-md px-md py-3 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-high transition-colors active:scale-95 transition-transform font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined">library_music</span>Library
+            </a>
+<a class="flex items-center gap-md px-md py-3 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-high transition-colors active:scale-95 transition-transform font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined">favorite</span>Liked Songs
+            </a>
+<a class="flex items-center gap-md px-md py-3 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-high transition-colors active:scale-95 transition-transform font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined">playlist_play</span>Playlists
+            </a>
+<a class="flex items-center gap-md px-md py-3 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-high transition-colors active:scale-95 transition-transform font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined">auto_awesome</span>AI Playlist
+            </a>
+<a class="flex items-center gap-md px-md py-3 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-high transition-colors active:scale-95 transition-transform font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined">trending_up</span>Trending
+            </a>
+<a class="flex items-center gap-md px-md py-3 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-high transition-colors active:scale-95 transition-transform font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined">person</span>Profile
+            </a>
+<a class="flex items-center gap-md px-md py-3 rounded-lg text-primary dark:text-primary font-bold border-l-2 border-primary hover:bg-surface-container-high dark:hover:bg-surface-container-high transition-colors active:scale-95 transition-transform font-body-md text-body-md bg-surface-container-low" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">settings</span>Settings
+            </a>
+</div>
+<div class="px-margin mt-auto">
+<button class="w-full py-3 bg-primary-container text-on-primary-container font-label-md text-label-md rounded-lg active:scale-95 transition-transform flex items-center justify-center gap-base">
+                Upgrade to Pro
+            </button>
+</div>
+</nav>
+<!-- TopNavBar -->
+<header class="h-16 fixed top-0 right-0 w-full md:w-[calc(100%-280px)] z-40 bg-surface dark:bg-surface border-b border-outline-variant dark:border-outline-variant flex items-center justify-between px-lg md:ml-[280px]">
+<div class="flex-1 max-w-xl hidden md:flex items-center">
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full bg-[#0a0a0a] border border-[#262626] rounded-full py-2 pl-10 pr-4 text-on-surface font-body-md text-body-md focus:outline-none focus:border-primary-container focus:ring-0 transition-colors" placeholder="Search..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-md ml-auto">
+<button class="text-on-surface-variant hover:text-primary transition-colors cursor-pointer hidden md:block">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors cursor-pointer hidden md:block">
+<span class="material-symbols-outlined">cast</span>
+</button>
+<button class="px-4 py-2 bg-surface-container border border-[#262626] text-on-surface font-label-md text-label-md rounded-lg hover:bg-surface-container-high transition-colors hidden md:block">
+                Upload
+            </button>
+<div class="w-8 h-8 rounded-full bg-surface-container-high overflow-hidden border border-[#262626] cursor-pointer">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="A close up, cinematic portrait of a generic user avatar in a high contrast, low key lighting environment. The aesthetic is modern, professional, and slightly moody, relying on deep blacks and subtle highlights." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDSJmny9OKR4m1crlqb7FiGnOdxe0_JM8jI5DjTS-LtTBNTG1yxA-8WbmmWi1cRyV8_1EKMq3IHs3K5ZlSrI5MWvj1VoAKepJKIsCtXjcIvL1vZd7HwjOZ9k9Te8xjZllVWmBiru5kEtD3QEAMPuHgvz5HuUDJSwTdS8nWHDh-1nX6KNbByofULDUUqMLfz1w8Lig5k1DlRxVHsUwPAHM6pn7QrLf9X5xekNhD7QlCy02URMp7LIxfCNDO8XTzG1AKltDMl-wfQDCU"/>
+</div>
+<!-- Mobile Menu Toggle -->
+<button class="md:hidden text-on-surface-variant">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-1 w-full pt-16 pb-24 md:pb-20 md:ml-[280px] bg-background overflow-y-auto">
+<div class="max-w-4xl mx-auto px-margin py-xl">
+<header class="mb-xl">
+<h2 class="font-headline-xl text-headline-xl text-on-surface">Settings</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-xs">Manage your account preferences, privacy, and studio themes.</p>
+</header>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Account Settings -->
+<section class="md:col-span-12 bg-[#0a0a0a] border border-[#171717] rounded-lg p-lg">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-md flex items-center gap-base">
+<span class="material-symbols-outlined text-primary-container">person</span> Account
+                    </h3>
+<div class="flex flex-col md:flex-row gap-lg items-start md:items-center mb-lg pb-lg border-b border-[#171717]">
+<div class="w-20 h-20 rounded-full bg-surface-container-high overflow-hidden border border-[#262626]">
+<img alt="Profile Picture" class="w-full h-full object-cover" data-alt="A high quality, dramatic headshot of a user against a pure black background. Soft, cinematic lighting highlights the face, keeping the overall tone dark, sophisticated, and professional." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDKdbguX-M4jo_g3n1UleHBHISbRFz2sEdWAc5GVWWlRbCZ4b2V1SSCBHF3-hEFWXYbHDyGcVgvg97DSE_OiCFNf_tPuzZ6qJJe_z8PH2eCXj2INl3U2SrBCMrq_61V4Tf1aPF0fYn3QeDFw7V7rcPdHeQtbbEDIzpZNymZRj1svZDa9b6ZOMZ2UC6rSNl2kJra1AkwSlws6Vaa_01ItC3ch5YFdUwu9xJ4F3IIviqnLP1CCAART8mnUhXD8gNBfuwEuHn5BFPaaQ0"/>
+</div>
+<div class="flex-1">
+<h4 class="font-label-md text-label-md text-on-surface">Alex Mercer</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">alex.mercer@example.com</p>
+<div class="mt-2 inline-flex items-center px-2 py-1 rounded bg-surface-container-high border border-primary-container text-[11px] uppercase tracking-wider text-primary-container font-semibold">
+                                Melodify Pro
+                            </div>
+</div>
+<button class="px-4 py-2 bg-surface-container border border-[#262626] text-on-surface font-label-md text-label-md rounded hover:bg-surface-container-high transition-colors">
+                            Edit Profile
+                        </button>
+</div>
+</section>
+<!-- Privacy & Notifications (Bento layout style) -->
+<section class="md:col-span-6 bg-[#0a0a0a] border border-[#171717] rounded-lg p-lg">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-md flex items-center gap-base">
+<span class="material-symbols-outlined text-on-surface-variant">lock</span> Privacy
+                    </h3>
+<div class="space-y-6">
+<div class="flex items-center justify-between">
+<div>
+<h4 class="font-label-md text-label-md text-on-surface">Public Profile</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Allow others to see your listening activity.</p>
+</div>
+<div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
+<input class="toggle-checkbox absolute block w-5 h-5 rounded-full bg-white border-4 border-[#262626] appearance-none cursor-pointer z-10 transition-transform duration-300" id="toggle-profile" name="toggle" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-5 rounded-full bg-surface-container-high cursor-pointer border border-[#262626]" for="toggle-profile"></label>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<div>
+<h4 class="font-label-md text-label-md text-on-surface">Data Sharing</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Share usage data for AI improvements.</p>
+</div>
+<div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
+<input checked="" class="toggle-checkbox absolute block w-5 h-5 rounded-full bg-white border-4 border-[#262626] appearance-none cursor-pointer z-10 transition-transform duration-300" id="toggle-data" name="toggle" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-5 rounded-full bg-surface-container-high cursor-pointer border border-[#262626]" for="toggle-data"></label>
+</div>
+</div>
+</div>
+</section>
+<section class="md:col-span-6 bg-[#0a0a0a] border border-[#171717] rounded-lg p-lg">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-md flex items-center gap-base">
+<span class="material-symbols-outlined text-on-surface-variant">notifications_active</span> Notifications
+                    </h3>
+<div class="space-y-6">
+<div class="flex items-center justify-between">
+<div>
+<h4 class="font-label-md text-label-md text-on-surface">New Releases</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Push notifications for followed artists.</p>
+</div>
+<div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
+<input checked="" class="toggle-checkbox absolute block w-5 h-5 rounded-full bg-white border-4 border-[#262626] appearance-none cursor-pointer z-10 transition-transform duration-300" id="toggle-releases" name="toggle" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-5 rounded-full bg-surface-container-high cursor-pointer border border-[#262626]" for="toggle-releases"></label>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<div>
+<h4 class="font-label-md text-label-md text-on-surface">AI Playlists</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Weekly email summaries of AI generation.</p>
+</div>
+<div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
+<input class="toggle-checkbox absolute block w-5 h-5 rounded-full bg-white border-4 border-[#262626] appearance-none cursor-pointer z-10 transition-transform duration-300" id="toggle-ai" name="toggle" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-5 rounded-full bg-surface-container-high cursor-pointer border border-[#262626]" for="toggle-ai"></label>
+</div>
+</div>
+</div>
+</section>
+<!-- Appearance & Security -->
+<section class="md:col-span-12 bg-[#0a0a0a] border border-[#171717] rounded-lg p-lg grid grid-cols-1 md:grid-cols-2 gap-lg">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-md flex items-center gap-base">
+<span class="material-symbols-outlined text-on-surface-variant">palette</span> Appearance
+                        </h3>
+<div class="space-y-4">
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-2">Theme</label>
+<select class="w-full bg-[#0a0a0a] border border-[#262626] text-on-surface font-body-md text-body-md rounded p-2 focus:outline-none focus:border-primary-container focus:ring-0">
+<option>Melodify Professional Red (Dark)</option>
+<option>System Default</option>
+</select>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-2">Language</label>
+<select class="w-full bg-[#0a0a0a] border border-[#262626] text-on-surface font-body-md text-body-md rounded p-2 focus:outline-none focus:border-primary-container focus:ring-0">
+<option>English (US)</option>
+<option>Spanish</option>
+<option>French</option>
+</select>
+</div>
+</div>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-md flex items-center gap-base">
+<span class="material-symbols-outlined text-on-surface-variant">security</span> Security
+                        </h3>
+<div class="space-y-4">
+<button class="w-full flex items-center justify-between px-4 py-3 bg-surface-container border border-[#262626] rounded hover:bg-surface-container-high transition-colors text-left">
+<div>
+<h4 class="font-label-md text-label-md text-on-surface">Change Password</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Update your account password</p>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant">chevron_right</span>
+</button>
+<button class="w-full flex items-center justify-between px-4 py-3 bg-surface-container border border-[#262626] rounded hover:bg-surface-container-high transition-colors text-left">
+<div>
+<h4 class="font-label-md text-label-md text-on-surface">Two-Factor Auth</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Currently disabled</p>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant">chevron_right</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Danger Zone -->
+<section class="md:col-span-12 mt-lg">
+<button class="w-full md:w-auto px-6 py-3 bg-transparent border border-[#262626] text-primary-container font-label-md text-label-md rounded-lg hover:border-primary-container hover:bg-[#0a0a0a] transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">logout</span> Log Out
+                    </button>
+</section>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Player Controls) -->
+<nav class="h-20 fixed bottom-0 left-0 w-full z-50 bg-surface-container dark:bg-surface-container border-t border-outline-variant dark:border-outline-variant shadow-xl flex items-center justify-between px-xl hidden md:flex">
+<!-- Minimal player info stub to balance layout -->
+<div class="flex items-center gap-4 w-1/4">
+<div class="w-12 h-12 bg-surface-container-high border border-[#262626] rounded">
+<img alt="Current Track" class="w-full h-full object-cover rounded" data-alt="A macro, abstract image of a sleek, dark grey vinyl record player surface with sharp red accent lights reflecting off the grooves. The mood is high fidelity audio professionalism." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9bXEiMGxAdt-vDINkyR2q-fNjqx1VaMV1BrP7JIycbPBtwNTimXk06IQ8vtQwdLT7DGWJYJTT--SHNjUYGwFT-BNQLIapQW79X7AA24zwUvNef39HapE0lWcH8wUIvIlBJMynJjMa1-4kvhnd0gnvKfYqjdyrAbRta7cEaRyplj3uCjdz2QtVIjqLMLzmjE3zSqOrxFl0FFhGwKGjVG82UQ33fsDycmp1bCA5aIzk1HNk7KnXv9b2Nm_dUIdJKt9-jl7vVVdjqrY"/>
+</div>
+<div class="hidden lg:block">
+<p class="font-label-md text-label-md text-on-surface leading-tight">Neon Silence</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Synthwave Co.</p>
+</div>
+</div>
+<div class="flex items-center justify-center gap-6 w-2/4">
+<button class="text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-variant dark:hover:bg-surface-variant p-2 rounded-full active:scale-90 transition-all flex flex-col items-center">
+<span class="material-symbols-outlined text-2xl">shuffle</span>
+<span class="font-label-sm text-label-sm hidden">Shuffle</span>
+</button>
+<button class="text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-variant dark:hover:bg-surface-variant p-2 rounded-full active:scale-90 transition-all flex flex-col items-center">
+<span class="material-symbols-outlined text-3xl">skip_previous</span>
+<span class="font-label-sm text-label-sm hidden">Prev</span>
+</button>
+<button class="text-on-primary-container bg-primary-container hover:bg-[#be0037] p-3 rounded-full active:scale-90 transition-all flex flex-col items-center shadow-[0_0_15px_rgba(225,29,72,0.3)]">
+<span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+<span class="font-label-sm text-label-sm hidden">Play</span>
+</button>
+<button class="text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-variant dark:hover:bg-surface-variant p-2 rounded-full active:scale-90 transition-all flex flex-col items-center">
+<span class="material-symbols-outlined text-3xl">skip_next</span>
+<span class="font-label-sm text-label-sm hidden">Skip</span>
+</button>
+<button class="text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-variant dark:hover:bg-surface-variant p-2 rounded-full active:scale-90 transition-all flex flex-col items-center">
+<span class="material-symbols-outlined text-2xl">repeat</span>
+<span class="font-label-sm text-label-sm hidden">Repeat</span>
+</button>
+</div>
+<div class="flex items-center justify-end gap-2 w-1/4">
+<button class="text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-variant dark:hover:bg-surface-variant p-2 rounded-full active:scale-90 transition-all flex flex-col items-center">
+<span class="material-symbols-outlined text-xl">volume_up</span>
+<span class="font-label-sm text-label-sm hidden">Volume</span>
+</button>
+<div class="w-24 h-1 bg-[#262626] rounded-full overflow-hidden cursor-pointer">
+<div class="w-2/3 h-full bg-primary-container rounded-full"></div>
+</div>
+</div>
+</nav>
+<!-- Mobile Bottom Nav Fallback (Minimal) -->
+<nav class="md:hidden fixed bottom-0 w-full h-16 bg-surface border-t border-outline-variant flex justify-around items-center z-50">
+<button class="flex flex-col items-center text-on-surface-variant p-2"><span class="material-symbols-outlined">home</span></button>
+<button class="flex flex-col items-center text-on-surface-variant p-2"><span class="material-symbols-outlined">search</span></button>
+<button class="flex flex-col items-center text-on-surface-variant p-2"><span class="material-symbols-outlined">library_music</span></button>
+<button class="flex flex-col items-center text-primary-container p-2 border-t-2 border-primary-container -mt-[2px]"><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">settings</span></button>
+</nav>
+<script>
+        // Simple logic to handle toggle visual states if needed beyond CSS
+        document.querySelectorAll('.toggle-checkbox').forEach(toggle => {
+            toggle.addEventListener('change', (e) => {
+                // Additional JS logic could go here
+            });
+        });
+    </script>
+</body></html>

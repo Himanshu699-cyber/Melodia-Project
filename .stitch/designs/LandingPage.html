@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Melodify - Feel Every Beat</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "outline": "#ac8889",
+                        "secondary-container": "#474746",
+                        "on-tertiary-container": "#eefff7",
+                        "surface-container-high": "#2a2a2a",
+                        "on-primary-fixed-variant": "#920028",
+                        "tertiary-container": "#00836c",
+                        "primary-container": "#e11d48",
+                        "on-tertiary-fixed": "#002019",
+                        "tertiary-fixed": "#90f5d9",
+                        "tertiary": "#74d8bd",
+                        "secondary-fixed": "#e4e2e1",
+                        "on-surface-variant": "#e5bdbe",
+                        "on-primary-container": "#fffaf9",
+                        "on-tertiary": "#00382d",
+                        "secondary-fixed-dim": "#c8c6c5",
+                        "on-primary-fixed": "#40000c",
+                        "secondary": "#c8c6c5",
+                        "primary": "#ffb3b6",
+                        "surface-variant": "#353534",
+                        "on-secondary-fixed": "#1b1c1c",
+                        "inverse-primary": "#be0037",
+                        "on-secondary": "#303030",
+                        "on-error-container": "#ffdad6",
+                        "surface-container": "#201f1f",
+                        "outline-variant": "#5c3f40",
+                        "inverse-on-surface": "#313030",
+                        "tertiary-fixed-dim": "#74d8bd",
+                        "surface-tint": "#ffb3b6",
+                        "on-error": "#690005",
+                        "surface-container-lowest": "#0e0e0e",
+                        "surface-dim": "#131313",
+                        "background": "#131313",
+                        "surface-container-low": "#1c1b1b",
+                        "primary-fixed": "#ffdada",
+                        "on-primary": "#68001a",
+                        "surface-container-highest": "#353534",
+                        "on-secondary-container": "#b7b5b4",
+                        "error-container": "#93000a",
+                        "inverse-surface": "#e5e2e1",
+                        "primary-fixed-dim": "#ffb3b6",
+                        "on-tertiary-fixed-variant": "#005142",
+                        "on-background": "#e5e2e1",
+                        "surface": "#131313",
+                        "on-surface": "#e5e2e1",
+                        "on-secondary-fixed-variant": "#474746",
+                        "surface-bright": "#3a3939",
+                        "error": "#ffb4ab"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "sm": "8px",
+                        "xl": "32px",
+                        "base": "8px",
+                        "md": "16px",
+                        "xs": "4px",
+                        "margin": "24px",
+                        "lg": "24px",
+                        "gutter": "16px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "label-md": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "headline-xl": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "fontWeight": "500" }],
+                        "label-sm": ["11px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "headline-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "body-sm": ["12px", { "lineHeight": "18px", "fontWeight": "400" }],
+                        "headline-xl": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { background-color: #0B0B0B; color: #FFFFFF; }
+        .card-bg { background-color: #181818; }
+        .brand-red { color: #E50914; }
+        .brand-red-bg { background-color: #E50914; }
+        .border-charcoal { border-color: #262626; }
+    </style>
+</head>
+<body class="font-body-md text-on-surface antialiased min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<header class="flex justify-between items-center px-margin w-full sticky top-0 z-50 bg-[#0B0B0B] border-b border-charcoal h-[64px]">
+<div class="flex items-center gap-xl">
+<a class="font-headline-md text-headline-md font-bold brand-red tracking-tight" href="#">Melodify</a>
+<nav class="hidden md:flex gap-md">
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-white transition-colors" href="#">Home</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-white transition-colors" href="#features">Features</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-white transition-colors" href="#about">About</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-white transition-colors" href="#contact">Contact</a>
+</nav>
+</div>
+<div class="flex items-center gap-md">
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-white transition-colors hidden md:block" href="#">Login</a>
+<button class="brand-red-bg text-white font-label-md text-label-md px-md py-sm rounded hover:bg-opacity-90 transition-opacity">Get Started</button>
+</div>
+</header>
+<main class="flex-grow">
+<!-- Hero Section -->
+<section class="px-margin py-[120px] max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-[64px]">
+<div class="flex-1 flex flex-col gap-lg z-10">
+<h1 class="font-headline-xl text-[48px] md:text-[64px] leading-tight font-bold tracking-tight">Feel Every Beat.</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-[480px]">
+                    Discover millions of songs, create playlists, and enjoy AI-powered recommendations tailored to your unique soundscape.
+                </p>
+<div class="flex gap-md mt-sm">
+<button class="brand-red-bg text-white font-label-md text-label-md px-xl py-md rounded hover:bg-opacity-90 transition-opacity">Get Started</button>
+<button class="bg-[#181818] text-white border border-charcoal font-label-md text-label-md px-xl py-md rounded hover:bg-[#262626] transition-colors">Explore Music</button>
+</div>
+</div>
+<div class="flex-1 w-full relative">
+<div class="bg-cover bg-center w-full aspect-video rounded-xl border border-charcoal" data-alt="A sleek, modern music production studio interface displayed on a high-end monitor in a dark, atmospheric room. The UI shows waveform data and playlists in a dark mode theme with sharp red accents. The lighting is moody and focused, emphasizing a professional, high-fidelity aesthetic." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB6MHiMcwUlndh3vtXl-C-zQbPI220xUbl9qqg4ByuCQ2tLTy6MXwND4Sdz-7z9NNpeQEvTff18Ct2YXMWP9g8GrdLX5NUciOH4IWRuTVlqMYOOwXuWTpbZkP3ZwZXUbVRdTIwN1ECvzw6hiUMVSPddkuJvaj2f6LXckF8T0Zl-vTn0HpxSPtlVhViBiut_xvAMNPeXykGIqg3dlTThBKTzOViO_vIunKwaDRpgT5AMCg0B3iqngOaEPkEzPOCGGYuLzZBoUDyGZL8')"></div>
+<div class="absolute -bottom-xl -left-xl p-md card-bg border border-charcoal rounded-lg flex items-center gap-md shadow-2xl">
+<span class="material-symbols-outlined brand-red text-[32px]">graphic_eq</span>
+<div>
+<div class="font-label-sm text-label-sm text-on-surface-variant uppercase">Now Playing</div>
+<div class="font-label-md text-label-md font-bold">Midnight Synth</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Features Section -->
+<section class="px-margin py-[80px] bg-[#0a0a0a] border-t border-b border-charcoal" id="features">
+<div class="max-w-7xl mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-md">
+<!-- Feature 1 -->
+<div class="card-bg p-xl rounded-lg border border-charcoal flex flex-col gap-md hover:bg-[#202020] transition-colors">
+<span class="material-symbols-outlined brand-red text-[32px]">psychology</span>
+<h3 class="font-headline-md text-headline-md font-bold">AI Smart Playlist</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Algorithms that learn your taste and curate the perfect mix for any mood.</p>
+</div>
+<!-- Feature 2 -->
+<div class="card-bg p-xl rounded-lg border border-charcoal flex flex-col gap-md hover:bg-[#202020] transition-colors">
+<span class="material-symbols-outlined brand-red text-[32px]">cloud_sync</span>
+<h3 class="font-headline-md text-headline-md font-bold">Cloud Streaming</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Access your entire library from anywhere, instantly synced across all devices.</p>
+</div>
+<!-- Feature 3 -->
+<div class="card-bg p-xl rounded-lg border border-charcoal flex flex-col gap-md hover:bg-[#202020] transition-colors">
+<span class="material-symbols-outlined brand-red text-[32px]">high_quality</span>
+<h3 class="font-headline-md text-headline-md font-bold">High Quality Audio</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Experience lossless audio streaming that preserves every detail of the original recording.</p>
+</div>
+<!-- Feature 4 -->
+<div class="card-bg p-xl rounded-lg border border-charcoal flex flex-col gap-md hover:bg-[#202020] transition-colors">
+<span class="material-symbols-outlined brand-red text-[32px]">enhanced_encryption</span>
+<h3 class="font-headline-md text-headline-md font-bold">Secure Account</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Enterprise-grade security ensures your data and playlists are always protected.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Trending Section -->
+<section class="px-margin py-[80px] max-w-7xl mx-auto">
+<h2 class="font-headline-lg text-headline-lg font-bold mb-xl flex items-center gap-sm">
+<span class="brand-red">|</span> Trending Now
+            </h2>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-md">
+<!-- Album 1 -->
+<div class="group cursor-pointer">
+<div class="bg-cover bg-center w-full aspect-square rounded-lg border border-charcoal mb-sm group-hover:border-[#404040] transition-colors relative overflow-hidden" data-alt="A moody, high-contrast abstract album cover art featuring deep blacks, stark whites, and a single striking slash of vibrant crimson red. The aesthetic is minimal, professional, and evocative of modern electronic or industrial music." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAmnTXzpffTQJBtE6fhGoiAhlYn9-7TwJRd8OSyPODvFkdP0y49GLKzH-0h2c9X6eLPIt2s1jjNFGFm01wtkE1fC6PrpQCNozUnGCWHJjnzM9-dnT1WyT2HhU3SeZVhAyothz8GIJAMtLHbz6bGykx_leG011SYtopJSHc5XMCOBVo6C4qVP8xDMMGT59IFpPXFYcVPTfEWy7QFVrr6lsToS5P3G-qlgqrJaCn9jBzfvuTixQu24CZMfkMJiXorTRjgcmcxeJc2954')">
+<div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity">
+<span class="material-symbols-outlined text-[48px] text-white" style="font-variation-settings: 'FILL' 1;">play_circle</span>
+</div>
+</div>
+<div class="font-label-md text-label-md font-bold truncate">Neon Shadows</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant truncate">The Synthetics</div>
+</div>
+<!-- Album 2 -->
+<div class="group cursor-pointer">
+<div class="bg-cover bg-center w-full aspect-square rounded-lg border border-charcoal mb-sm group-hover:border-[#404040] transition-colors relative overflow-hidden" data-alt="An atmospheric, dark mode album cover featuring a solitary, silhouetted figure standing against a vast, starry night sky. The color palette is composed of deep charcoals, faint silvers, and a subtle hint of deep red glowing in the distance. The mood is cinematic and serene." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAF51UFm86GuwFt3NgPvT2i4jPA0G2Ym6LrhryjqogRRW7ZCIkoVMKf3EKdWYbRgpxoNFA9WYK4F6Em_2Qqgr6lmZ7js97Q78UyPIY1KCMivkZ_0wczuhZ7kexfoIA8uaRW3bYSyiKfzEVsfz8xKgaBg_qjc6XVxSbvCVRC-u7fOkX1KvWlfVeVJUkRaQLmR5jirTOrwyouMm8jg1tf6gQ0khfYSfiCJsx2DmGZGYrzwfdi-WHah9PviRRp-yCStV4WNEk8dLNwL3g')">
+<div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity">
+<span class="material-symbols-outlined text-[48px] text-white" style="font-variation-settings: 'FILL' 1;">play_circle</span>
+</div>
+</div>
+<div class="font-label-md text-label-md font-bold truncate">Echoes in Void</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant truncate">Luna Drift</div>
+</div>
+<!-- Album 3 -->
+<div class="group cursor-pointer">
+<div class="bg-cover bg-center w-full aspect-square rounded-lg border border-charcoal mb-sm group-hover:border-[#404040] transition-colors relative overflow-hidden" data-alt="A striking album cover displaying intense, close-up macro photography of crushed red velvet against a pitch-black background. The lighting is dramatic, highlighting the texture and richness of the crimson fabric. The overall style is elegant, dark, and sensual." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDbUserDYmVVMtt6Wa7M2byupALg6y4n4QR0EEOWQb6T9T3jU5tlwcTLzxvRl85p4d9NU6Jb-EAITW8THvkQk6D1YJMLdGYHPdBGvv-tL3Wo2wvboWerp14glplxaqOBytaJ7ZWTKDyOG4czeLIN8tiJG8-jZfUFj3ACr9K-jm6_K6bMxCCzn4YfCkaaTfs5DLee0jxioCWXa-FT5kaA2z5AdkTrTOQ5qBkaopwEjtq5Xyo6EUzOzDQ-Cp5NKnoZTdPgPG6oyHnsBo')">
+<div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity">
+<span class="material-symbols-outlined text-[48px] text-white" style="font-variation-settings: 'FILL' 1;">play_circle</span>
+</div>
+</div>
+<div class="font-label-md text-label-md font-bold truncate">Crimson Velvet</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant truncate">Audio Noir</div>
+</div>
+<!-- Album 4 -->
+<div class="group cursor-pointer hidden md:block">
+<div class="bg-cover bg-center w-full aspect-square rounded-lg border border-charcoal mb-sm group-hover:border-[#404040] transition-colors relative overflow-hidden" data-alt="A minimalist, geometric album cover featuring sharp, intersecting lines forming a complex structure against a solid dark grey background. The lines are rendered in crisp white and bright red, creating a sense of precision and modern architectural design." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCsNbO7pFXBVgNeYyhKUR0NX0vVS0Nbc2T_CscO5YQ0chIktfiTuTQDbEji2PRBHpfWB0tCqcl6RiNfMWWcFZvY2ZLnXrc8fyZKCNuVI1PnhzgMUDwYIEFkxymL2zOzLqryW_U02TWp-1wbWIezCidbZNRTM-Qvd4gazLZHQpLlPkHhb2TjvcnDJRGytD6PhHmPCSzd27a16Pd3gGVK5tXg6WrHCbFI_j_ooZiL3XULm1dXSngd7ZLEUSIOYyFMOofqrOzsEtW95ic')">
+<div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity">
+<span class="material-symbols-outlined text-[48px] text-white" style="font-variation-settings: 'FILL' 1;">play_circle</span>
+</div>
+</div>
+<div class="font-label-md text-label-md font-bold truncate">Structural Sound</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant truncate">Grid Construct</div>
+</div>
+</div>
+</section>
+<!-- Testimonials -->
+<section class="px-margin py-[80px] bg-[#0a0a0a] border-t border-charcoal">
+<div class="max-w-7xl mx-auto">
+<h2 class="font-headline-lg text-headline-lg font-bold mb-xl text-center">What Creators Say</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-md">
+<div class="card-bg p-lg rounded-lg border border-charcoal flex flex-col justify-between min-h-[200px]">
+<p class="font-body-md text-body-md text-on-surface-variant italic">"Melodify's AI curation is surgical. It understands my sonic needs better than I do. Essential for my studio sessions."</p>
+<div class="flex items-center gap-sm mt-md">
+<img class="w-[32px] h-[32px] rounded-full object-cover grayscale" data-alt="A black and white portrait of a serious, young female music producer wearing sleek studio headphones, shot against a dark background with sharp, dramatic lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDc5ylP1_6QabndDTwErUbRDIR1rksHaE7zSumDS4CSSdYEN7pF74VGZMpYOjgpB8cDf63MTNc2R1ratsRrnxlRYGEGEsV0ujDu3AtitBwwUo1xu_MydV3F3DxoPgNAgcMXzXKGtKqDy1H8ZkY4oCnBC2wUSxsCwolUTAm3evRQsWwAznBo8-eRDsJaUDpf0pMH98UpR41VZ4s3NSGQNTw-OnI8evXdgIT-EJLOu5Vi__hmEYwP2eNWPEuT-34i8jQY-afuEQGkJN8"/>
+<div>
+<div class="font-label-md text-label-md font-bold">Sarah J.</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant uppercase">Producer</div>
+</div>
+</div>
+</div>
+<div class="card-bg p-lg rounded-lg border border-charcoal flex flex-col justify-between min-h-[200px]">
+<p class="font-body-md text-body-md text-on-surface-variant italic">"The audio quality is pristine. Finally, a streaming platform that respects the mastering process and delivers absolute fidelity."</p>
+<div class="flex items-center gap-sm mt-md">
+<img class="w-[32px] h-[32px] rounded-full object-cover grayscale" data-alt="A high-contrast, moody portrait of a male audio engineer with a neat beard, sitting at a mixing console in a dimly lit studio. The color palette is dark with subtle red LED highlights." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB4Cv4gt-x0qp2fZ19G_ojNubkTCC7gSyf4DkfqH-htAuJCuIeFLGjGdjiWL5LYJ6ir5wTAW-XMsI-0X9Sy8e9eQe2SgxLZgdoZ8XdmlbzeXEYVLE47vo04CNhMyF_3JK3aOMRNWpzYShj1pn6Nsyx-8t1LnBEeVCK0TegGgdEL9Y_JiTiyBlRa8EaZMEhzPdE5212t4Rw1778m3pb34x2j9jN3tGaTNzf6KCYtbQVBKkql3MqGLh8Hd4eywLFsGCGwG2s5Emkft24"/>
+<div>
+<div class="font-label-md text-label-md font-bold">Marcus T.</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant uppercase">Audio Engineer</div>
+</div>
+</div>
+</div>
+<div class="card-bg p-lg rounded-lg border border-charcoal flex flex-col justify-between min-h-[200px]">
+<p class="font-body-md text-body-md text-on-surface-variant italic">"A dense, information-rich interface without the bloat. It's built for professionals who need efficiency and speed."</p>
+<div class="flex items-center gap-sm mt-md">
+<img class="w-[32px] h-[32px] rounded-full object-cover grayscale" data-alt="A clean, minimalist headshot of a female DJ looking directly at the camera. The background is completely black, with focused white lighting on her face, creating a striking and serious aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBjPzrx4gWQDcqdCvFIzxeSkHW4DnnQJeA9UvrhrIVbdN0ul055vZCvfw4MhVYcHBl78UbgKMgIgk2izEYiaV_90LsFpOxIjZkINhyujUwT7bip4xGUm4z_Zsxn7DbHOIMrVa99L-6Jexgc7jBt6uFm7c7Kxkx47iu_X0PpovBnM-BGB7nuhBIkntV_BfZdlvO-Zu18h7vqrZqgSzDkbpnsHx1FbBdLYD8O62gHSt3Mk5KD8jxc5mQIPFDtoIhT8W7hQtjb3vFC-u8"/>
+<div>
+<div class="font-label-md text-label-md font-bold">Elena R.</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant uppercase">DJ / Curator</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-[#0B0B0B] border-t border-charcoal py-[64px] px-margin mt-auto">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-lg">
+<div class="flex flex-col items-center md:items-start gap-sm">
+<div class="font-headline-md text-headline-md font-bold brand-red tracking-tight">Melodify</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">© 2024 Melodify Inc. All rights reserved.</div>
+</div>
+<nav class="flex flex-wrap justify-center gap-md">
+<a class="font-label-sm text-label-sm uppercase text-on-surface-variant hover:text-white transition-colors" href="#">Home</a>
+<a class="font-label-sm text-label-sm uppercase text-on-surface-variant hover:text-white transition-colors" href="#">Features</a>
+<a class="font-label-sm text-label-sm uppercase text-on-surface-variant hover:text-white transition-colors" href="#">About</a>
+<a class="font-label-sm text-label-sm uppercase text-on-surface-variant hover:text-white transition-colors" href="#">Privacy Policy</a>
+<a class="font-label-sm text-label-sm uppercase text-on-surface-variant hover:text-white transition-colors" href="#">Terms</a>
+</nav>
+<div class="flex gap-md">
+<a class="text-on-surface-variant hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined">share</span>
+</a>
+<a class="text-on-surface-variant hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined">mail</span>
+</a>
+</div>
+</div>
+</footer>
+</body></html>

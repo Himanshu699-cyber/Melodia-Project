@@ -139,18 +139,17 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ className = '' }
   };
 
   const handleEditTrackClick = (track: Track) => {
-    setEditingTrack(track);
-    setTrackTitle(track.title);
-    setTrackArtist(track.artist);
-    setTrackAlbum(track.album);
-    setTrackDuration(track.duration);
-    setTrackBpm(track.bpm);
-    setTrackGenre(track.genre);
-    setTrackMood(track.mood || 'Dreamy');
-    setTrackUrl(track.url);
-    setTrackCoverUrl(track.coverUrl);
-  };
-
+  setEditingTrack(track);
+  setTrackTitle(track.title || '');
+  setTrackArtist(track.artist || '');
+  setTrackAlbum(track.album || '');
+  setTrackDuration(track.duration || '');
+  setTrackBpm(track.bpm);
+  setTrackGenre(track.genre || '');
+  setTrackMood(track.mood || 'Dreamy');
+  setTrackUrl(track.url || '');
+  setTrackCoverUrl(track.coverUrl || '');
+};
   const handleUpdateTrack = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!editingTrack) return;

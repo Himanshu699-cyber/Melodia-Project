@@ -14,6 +14,7 @@ export interface User {
   role?: 'user' | 'admin';
   favorites?: any[];
   recentlyPlayed?: any[];
+  bio?: string;
 }
 
 export interface AuthState {

@@ -93,7 +93,7 @@ export const PlaybackProvider: React.FC<PlaybackProviderProps> = ({ children }) 
     if (currentTrack) {
       const isSameSrc = audioRef.current.src === currentTrack.url;
       if (!isSameSrc) {
-        audioRef.current.src = currentTrack.url;
+        audioRef.current.src = currentTrack.url || '';
         audioRef.current.load();
       }
 

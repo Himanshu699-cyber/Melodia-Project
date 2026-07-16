@@ -69,7 +69,7 @@ export const Login: React.FC<LoginProps> = ({ className = '' }) => {
     e.preventDefault();
     setModalError(null);
     try {
-      const response = await axios.post('http://localhost:5000/api/auth/forgot-password', { email: forgotEmail });
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/forgot-password`, { email: forgotEmail });
       if (response.data.success) {
         alert(`Reset code generated for demo: ${response.data.resetCode}`);
         setStep(2);
@@ -83,7 +83,7 @@ export const Login: React.FC<LoginProps> = ({ className = '' }) => {
     e.preventDefault();
     setModalError(null);
     try {
-      const response = await axios.post('http://localhost:5000/api/auth/reset-password', {
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/reset-password`, {
         email: forgotEmail,
         code: resetCode,
         newPassword

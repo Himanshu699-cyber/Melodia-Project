@@ -40,7 +40,7 @@ export const Profile: React.FC<ProfileProps> = ({ className = '' }) => {
     const token = localStorage.getItem('melodify_token') || sessionStorage.getItem('melodify_token');
     try {
       const response = await axios.put(
-        `http://localhost:5000/api/admin/users/${user.id}`,
+       `${import.meta.env.VITE_API_URL}/api/admin/users/${user.id}`,
         { username },
         { headers: { Authorization: `Bearer ${token}` } }
       );

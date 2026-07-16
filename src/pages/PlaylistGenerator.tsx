@@ -43,7 +43,7 @@ export const PlaylistGenerator: React.FC<PlaylistGeneratorProps> = ({ className 
   useEffect(() => {
     const fetchSuggestions = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/tracks');
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/tracks`);
         if (response.data.success) {
           const mapped = response.data.data.slice(0, 6).map((t: any) => ({
             id: t._id,

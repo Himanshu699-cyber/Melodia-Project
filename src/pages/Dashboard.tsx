@@ -23,7 +23,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ className = '' }) => {
   useEffect(() => {
     const fetchDashboardData = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/tracks');
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/tracks`);
         if (response.data.success) {
           // Map database response to Track format
           const mappedTracks = response.data.data.map((t: any) => ({

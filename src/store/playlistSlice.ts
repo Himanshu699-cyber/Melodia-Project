@@ -3,8 +3,8 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 import axios from 'axios';
 import type { Track, Playlist } from '../data/mockData';
 
-const PLAYLIST_API_URL = 'http://localhost:5000/api/playlists';
-const TRACK_API_URL = 'http://localhost:5000/api/tracks';
+const PLAYLIST_API_URL = `${import.meta.env.VITE_API_URL}/api/playlists`;
+const TRACK_API_URL = `${import.meta.env.VITE_API_URL}/api/tracks`;
 
 export interface AppNotification {
   id: string;

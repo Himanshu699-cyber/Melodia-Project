@@ -38,7 +38,7 @@ export const PlaylistDetails: React.FC<PlaylistDetailsProps> = ({ className = ''
     const fetchPlaylistDetails = async () => {
       const token = localStorage.getItem('melodify_token') || sessionStorage.getItem('melodify_token');
       try {
-        const response = await axios.get(`http://localhost:5000/api/playlists/${id}`, {
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/playlists/${id}`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         if (response.data.success) {

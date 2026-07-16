@@ -40,7 +40,7 @@ export const Search: React.FC<SearchProps> = ({ className = '' }) => {
     const delayDebounce = setTimeout(async () => {
       setLoading(true);
       try {
-        const response = await axios.get(`http://localhost:5000/api/tracks/search?q=${query}`);
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/tracks/search?q=${query}`);
         if (response.data.success) {
           setSuggestions(response.data.suggestions || []);
 
@@ -75,7 +75,7 @@ export const Search: React.FC<SearchProps> = ({ className = '' }) => {
   const executeFilterSearch = async () => {
     setLoading(true);
     try {
-      let url = `http://localhost:5000/api/tracks?sort=popular`;
+      let url = `${import.meta.env.VITE_API_URL}/api/tracks?sort=popular`;
       if (query) url += `&search=${query}`;
       if (genreFilter) url += `&genre=${genreFilter}`;
 

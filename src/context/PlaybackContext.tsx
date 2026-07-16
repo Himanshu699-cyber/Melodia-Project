@@ -118,7 +118,7 @@ export const PlaybackProvider: React.FC<PlaybackProviderProps> = ({ children }) 
     if (!token) return;
     try {
       await axios.post(
-        `http://localhost:5000/api/tracks/${trackId}/play`,
+        `${import.meta.env.VITE_API_URL}/api/tracks/${trackId}/play`,
         {},
         { headers: { Authorization: `Bearer ${token}` } }
       );

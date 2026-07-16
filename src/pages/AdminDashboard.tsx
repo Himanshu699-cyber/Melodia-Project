@@ -49,7 +49,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ className = '' }
   const fetchStats = async () => {
     setStatsLoading(true);
     try {
-      const response = await axios.get('http://localhost:5000/api/admin/stats', getHeaders());
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/admin/stats`, getHeaders());
       if (response.data.success) {
         setStats(response.data.data);
       }
@@ -63,7 +63,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ className = '' }
   const fetchTracks = async () => {
     setTracksLoading(true);
     try {
-      const response = await axios.get('http://localhost:5000/api/tracks');
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/tracks`);
       if (response.data.success) {
         const mapped = response.data.data.map((t: any) => ({
           id: t._id,
@@ -91,7 +91,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ className = '' }
   const fetchUsers = async () => {
     setUsersLoading(true);
     try {
-      const response = await axios.get('http://localhost:5000/api/admin/users', getHeaders());
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/admin/users`, getHeaders());
       if (response.data.success) {
         setUsers(response.data.data);
       }
@@ -113,7 +113,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ className = '' }
     e.preventDefault();
     try {
       const response = await axios.post(
-        'http://localhost:5000/api/admin/tracks',
+        `${import.meta.env.VITE_API_URL}/api/admin/tracks`,
         {
           title: trackTitle,
           artist: trackArtist,
@@ -156,7 +156,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ className = '' }
     if (!editingTrack) return;
     try {
       const response = await axios.put(
-        `http://localhost:5000/api/admin/tracks/${editingTrack.id}`,
+        `${import.meta.env.VITE_API_URL}/api/admin/tracks/${editingTrack.id}`,
         {
           title: trackTitle,
           artist: trackArtist,
@@ -184,7 +184,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ className = '' }
   const handleDeleteTrack = async (id: string) => {
     if (window.confirm('Are you sure you want to delete this track from library?')) {
       try {
-        const response = await axios.delete(`http://localhost:5000/api/admin/tracks/${id}`, getHeaders());
+        const response = await axios.delete(`${import.meta.env.VITE_API_URL}/api/admin/tracks/${id}`, getHeaders());
         if (response.data.success) {
           dispatch(addNotification({ message: 'Song deleted from library catalog.', type: 'info' }));
           fetchTracks();
@@ -211,7 +211,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ className = '' }
   const handleUpdateUserRole = async (userId: string, newRole: string) => {
     try {
       const response = await axios.put(
-        `http://localhost:5000/api/admin/users/${userId}`,
+        `${import.meta.env.VITE_API_URL}/api/admin/users/${userId}`,
         { role: newRole },
         getHeaders()
       );
@@ -227,7 +227,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ className = '' }
   const handleDeleteUser = async (userId: string) => {
     if (window.confirm('Delete user account? This cannot be undone.')) {
       try {
-        const response = await axios.delete(`http://localhost:5000/api/admin/users/${userId}`, getHeaders());
+        const response = await axios.delete(`${import.meta.env.VITE_API_URL}/api/admin/users/${userId}`, getHeaders());
         if (response.data.success) {
           dispatch(addNotification({ message: 'User account removed.', type: 'info' }));
           fetchUsers();

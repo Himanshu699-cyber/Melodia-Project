@@ -117,7 +117,7 @@ export const AIStudio: React.FC<AIStudioProps> = ({ className = '' }) => {
     if (window.confirm('Are you sure you want to delete this generated song?')) {
       const token = localStorage.getItem('melodify_token') || sessionStorage.getItem('melodify_token');
       try {
-        await axios.delete(`http://localhost:5000/api/admin/tracks/${studioTrack.id}`, {
+        await axios.delete(`${import.meta.env.VITE_API_URL}/api/admin/tracks/${studioTrack.id}`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         dispatch(addNotification({

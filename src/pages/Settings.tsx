@@ -29,7 +29,7 @@ export const Settings: React.FC<SettingsProps> = ({ className = '' }) => {
     try {
       // Save plan on backend
       const response = await axios.put(
-        `http://localhost:5000/api/admin/users/${user.id}`,
+        `${import.meta.env.VITE_API_URL}/api/admin/users/${user.id}`,
         {
           audioQuality: audioQuality,
           // If you see a state variable for theme above, uncomment the line below:

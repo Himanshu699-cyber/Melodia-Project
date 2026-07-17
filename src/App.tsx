@@ -136,7 +136,7 @@ function App() {
         />
 
         {/* Fallback Catch All */}
-        <Route path="*" element={<Navigate to="/dashboard" replace />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>
   );

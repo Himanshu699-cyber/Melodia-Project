@@ -47,7 +47,7 @@ export const Login: React.FC<LoginProps> = ({ className = '' }) => {
     const result = await dispatch(loginUser({ email, password, rememberMe }) as any);
     if (loginUser.fulfilled.match(result)) {
       dispatch(addNotification({ message: 'Login successful!', type: 'success' }));
-      navigate('/dashboard');
+      
     }
   };
 
@@ -65,9 +65,13 @@ export const Login: React.FC<LoginProps> = ({ className = '' }) => {
     }) as any);
 
     if (googleAuth.fulfilled.match(result)) {
-      dispatch(addNotification({ message: 'Logged in with Google!', type: 'success' }));
-      navigate('/dashboard');
-    }
+  dispatch(
+    addNotification({
+      message: 'Logged in with Google!',
+      type: 'success',
+    })
+  );
+}
   };
 
   const handleForgotPasswordRequest = async (e: React.FormEvent) => {

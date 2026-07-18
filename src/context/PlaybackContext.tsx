@@ -35,6 +35,7 @@ interface PlaybackProviderProps {
 export const PlaybackProvider: React.FC<PlaybackProviderProps> = ({ children }) => {
   const dispatch = useDispatch();
   const audioRef = useRef<HTMLAudioElement | null>(null);
+   const lastLoggedTrack = useRef<string | null>(null);
 
   const { currentTrack, isPlaying, progress, volume } = useSelector(
     (state: RootState) => state.playback
@@ -91,9 +92,10 @@ export const PlaybackProvider: React.FC<PlaybackProviderProps> = ({ children }) 
     if (!audioRef.current) return;
 
     if (currentTrack) {
-      const isSameSrc = audioRef.current.src === currentTrack.url;
+      const isSameSrc =
+    audioRef.current.src.endsWith(currentTrack.url);
       if (!isSameSrc) {
-        audioRef.current.src = currentTrack.url || '';
+        audioRef.current.src = currentTrack.url ?? '';
         audioRef.current.load();
       }
 
@@ -104,7 +106,10 @@ export const PlaybackProvider: React.FC<PlaybackProviderProps> = ({ children }) 
         });
         
         // Log recently played track in Express backend asynchronously
-        logTrackPlay(currentTrack.id);
+        if (lastLoggedTrack.current !== currentTrack.id) {
+            lastLoggedTrack.current = currentTrack.id;
+            logTrackPlay(currentTrack.id);
+}
       } else {
         audioRef.current.pause();
       }

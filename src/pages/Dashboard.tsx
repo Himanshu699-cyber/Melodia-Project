@@ -20,45 +20,56 @@ export const Dashboard: React.FC<DashboardProps> = ({ className = '' }) => {
   const [loading, setLoading] = useState(true);
   const [stats, setStats] = useState({ totalListenedHours: 12.4, favGenre: 'Synthwave', likedCount: 0 });
 
+  
   useEffect(() => {
-    const fetchDashboardData = async () => {
-      try {
-        const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/tracks`);
-        if (response.data.success) {
-          // Map database response to Track format
-          const mappedTracks = response.data.data.map((t: any) => ({
-            id: t._id,
-            title: t.title,
-            artist: t.artist,
-            album: t.album,
-            duration: t.duration,
-            bpm: t.bpm,
-            bitrate: t.bitrate,
-            coverUrl: t.coverUrl,
-            url: t.url,
-            genre: t.genre,
-            liked: user?.favorites?.some((fav: any) => (fav._id || fav) === t._id) || false,
-            playCount: t.playCount
-          }));
-          setTracks(mappedTracks);
-        }
+  let mounted = true;
 
-        // Get favorites count
-        if (user) {
-          setStats((prev) => ({
-            ...prev,
-            likedCount: user.favorites?.length || 0,
-          }));
-        }
-        setLoading(false);
-      } catch (err) {
-        console.error('Error fetching dashboard tracks:', err);
-        setLoading(false);
+  const fetchDashboardData = async () => {
+    try {
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/tracks`);
+
+      if (!mounted) return;
+
+      if (response.data.success) {
+        const mappedTracks = response.data.data.map((t: any) => ({
+          id: t._id,
+          title: t.title,
+          artist: t.artist,
+          album: t.album,
+          duration: t.duration,
+          bpm: t.bpm,
+          bitrate: t.bitrate,
+          coverUrl: t.coverUrl,
+          url: t.url,
+          genre: t.genre,
+          liked:
+            user?.favorites?.some((fav: any) => (fav._id || fav) === t._id) ||
+            false,
+          playCount: t.playCount,
+        }));
+
+        setTracks(mappedTracks);
       }
-    };
 
-    fetchDashboardData();
-  }, [user]);
+      if (user) {
+        setStats(prev => ({
+          ...prev,
+          likedCount: user.favorites?.length || 0,
+        }));
+      }
+
+      setLoading(false);
+    } catch (err) {
+      if (mounted) setLoading(false);
+    }
+  };
+
+  fetchDashboardData();
+
+  return () => {
+    mounted = false;
+  };
+}, [user]);
 
   // Greeting based on hours
   const getGreeting = () => {

@@ -9,7 +9,7 @@ export interface Track {
   coverUrl: string;
   genre: string;
   mood?: string;
-  url?: string;
+  url: string;
   lyrics?: string;
   liked: boolean;
   playCount: number;
@@ -45,6 +45,7 @@ export const MOCK_TRACKS: Track[] = [
     bpm: 122,
     bitrate: "320 kbps",
     coverUrl: "https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?w=150&auto=format&fit=crop&q=60",
+     url: "/audio/neon-horizon.mp3",
     genre: "Synthwave",
     liked: true,
     playCount: 1542
@@ -58,6 +59,7 @@ export const MOCK_TRACKS: Track[] = [
     bpm: 118,
     bitrate: "320 kbps",
     coverUrl: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=150&auto=format&fit=crop&q=60",
+     url: "/audio/midnight-shift.mp3",
     genre: "Synthwave",
     liked: false,
     playCount: 890
@@ -71,6 +73,7 @@ export const MOCK_TRACKS: Track[] = [
     bpm: 84,
     bitrate: "256 kbps",
     coverUrl: "https://images.unsplash.com/photo-1498038432885-c6f3f1b912ee?w=150&auto=format&fit=crop&q=60",
+    url: "/audio/analog-whispers.mp3",
     genre: "Lofi Hip Hop",
     liked: true,
     playCount: 2310
@@ -84,6 +87,7 @@ export const MOCK_TRACKS: Track[] = [
     bpm: 128,
     bitrate: "320 kbps",
     coverUrl: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=150&auto=format&fit=crop&q=60",
+    url: "/audio/subterranean-bass.mp3",
     genre: "Techno",
     liked: true,
     playCount: 654
@@ -97,6 +101,7 @@ export const MOCK_TRACKS: Track[] = [
     bpm: 120,
     bitrate: "320 kbps",
     coverUrl: "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=150&auto=format&fit=crop&q=60",
+    url: "/audio/solar-eclipse.mp3",
     genre: "Ambient",
     liked: false,
     playCount: 421
@@ -110,6 +115,7 @@ export const MOCK_TRACKS: Track[] = [
     bpm: 95,
     bitrate: "256 kbps",
     coverUrl: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=150&auto=format&fit=crop&q=60",
+    url: "/audio/glitch-in-the-rain.mp3",
     genre: "Glitch Hop",
     liked: false,
     playCount: 778
@@ -123,6 +129,7 @@ export const MOCK_TRACKS: Track[] = [
     bpm: 130,
     bitrate: "320 kbps",
     coverUrl: "https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?w=150&auto=format&fit=crop&q=60",
+    url: "/audio/hyperdrive.mp3",
     genre: "Synthwave",
     liked: true,
     playCount: 1205
@@ -136,6 +143,7 @@ export const MOCK_TRACKS: Track[] = [
     bpm: 80,
     bitrate: "320 kbps",
     coverUrl: "https://images.unsplash.com/photo-1498038432885-c6f3f1b912ee?w=150&auto=format&fit=crop&q=60",
+    url: "/audio/chilled-raindrops.mp3",
     genre: "Lofi Hip Hop",
     liked: false,
     playCount: 1980

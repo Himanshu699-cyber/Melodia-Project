@@ -60,12 +60,17 @@ export const loginUser = createAsyncThunk(
 
         return { token, user, rememberMe: credentials.rememberMe };
       }
-      return thunkAPI.rejectWithValue(response.data.message || 'Login failed');
-    } catch (err: any) {
-      return thunkAPI.rejectWithValue(
-        err.response?.data?.message || err.message || 'Login connection failed'
-      );
-    }
+        return thunkAPI.rejectWithValue(response.data.message || 'Login failed');
+      } catch (err: any) {
+    localStorage.removeItem('melodify_token');
+    localStorage.removeItem('melodify_user');
+    sessionStorage.removeItem('melodify_token');
+    sessionStorage.removeItem('melodify_user');
+
+    return thunkAPI.rejectWithValue(
+      err.response?.data?.message || 'Failed to load profile'
+    );
+  }
   }
 );
 
@@ -83,11 +88,16 @@ export const signupUser = createAsyncThunk(
         return { token, user };
       }
       return thunkAPI.rejectWithValue(response.data.message || 'Signup failed');
-    } catch (err: any) {
-      return thunkAPI.rejectWithValue(
-        err.response?.data?.message || err.message || 'Signup connection failed'
-      );
-    }
+     } catch (err: any) {
+   localStorage.removeItem('melodify_token');
+   localStorage.removeItem('melodify_user');
+   sessionStorage.removeItem('melodify_token');
+   sessionStorage.removeItem('melodify_user');
+ 
+   return thunkAPI.rejectWithValue(
+     err.response?.data?.message || 'Failed to load profile'
+   );
+ }
   }
 );
 
@@ -106,6 +116,11 @@ export const googleAuth = createAsyncThunk(
       }
       return thunkAPI.rejectWithValue(response.data.message || 'Google Auth failed');
     } catch (err: any) {
+      localStorage.removeItem('melodify_token');
+      localStorage.removeItem('melodify_user');
+      sessionStorage.removeItem('melodify_token');
+      sessionStorage.removeItem('melodify_user');
+
       return thunkAPI.rejectWithValue(
         err.response?.data?.message || err.message || 'Google Auth connection failed'
       );

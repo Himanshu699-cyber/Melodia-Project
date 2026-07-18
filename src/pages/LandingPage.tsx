@@ -59,7 +59,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ className = '' }) => {
   useEffect(() => {
     const interval = setInterval(() => {
       setArtworkIndex((prev) => (prev + 1) % DISC_ARTWORK.length);
-    }, 6000);
+    }, 4000);
     return () => clearInterval(interval);
   }, []);
 

@@ -30,7 +30,7 @@ export const Login: React.FC<LoginProps> = ({ className = '' }) => {
 
   
     useEffect(() => {
-            ispatch(clearError());
+            dispatch(clearError());
           }, [dispatch]);
 
           // Redirects only if user becomes truthy — replace avoids stacking history entries

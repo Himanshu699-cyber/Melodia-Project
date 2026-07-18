@@ -59,7 +59,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ className = '' }) => {
   useEffect(() => {
     const interval = setInterval(() => {
       setArtworkIndex((prev) => (prev + 1) % DISC_ARTWORK.length);
-    }, 4000);
+    }, 6000);
     return () => clearInterval(interval);
   }, []);
 
@@ -77,7 +77,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ className = '' }) => {
           to { transform: rotate(-360deg); }
         }
         .vinyl-ring {
-          animation: vinyl-spin 5s linear infinite;
+          animation: vinyl-spin 20s linear infinite;
           transform-origin: center;
          will-change: transform;
 
@@ -91,6 +91,14 @@ export const LandingPage: React.FC<LandingPageProps> = ({ className = '' }) => {
         .label-fade {
           animation: label-fade 5s ease-in-out;
         }
+          @keyframes glow-pulse {
+          0%, 100% { box-shadow: 0 0 20px 2px rgba(229,9,20,0.22); }
+          50% { box-shadow: 0 0 48px 10px rgba(229,9,20,0.42); }
+        }
+        .disc-glow-ring {
+          animation: glow-pulse 5s ease-in-out infinite;
+        }
+        
       `}</style>
 
       {/* TopNavBar */}
@@ -126,53 +134,94 @@ export const LandingPage: React.FC<LandingPageProps> = ({ className = '' }) => {
           {/* Left: Rotating disc + title beneath it */}
           <div className="flex-1 flex flex-col items-center gap-lg">
             <div className="relative w-[280px] h-[280px] md:w-[340px] md:h-[340px]">
+                 {/* Ambient pulsing glow — sits behind the disc, not stacked on top */}
+              <div
+                className="disc-glow-ring absolute rounded-full pointer-events-none"
+                style={{ inset: '-16px', zIndex: 0 }}
+              />
               {/* Outer rotating vinyl ring */}
               <div
                 className="vinyl-ring absolute inset-0 rounded-full"
                 style={{
-  background: `
-    radial-gradient(circle at center,
-      #181818 0%,
-      #181818 26%,
-
-      #090909 27%,
-      #090909 29%,
-
-      #e29044 30%,
-      #8b0505 48%,
-      #1b1b1b 72%,
-      #110101 100%
-    ),
-
-    repeating-radial-gradient(
-      circle at center,
-      rgba(231, 40, 40, 0.04) 0px,
-      rgba(255,255,255,0.035) 1px,
-      rgba(0,0,0,0) 2px,
-      rgba(0,0,0,0) 4px
-    ),
-
-    repeating-conic-gradient(
-      from 0deg,
-      rgba(197, 97, 97, 0.02) 0deg,
-      rgba(255,255,255,0.005) 2deg,
-      rgba(0,0,0,0.03) 4deg,
-      rgba(255,255,255,0.01) 6deg
-    )
-  `,
-  border: "1px solid rgba(255,255,255,0.08)",
-  boxShadow: `
-    inset 0 0 18px rgba(255,255,255,0.05),
-    inset 0 0 70px rgba(0,0,0,0.65),
-    0 0 45px rgba(229,9,20,0.25)
-  `,
-}}
+                       zIndex: 1,
+                      background: `
+                        radial-gradient(circle at center,
+                          #181818 0%,
+                          #181818 26%,
+                                    
+                          #090909 27%,
+                          #090909 29%,
+                                    
+                          #e29044 30%,
+                          #8b0505 48%,
+                          #1b1b1b 72%,
+                          #110101 100%
+                        ),
+                                    
+                        repeating-radial-gradient(
+                          circle at center,
+                          rgba(231, 40, 40, 0.04) 0px,
+                          rgba(255,255,255,0.035) 1px,
+                          rgba(0,0,0,0) 2px,
+                          rgba(0,0,0,0) 4px
+                        ),
+                                    
+                        repeating-conic-gradient(
+                          from 0deg,
+                          rgba(197, 97, 97, 0.02) 0deg,
+                          rgba(255,255,255,0.005) 2deg,
+                          rgba(0,0,0,0.03) 4deg,
+                          rgba(255,255,255,0.01) 6deg
+                        )
+                      `,
+                      border: "1px solid rgba(255,255,255,0.08)",
+                      boxShadow: `
+                        inset 0 0 18px rgba(255,255,255,0.05),
+                        inset 0 0 70px rgba(0,0,0,0.65),
+                        0 0 45px rgba(229,9,20,0.25)
+                      `,
+                    }}
+                         >
+                {/* Asymmetric highlight streak — gives the eye something to track as it spins */}
+                <div
+                  className="absolute inset-0 rounded-full pointer-events-none"
+                  style={{
+                    background: 'linear-gradient(115deg, transparent 30%, rgba(255,255,255,0.10) 42%, transparent 54%)',
+                  }}
+                />
+                {/* Small edge mark — like a groove imperfection, very visible while rotating */}
+                <div
+                  className="absolute rounded-full"
+                  style={{
+                    top: '8%',
+                    left: '50%',
+                    width: '6px',
+                    height: '6px',
+                    background: 'rgba(255, 255, 255, 0.18)',
+                    boxShadow: '0 0 4px rgba(129, 6, 6, 0.94)',
+                  }}
+                />
+              </div>         
+                        {/* Tonearm — single SVG, rotates around an exact point, stays attached */}
+              <svg
+                className="absolute pointer-events-none"
+                style={{ top: '-24px', right: '-36px', width: '150px', height: '150px', zIndex: 20 }}
+                viewBox="0 0 150 150"
               >
-              {/* Temporary marker to verify rotation */}
-<div className="absolute top-3 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-red-500" />
-</div>
+                <circle cx="128" cy="22" r="11" fill="#2a2a2a" stroke="rgba(255,255,255,0.15)" strokeWidth="1" />
+                <g transform="rotate(35 128 22)">
+                  <line x1="128" y1="22" x2="128" y2="118" stroke="#a8a8a8" strokeWidth="4" strokeLinecap="round" />
+                  <rect x="118" y="112" width="20" height="11" rx="2" fill="#1c1c1c" />
+                  <circle cx="128" cy="123" r="2" fill="#E50914">
+                    <animate attributeName="opacity" values="0.6;1;0.6" dur="2.4s" repeatCount="indefinite" />
+                  </circle>
+                </g>
+              </svg>
+                  
+                   
               {/* Static center label — not part of the rotating element */}
-              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+              <div className="absolute inset-0 flex items-center justify-center pointer-events-none"
+                    style={{ zIndex: 10 }}>
                 
                 <div className="w-[140px] h-[140px] rounded-full overflow-hidden relative border border-[#202020] shadow-2xl">
                   <div key={artworkIndex} className="label-fade w-full h-full flex items-center justify-center">
@@ -210,18 +259,32 @@ export const LandingPage: React.FC<LandingPageProps> = ({ className = '' }) => {
           </div>
 
           {/* Right: Get Started / Login column */}
-          <div className="flex flex-col gap-md w-full max-w-[280px]">
+          <div className="flex flex-col gap-md w-full max-w-[280px] justify-center self-center">
             <button
               onClick={handleGetStarted}
-              className="w-full brand-red-bg text-white font-label-lg text-label-lg font-semibold px-xl py-lg rounded-lg hover:bg-opacity-90 transition-all hover:scale-[1.02]"
+              className="group w-full flex items-center justify-center gap-sm brand-red-bg text-white font-label-md text-label-md text-[16px] font-semibold px-xl py-lg rounded-lg transition-all duration-300 hover:scale-[1.04] active:scale-[0.98]"
+              style={{ boxShadow: '0 0 18px rgba(229,9,20,0.35)' }}
+              onMouseEnter={(e) => (e.currentTarget.style.boxShadow = '0 0 34px rgba(229,9,20,0.65)')}
+              onMouseLeave={(e) => (e.currentTarget.style.boxShadow = '0 0 18px rgba(229,9,20,0.35)')}
             >
               Get Started
+              <span
+                className="material-symbols-outlined text-[20px] transition-transform duration-300 group-hover:translate-x-1"
+              >
+                arrow_forward
+              </span>
             </button>
+
             <Link
               to="/login"
-              className="w-full text-center bg-black text-white border-2 border-red-600 font-label-lg text-label-lg font-semibold px-xl py-lg rounded-lg transition-all hover:scale-[1.02]"
+              className="group w-full flex items-center justify-center gap-sm bg-black text-white border-2 border-red-600 font-label-md text-label-md text-[16px] font-semibold px-xl py-lg rounded-lg transition-all duration-300 hover:scale-[1.04] active:scale-[0.98]"
               style={{ boxShadow: '0 0 24px rgba(229,9,20,0.45)' }}
+              onMouseEnter={(e) => (e.currentTarget.style.boxShadow = '0 0 42px rgba(229,9,20,0.8)')}
+              onMouseLeave={(e) => (e.currentTarget.style.boxShadow = '0 0 24px rgba(229,9,20,0.45)')}
             >
+              <span className="material-symbols-outlined text-[20px] transition-transform duration-300 group-hover:scale-110">
+                login
+              </span>
               Login
             </Link>
           </div>

@@ -315,6 +315,10 @@ const playlistSlice = createSlice({
     markAllNotificationsRead: (state) => {
       state.notifications.forEach(n => { n.read = true; });
     },
+    dismissNotification: (state, action: PayloadAction<string>) => {
+      const notif = state.notifications.find(n => n.id === action.payload);
+      if (notif) notif.read = true;
+    },
     clearNotifications: (state) => {
       state.notifications = [];
     },
@@ -370,5 +374,5 @@ const playlistSlice = createSlice({
   },
 });
 
-export const { addNotification, markAllNotificationsRead, clearNotifications } = playlistSlice.actions;
+export const { addNotification, markAllNotificationsRead, clearNotifications, dismissNotification } = playlistSlice.actions;
 export default playlistSlice.reducer;

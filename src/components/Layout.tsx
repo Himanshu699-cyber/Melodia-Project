@@ -24,12 +24,24 @@ export const Layout: React.FC<LayoutProps> = ({
 
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
 
   return (
     <div className="min-h-screen bg-background text-on-surface font-sans antialiased overflow-x-hidden">
       {/* Sidebar - Desktop */}
-      <Sidebar />
-
+            <Sidebar collapsed={sidebarCollapsed} />
+                   {/* Desktop Sidebar Toggle */}
+            <button
+              onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
+              className={`hidden md:flex fixed top-1/2 -translate-y-1/2 z-40 w-6 h-12 items-center justify-center bg-surface-container border border-outline-variant rounded-r-md hover:bg-surface-container-high transition-all duration-300 ${
+                sidebarCollapsed ? 'left-[80px]' : 'left-[280px]'
+              }`}
+              title={sidebarCollapsed ? 'Expand sidebar' : 'Collapse sidebar'}
+            >
+              <span className="material-symbols-outlined text-[16px] text-on-surface-variant">
+                {sidebarCollapsed ? 'chevron_right' : 'chevron_left'}
+              </span>
+            </button>
       {/* Sidebar - Mobile drawer overlay */}
       {mobileMenuOpen && (
         <div className="fixed inset-0 z-50 flex md:hidden">
@@ -44,14 +56,19 @@ export const Layout: React.FC<LayoutProps> = ({
       )}
 
       {/* Content wrapper */}
-      <div className="flex-1 flex flex-col md:ml-[280px] w-full min-h-screen relative">
+      <div
+              className={`flex-1 flex flex-col ${
+                sidebarCollapsed ? 'md:ml-[80px]' : 'md:ml-[280px]'
+              } w-full min-h-screen relative transition-all duration-300`}
+            >
         <TopAppBar
-          title={title}
-          showSearch={showSearch}
-          onSearchChange={onSearchChange}
-          searchValue={searchValue}
-          onMobileMenuToggle={() => setMobileMenuOpen(true)}
-        />
+              title={title}
+              showSearch={showSearch}
+              onSearchChange={onSearchChange}
+              searchValue={searchValue}
+              onMobileMenuToggle={() => setMobileMenuOpen(true)}
+              sidebarCollapsed={sidebarCollapsed} // NEW
+            />
 
         {/* Scrollable page body */}
         <main className="flex-grow p-margin mt-16 pb-[120px] md:pb-[100px] overflow-y-auto">

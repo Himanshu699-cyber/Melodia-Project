@@ -19,6 +19,7 @@ import Profile from './pages/Profile';
 import PlaylistDetails from './pages/PlaylistDetails';
 import FullPlayer from './pages/FullPlayer';
 import AdminDashboard from './pages/AdminDashboard';
+import { dismissNotification } from './store/playlistSlice';
 
 function App() {
   const dispatch = useDispatch();
@@ -28,23 +29,37 @@ function App() {
   useEffect(() => {
     dispatch(loadProfile() as any);
   }, [dispatch]);
-
+   
   // Take the most recent unread notification as a toast
   const activeToast = notifications.filter(n => !n.read)[0];
+   useEffect(() => {
+    if (activeToast) {
+      const timer = setTimeout(() => {
+        dispatch(dismissNotification(activeToast.id));
+      }, 4000);
 
+      return () => clearTimeout(timer);
+    }
+  }, [activeToast, dispatch]);
   return (
     <BrowserRouter>
       {/* Toast Notification Container */}
       {activeToast && (
-        <div className="fixed top-6 right-6 z-[9999] max-w-sm bg-[#181818] border-l-4 border-primary text-white p-4 rounded shadow-[0_4px_30px_rgba(0,0,0,0.6)] flex items-start gap-md animate-slide-in select-none">
-          <span className="material-symbols-outlined text-primary shrink-0">
-            {activeToast.type === 'success' ? 'check_circle' : activeToast.type === 'error' ? 'error' : 'info'}
-          </span>
-          <div className="flex-grow">
-            <p className="text-xs text-on-surface-variant font-mono">Notification</p>
-            <p className="text-sm font-semibold mt-xs leading-snug">{activeToast.message}</p>
-          </div>
-        </div>
+  <div className="fixed top-6 right-6 z-[9999] max-w-sm bg-[#181818] border-l-4 border-primary text-white p-4 rounded shadow-[0_4px_30px_rgba(0,0,0,0.6)] flex items-start gap-md animate-slide-in select-none">
+    <span className="material-symbols-outlined text-primary shrink-0">
+      {activeToast.type === 'success' ? 'check_circle' : activeToast.type === 'error' ? 'error' : 'info'}
+    </span>
+    <div className="flex-grow">
+      <p className="text-xs text-on-surface-variant font-mono">Notification</p>
+      <p className="text-sm font-semibold mt-xs leading-snug">{activeToast.message}</p>
+    </div>
+    <button
+      onClick={() => dispatch(dismissNotification(activeToast.id))}
+      className="text-on-surface-variant hover:text-white transition-colors shrink-0"
+    >
+      <span className="material-symbols-outlined text-[18px]">close</span>
+    </button>
+  </div>
       )}
 
       <Routes>

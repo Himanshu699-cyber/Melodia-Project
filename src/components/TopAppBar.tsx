@@ -11,6 +11,7 @@ export interface TopAppBarProps {
   readonly onSearchChange?: (query: string) => void;
   readonly searchValue?: string;
   readonly onMobileMenuToggle?: () => void;
+  readonly sidebarCollapsed?: boolean; 
 }
 
 export const TopAppBar: React.FC<TopAppBarProps> = ({
@@ -19,6 +20,7 @@ export const TopAppBar: React.FC<TopAppBarProps> = ({
   onSearchChange,
   searchValue = '',
   onMobileMenuToggle,
+  sidebarCollapsed = false, 
 }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -35,8 +37,11 @@ export const TopAppBar: React.FC<TopAppBarProps> = ({
   };
 
   return (
-    <header className="h-16 fixed top-0 right-0 w-full md:w-[calc(100%-280px)] z-40 bg-surface/95 backdrop-blur-md border-b border-outline-variant flex items-center justify-between px-lg select-none">
-      {/* Mobile Menu Toggle & Title */}
+        <header
+          className={`h-16 fixed top-0 right-0 w-full z-40 bg-surface/95 backdrop-blur-md border-b border-outline-variant flex items-center justify-between px-lg select-none transition-all duration-300 ${
+            sidebarCollapsed ? 'md:w-[calc(100%-80px)]' : 'md:w-[calc(100%-280px)]'
+          }`}>
+    {/* Mobile Menu Toggle & Title */}
       <div className="flex items-center">
         <button
           onClick={onMobileMenuToggle}
@@ -68,6 +73,14 @@ export const TopAppBar: React.FC<TopAppBarProps> = ({
 
       {/* Trailing Actions */}
       <div className="flex items-center gap-md ml-auto relative">
+        {/* Search Button — NEW */}
+            <Link
+              to="/search"
+              title="Search"
+              className="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors cursor-pointer"
+            >
+              <span className="material-symbols-outlined">search</span>
+            </Link>
         {/* Notifications Button */}
         <div className="relative">
           <button

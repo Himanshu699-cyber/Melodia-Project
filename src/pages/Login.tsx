@@ -28,12 +28,17 @@ export const Login: React.FC<LoginProps> = ({ className = '' }) => {
   const [step, setStep] = useState<1 | 2>(1); // 1 = Request code, 2 = Submit new pass
   const [modalError, setModalError] = useState<string | null>(null);
 
-  useEffect(() => {
-    dispatch(clearError());
-    if (user) {
-      navigate('/dashboard');
-    }
-  }, [user, navigate, dispatch]);
+  
+    useEffect(() => {
+            ispatch(clearError());
+          }, [dispatch]);
+
+          // Redirects only if user becomes truthy — replace avoids stacking history entries
+          useEffect(() => {
+            if (user) {
+              navigate('/dashboard', { replace: true });
+            }
+          }, [user, navigate]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

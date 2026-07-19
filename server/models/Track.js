@@ -74,7 +74,12 @@ const TrackSchema = new mongoose.Schema({
   creatorId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
-  }
+  },
+  jamendoId: {
+  type: String,
+  unique: true,
+  sparse: true, // allows many tracks to have NO jamendoId (your existing/AI-generated tracks) without violating uniqueness
+},
 });
 
 // Set text indexes for intelligent searching
@@ -84,7 +89,7 @@ TrackSchema.index({
   album: 'text',
   genre: 'text',
   mood: 'text',
-});
+}, { timestamps: true });
 
 const Track = mongoose.model('Track', TrackSchema);
 export default Track;

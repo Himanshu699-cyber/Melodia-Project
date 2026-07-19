@@ -20,7 +20,7 @@ import PlaylistDetails from './pages/PlaylistDetails';
 import FullPlayer from './pages/FullPlayer';
 import AdminDashboard from './pages/AdminDashboard';
 import { dismissNotification } from './store/playlistSlice';
-
+import CollectionPage from './pages/CollectionPage';
 function App() {
   const dispatch = useDispatch();
   const { notifications } = useSelector((state: RootState) => state.playlists);
@@ -149,7 +149,14 @@ function App() {
             </ProtectedRoute>
           }
         />
-
+          <Route
+              path="/collection/:type"
+              element={
+                <ProtectedRoute>
+                  <CollectionPage />
+                </ProtectedRoute>
+              }
+            />
         {/* Fallback Catch All */}
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>

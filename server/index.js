@@ -10,7 +10,7 @@ import playlistRoutes from './routes/playlistRoutes.js';
 import adminRoutes from './routes/adminRoutes.js';
 import Track from './models/Track.js';
 import Playlist from './models/Playlist.js';
-
+import catalogRoutes from './routes/catalog.js';
 // Load env vars
 dotenv.config();
 
@@ -30,7 +30,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/tracks', trackRoutes);
 app.use('/api/playlists', playlistRoutes);
 app.use('/api/admin', adminRoutes);
-
+app.use('/api', catalogRoutes);
 // Health check endpoint
 app.get('/', (req, res) => {
   res.json({ status: 'active', service: 'Melodify API Server' });

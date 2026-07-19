@@ -1,6 +1,7 @@
 import Track from '../models/Track.js';
 import User from '../models/User.js';
-
+import {searchJamendoTracks} from '../utils/jamendo.js'
+import { syncArtistAndAlbum } from '../utils/catalogSync.js';
 // @desc    Get all tracks or search/filter
 // @route   GET /api/tracks
 // @access  Public
@@ -34,7 +35,9 @@ export const getTracks = async (req, res) => {
     if (sort) {
       if (sort === 'popular') {
         apiQuery = apiQuery.sort('-playCount');
-      } else if (sort === 'title') {
+      } else if (sort === 'newest') {           
+        apiQuery = apiQuery.sort('-createdAt'); 
+      }else if (sort === 'title') {
         apiQuery = apiQuery.sort('title');
       } else if (sort === 'artist') {
         apiQuery = apiQuery.sort('artist');
@@ -71,7 +74,7 @@ export const searchTracks = async (req, res) => {
     const suggestions = suggestionsQuery.map(t => `${t.title} - ${t.artist}`);
 
     // Detailed results
-    const results = await Track.find({
+    let results = await Track.find({
       $or: [
         { title: { $regex: q, $options: 'i' } },
         { artist: { $regex: q, $options: 'i' } },
@@ -80,6 +83,22 @@ export const searchTracks = async (req, res) => {
         { mood: { $regex: q, $options: 'i' } }
       ]
     });
+    if (results.length <10){
+      const jamendoTracks= await searchJamendoTracks(q,10);
+
+      for(const jt of jamendoTracks){
+        const exists= await Track.findOne({jamendoID: jt.jamendoID});
+        if(!exist){
+          try{
+            const saved= await Track.create(jt);
+            await syncArtistAndAlbum(jt); 
+            results.push(saved);
+          }catch (createErr){
+            console.warn('Skipped caching one Jamendo track:',createErr.message);
+          }
+        }
+      }
+    }
 
     res.json({
       success: true,

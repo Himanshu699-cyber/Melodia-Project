@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import type { RootState } from '../store';
@@ -11,73 +12,87 @@ export interface DashboardProps {
   readonly className?: string;
 }
 
+interface Artist {
+  _id: string;
+  name: string;
+  imageUrl: string;
+  trackCount: number;
+}
+
+interface Album {
+  _id: string;
+  name: string;
+  artistName: string;
+  coverUrl: string;
+  trackCount: number;
+}
+
+const mapTrack = (t: any, user: any): Track => ({
+  id: t._id,
+  title: t.title,
+  artist: t.artist,
+  album: t.album,
+  duration: t.duration,
+  bpm: t.bpm,
+  bitrate: t.bitrate,
+  coverUrl: t.coverUrl,
+  url: t.url,
+  genre: t.genre,
+  liked: user?.favorites?.some((fav: any) => (fav._id || fav) === t._id) || false,
+  playCount: t.playCount,
+});
+
 export const Dashboard: React.FC<DashboardProps> = ({ className = '' }) => {
   const dispatch = useDispatch();
   const { user } = useSelector((state: RootState) => state.auth);
-  const { playTrack, currentTrack, isPlaying, togglePlay } = usePlayback();
+  const { playTrack, currentTrack, isPlaying } = usePlayback();
 
   const [tracks, setTracks] = useState<Track[]>([]);
+  const [newReleases, setNewReleases] = useState<Track[]>([]);
+  const [artists, setArtists] = useState<Artist[]>([]);
+  const [albums, setAlbums] = useState<Album[]>([]);
   const [loading, setLoading] = useState(true);
-  const [stats, setStats] = useState({ totalListenedHours: 12.4, favGenre: 'Synthwave', likedCount: 0 });
 
-  
+  const trendingScrollRef = useRef<HTMLDivElement>(null);
+  const newReleasesScrollRef = useRef<HTMLDivElement>(null);
+  const artistsScrollRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
-  let mounted = true;
+    let mounted = true;
 
-  const fetchDashboardData = async () => {
-    try {
-      const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/tracks`);
+    const fetchAll = async () => {
+      try {
+        const [trendingRes, newRes, artistsRes, albumsRes] = await Promise.all([
+          axios.get(`${import.meta.env.VITE_API_URL}/api/tracks?sort=popular`),
+          axios.get(`${import.meta.env.VITE_API_URL}/api/tracks?sort=newest`),
+          axios.get(`${import.meta.env.VITE_API_URL}/api/artists`),
+          axios.get(`${import.meta.env.VITE_API_URL}/api/albums`),
+        ]);
 
-      if (!mounted) return;
+        if (!mounted) return;
 
-      if (response.data.success) {
-        const mappedTracks = response.data.data.map((t: any) => ({
-          id: t._id,
-          title: t.title,
-          artist: t.artist,
-          album: t.album,
-          duration: t.duration,
-          bpm: t.bpm,
-          bitrate: t.bitrate,
-          coverUrl: t.coverUrl,
-          url: t.url,
-          genre: t.genre,
-          liked:
-            user?.favorites?.some((fav: any) => (fav._id || fav) === t._id) ||
-            false,
-          playCount: t.playCount,
-        }));
-
-        setTracks(mappedTracks);
+        if (trendingRes.data.success) {
+          setTracks(trendingRes.data.data.map((t: any) => mapTrack(t, user)));
+        }
+        if (newRes.data.success) {
+          setNewReleases(newRes.data.data.map((t: any) => mapTrack(t, user)));
+        }
+        if (artistsRes.data.success) {
+          setArtists(artistsRes.data.data);
+        }
+        if (albumsRes.data.success) {
+          setAlbums(albumsRes.data.data);
+        }
+      } catch (err) {
+        console.error('Dashboard fetch error:', err);
+      } finally {
+        if (mounted) setLoading(false);
       }
+    };
 
-      if (user) {
-        setStats(prev => ({
-          ...prev,
-          likedCount: user.favorites?.length || 0,
-        }));
-      }
-
-      setLoading(false);
-    } catch (err) {
-      if (mounted) setLoading(false);
-    }
-  };
-
-  fetchDashboardData();
-
-  return () => {
-    mounted = false;
-  };
-}, [user]);
-
-  // Greeting based on hours
-  const getGreeting = () => {
-    const hrs = new Date().getHours();
-    if (hrs < 12) return 'Good Morning';
-    if (hrs < 18) return 'Good Afternoon';
-    return 'Good Evening';
-  };
+    fetchAll();
+    return () => { mounted = false; };
+  }, [user]);
 
   const handleTrackPlay = (track: Track) => {
     playTrack(track);
@@ -86,14 +101,18 @@ export const Dashboard: React.FC<DashboardProps> = ({ className = '' }) => {
       type: 'info'
     }));
   };
-  // Derived data for design sections (no dedicated backend endpoints yet)
-  const heroTrack = tracks.length > 0
-    ? [...tracks].sort((a, b) => (b.playCount || 0) - (a.playCount || 0))[0]
-    : null;
 
-  const topArtists = Array.from(
-    new Map(tracks.map(t => [t.artist, t])).values()
-  ).slice(0, 3);
+  const scrollCarousel = (ref: React.RefObject<HTMLDivElement>, direction: 'left' | 'right') => {
+    if (!ref.current) return;
+    const amount = 320;
+    ref.current.scrollBy({
+      left: direction === 'left' ? -amount : amount,
+      behavior: 'smooth',
+    });
+  };
+
+  const heroTrack = tracks.length > 0 ? tracks[0] : null;
+
   return (
     <Layout title="Home" showSearch={false}>
       <div className={`space-y-xl ${className}`}>
@@ -113,6 +132,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ className = '' }) => {
                 {heroTrack.artist} — {heroTrack.genre} track, now streaming in high fidelity.
               </p>
               <button
+                title="Play Now"
                 onClick={() => handleTrackPlay(heroTrack)}
                 className="mt-sm bg-primary text-white text-label-md font-bold px-lg py-2 rounded-full hover:bg-opacity-90 transition-all flex items-center gap-xs"
               >
@@ -125,147 +145,219 @@ export const Dashboard: React.FC<DashboardProps> = ({ className = '' }) => {
           </div>
         )}
 
-        {/* Trending Tracks + AI DJ Mix / Top Artists */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-xl">
-          {/* Trending Tracks (2/3 width) */}
-          <div className="lg:col-span-2 space-y-md">
-            <div className="flex items-center justify-between">
-              <h3 className="text-headline-lg text-white font-bold">Trending Tracks</h3>
-              <button className="text-xs font-mono uppercase text-on-surface-variant hover:text-white transition-colors">
+        {/* Trending — horizontal carousel with left/right toggle */}
+        <div className="space-y-md">
+          <div className="flex flex-wrap items-center justify-between gap-sm">
+            <h3 className="text-headline-lg text-white font-bold">Trending Now</h3>
+            <div className="flex items-center gap-md">
+              <Link to="/collection/trending" title="See all trending" className="text-xs font-mono uppercase text-on-surface-variant hover:text-white transition-colors">
                 See All
-              </button>
-            </div>
-
-            {loading ? (
-              <div className="p-xl text-center font-mono text-xs text-on-surface-variant">
-                Loading track library...
-              </div>
-            ) : tracks.length === 0 ? (
-              <div className="p-xl text-center font-mono text-xs text-on-surface-variant border border-dashed border-charcoal rounded">
-                No tracks found. Seed files by launching the server.
-              </div>
-            ) : (
-              <div className="card-bg border border-charcoal rounded-lg p-md overflow-hidden">
-                <div className="divide-y divide-charcoal">
-                  {tracks.slice(0, 4).map((track, idx) => {
-                    const isCurrent = currentTrack?.id === track.id;
-                    const isRowPlaying = isCurrent && isPlaying;
-                    return (
-                      <div
-                        key={track.id}
-                        onClick={() => handleTrackPlay(track)}
-                        className={`flex items-center justify-between p-sm hover:bg-[#202020] transition-colors rounded cursor-pointer group ${isCurrent ? 'bg-[#202020] text-primary' : 'text-on-surface'
-                          }`}
-                      >
-                        <div className="flex items-center gap-md min-w-0">
-                          <span className="font-mono text-on-surface-variant text-xs w-5 text-center group-hover:hidden">
-                            {idx + 1}
-                          </span>
-                          <span className="material-symbols-outlined text-primary text-[18px] w-5 text-center hidden group-hover:inline-block">
-                            {isRowPlaying ? 'pause' : 'play_arrow'}
-                          </span>
-                          <img
-                            src={track.coverUrl}
-                            alt={track.title}
-                            className="w-10 h-10 object-cover rounded border border-charcoal shrink-0"
-                          />
-                          <div className="min-w-0">
-                            <p className={`font-semibold text-sm truncate ${isCurrent ? 'text-primary' : 'text-white'}`}>
-                              {track.title}
-                            </p>
-                            <p className="text-xs text-on-surface-variant truncate">{track.artist}</p>
-                          </div>
-                        </div>
-                        <div className="flex items-center gap-xl text-xs font-mono text-on-surface-variant">
-                          <span className="hidden sm:inline">{track.album}</span>
-                          <span>{track.duration}</span>
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-            )}
-          </div>
-
-          {/* AI DJ Mix + Top Artists (1/3 width) */}
-          <div className="space-y-lg">
-            <div className="space-y-sm">
-              <h3 className="text-headline-lg text-white font-bold flex items-center gap-xs">
-                <span className="material-symbols-outlined text-primary text-[20px]">auto_awesome</span>
-                AI DJ Mix
-              </h3>
-              <p className="text-xs text-on-surface-variant leading-relaxed">
-                Based on your recent listening history and favorite genres.
-              </p>
-              {tracks[0] && (
-                <div
-                  onClick={() => handleTrackPlay(tracks[0])}
-                  className="card-bg border border-charcoal rounded-lg p-sm flex items-center gap-sm cursor-pointer hover:bg-[#202020] transition-colors"
+              </Link>
+              <div className="flex items-center gap-xs">
+                <button
+                  title="Scroll left"
+                  onClick={() => scrollCarousel(trendingScrollRef, 'left')}
+                  className="w-8 h-8 rounded-full border border-charcoal flex items-center justify-center text-on-surface-variant hover:text-white hover:border-white transition-colors"
                 >
-                  <img
-                    src={tracks[0].coverUrl}
-                    alt="AI Mix"
-                    className="w-12 h-12 object-cover rounded border border-charcoal"
-                  />
-                  <div className="min-w-0">
-                    <p className="text-sm font-semibold text-white truncate">Deep Focus Protocol</p>
-                    <p className="text-xs text-on-surface-variant">Updates every 4 hours</p>
-                  </div>
-                </div>
-              )}
+                  <span className="material-symbols-outlined text-[18px]">chevron_left</span>
+                </button>
+                <button
+                  title="Scroll right"
+                  onClick={() => scrollCarousel(trendingScrollRef, 'right')}
+                  className="w-8 h-8 rounded-full border border-charcoal flex items-center justify-center text-on-surface-variant hover:text-white hover:border-white transition-colors"
+                >
+                  <span className="material-symbols-outlined text-[18px]">chevron_right</span>
+                </button>
+              </div>
             </div>
+          </div>
 
-            {topArtists.length > 0 && (
-              <div className="space-y-sm">
-                <h3 className="text-headline-lg text-white font-bold">Top Artists</h3>
-                <div className="flex gap-md">
-                  {topArtists.map((track) => (
-                    <div key={track.artist} className="flex flex-col items-center gap-xs">
-                      <img
-                        src={track.coverUrl}
-                        alt={track.artist}
-                        className="w-16 h-16 rounded-full object-cover border border-charcoal"
-                      />
-                      <span className="text-xs text-white text-center truncate max-w-[70px]">{track.artist}</span>
+          {loading ? (
+            <div className="p-xl text-center font-mono text-xs text-on-surface-variant">Loading tracks...</div>
+          ) : tracks.length === 0 ? (
+            <div className="p-xl text-center font-mono text-xs text-on-surface-variant border border-dashed border-charcoal rounded">
+              No tracks found.
+            </div>
+          ) : (
+            <div ref={trendingScrollRef} className="flex gap-md overflow-x-auto scroll-smooth pb-sm no-scrollbar">
+              {tracks.slice(0, 10).map((track) => {
+                const isCurrent = currentTrack?.id === track.id;
+                const isRowPlaying = isCurrent && isPlaying;
+                return (
+                  <div
+                    key={track.id}
+                    onClick={() => handleTrackPlay(track)}
+                    title={`Play ${track.title}`}
+                    className="flex-shrink-0 w-[160px] group cursor-pointer"
+                  >
+                    <div className="w-full aspect-square rounded-lg overflow-hidden relative border border-charcoal shadow-lg mb-sm">
+                      <img src={track.coverUrl} alt={track.title} className="w-full h-full object-cover" />
+                      <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                        <span className="material-symbols-outlined text-white text-[36px]" style={{ fontVariationSettings: "'FILL' 1" }}>
+                          {isRowPlaying ? 'pause_circle' : 'play_circle'}
+                        </span>
+                      </div>
                     </div>
-                  ))}
+                    <p className={`text-sm font-semibold truncate ${isCurrent ? 'text-primary' : 'text-white'}`}>{track.title}</p>
+                    <p className="text-xs text-on-surface-variant truncate">{track.artist}</p>
+                  </div>
+                );
+              })}
+            </div>
+          )}
+        </div>
+
+        {/* New Releases */}
+        {newReleases.length > 0 && (
+          <div className="space-y-md">
+            <div className="flex flex-wrap items-center justify-between gap-sm">
+              <h3 className="text-headline-lg text-white font-bold">New Releases</h3>
+              <div className="flex items-center gap-md">
+                <Link to="/collection/new" title="See all new releases" className="text-xs font-mono uppercase text-on-surface-variant hover:text-white transition-colors">
+                  See All
+                </Link>
+                <div className="flex items-center gap-xs">
+                  <button
+                    title="Scroll left"
+                    onClick={() => scrollCarousel(newReleasesScrollRef, 'left')}
+                    className="w-8 h-8 rounded-full border border-charcoal flex items-center justify-center text-on-surface-variant hover:text-white hover:border-white transition-colors"
+                  >
+                    <span className="material-symbols-outlined text-[18px]">chevron_left</span>
+                  </button>
+                  <button
+                    title="Scroll right"
+                    onClick={() => scrollCarousel(newReleasesScrollRef, 'right')}
+                    className="w-8 h-8 rounded-full border border-charcoal flex items-center justify-center text-on-surface-variant hover:text-white hover:border-white transition-colors"
+                  >
+                    <span className="material-symbols-outlined text-[18px]">chevron_right</span>
+                  </button>
                 </div>
               </div>
-            )}
+            </div>
+            <div ref={newReleasesScrollRef} className="flex gap-md overflow-x-auto scroll-smooth pb-sm no-scrollbar">
+              {newReleases.slice(0, 10).map((track) => (
+                <div
+                  key={track.id}
+                  onClick={() => handleTrackPlay(track)}
+                  title={`Play ${track.title}`}
+                  className="flex-shrink-0 w-[160px] group cursor-pointer"
+                >
+                  <div className="w-full aspect-square rounded-lg overflow-hidden relative border border-charcoal shadow-lg mb-sm">
+                    <img src={track.coverUrl} alt={track.title} className="w-full h-full object-cover" />
+                    <span className="absolute top-2 left-2 bg-primary text-white text-[10px] font-bold uppercase px-2 py-0.5 rounded-full">New</span>
+                  </div>
+                  <p className="text-sm font-semibold text-white truncate">{track.title}</p>
+                  <p className="text-xs text-on-surface-variant truncate">{track.artist}</p>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
+        )}
 
         {/* Recently Played */}
         <div className="space-y-md">
-          <h3 className="text-headline-lg text-white font-bold">Recently Played</h3>
+          <div className="flex flex-wrap items-center justify-between gap-sm">
+            <h3 className="text-headline-lg text-white font-bold">Recently Played</h3>
+            <Link to="/collection/recently-played" title="See all recently played" className="text-xs font-mono uppercase text-on-surface-variant hover:text-white transition-colors">
+              See All
+            </Link>
+          </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-md">
-            {tracks.slice(0, 5).map((track) => (
+            {tracks.slice(0, 10).map((track) => (
               <div
                 key={track.id}
                 onClick={() => handleTrackPlay(track)}
+                title={`Play ${track.title}`}
                 className="flex flex-col gap-sm p-sm rounded-lg card-bg border border-charcoal hover:border-[#404040] transition-colors cursor-pointer group"
               >
                 <div className="w-full aspect-square rounded overflow-hidden relative shadow-lg">
                   <img alt={track.title} className="w-full h-full object-cover" src={track.coverUrl} />
                   <div className="absolute inset-0 bg-black/40 flex items-end justify-end p-sm opacity-0 group-hover:opacity-100 transition-opacity">
                     <div className="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center hover:scale-105 transition-transform shadow-xl">
-                      <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>
-                        play_arrow
-                      </span>
+                      <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>play_arrow</span>
                     </div>
                   </div>
                 </div>
                 <div>
                   <h4 className="text-label-md text-white truncate">{track.title}</h4>
-                  <p className="text-body-sm text-on-surface-variant truncate mt-xs">
-                    Album • {track.artist}
-                  </p>
+                  <p className="text-body-sm text-on-surface-variant truncate mt-xs">Album • {track.artist}</p>
                 </div>
               </div>
             ))}
           </div>
         </div>
+
+        {/* Artists */}
+        {artists.length > 0 && (
+          <div className="space-y-md">
+            <div className="flex flex-wrap items-center justify-between gap-sm">
+              <h3 className="text-headline-lg text-white font-bold">Artists</h3>
+              <div className="flex items-center gap-md">
+                <Link to="/collection/artists" title="See all artists" className="text-xs font-mono uppercase text-on-surface-variant hover:text-white transition-colors">
+                  See All
+                </Link>
+                <div className="flex items-center gap-xs">
+                  <button
+                    title="Scroll left"
+                    onClick={() => scrollCarousel(artistsScrollRef, 'left')}
+                    className="w-8 h-8 rounded-full border border-charcoal flex items-center justify-center text-on-surface-variant hover:text-white hover:border-white transition-colors"
+                  >
+                    <span className="material-symbols-outlined text-[18px]">chevron_left</span>
+                  </button>
+                  <button
+                    title="Scroll right"
+                    onClick={() => scrollCarousel(artistsScrollRef, 'right')}
+                    className="w-8 h-8 rounded-full border border-charcoal flex items-center justify-center text-on-surface-variant hover:text-white hover:border-white transition-colors"
+                  >
+                    <span className="material-symbols-outlined text-[18px]">chevron_right</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div ref={artistsScrollRef} className="flex gap-lg overflow-x-auto scroll-smooth pb-sm no-scrollbar">
+              {artists.slice(0, 10).map((artist) => (
+                <div key={artist._id} title={artist.name} className="flex-shrink-0 flex flex-col items-center gap-xs cursor-pointer group">
+                  <img
+                    src={artist.imageUrl || 'https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?w=150&auto=format&fit=crop&q=60'}
+                    alt={artist.name}
+                    className="w-24 h-24 rounded-full object-cover border border-charcoal group-hover:border-primary transition-colors"
+                  />
+                  <span className="text-sm text-white text-center truncate max-w-[100px]">{artist.name}</span>
+                  <span className="text-xs text-on-surface-variant">{artist.trackCount} tracks</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Albums */}
+        {albums.length > 0 && (
+          <div className="space-y-md">
+            <div className="flex flex-wrap items-center justify-between gap-sm">
+              <h3 className="text-headline-lg text-white font-bold">Albums</h3>
+              <Link to="/collection/albums" title="See all albums" className="text-xs font-mono uppercase text-on-surface-variant hover:text-white transition-colors">
+                See All
+              </Link>
+            </div>
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-md">
+              {albums.slice(0, 10).map((album) => (
+                <div key={album._id} title={album.name} className="flex flex-col gap-sm cursor-pointer group">
+                  <div className="w-full aspect-square rounded-lg overflow-hidden border border-charcoal shadow-lg">
+                    <img
+                      src={album.coverUrl || 'https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?w=150&auto=format&fit=crop&q=60'}
+                      alt={album.name}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform"
+                    />
+                  </div>
+                  <div>
+                    <h4 className="text-label-md text-white truncate">{album.name}</h4>
+                    <p className="text-body-sm text-on-surface-variant truncate mt-xs">{album.artistName}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </Layout>
   );

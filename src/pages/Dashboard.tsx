@@ -102,7 +102,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ className = '' }) => {
     }));
   };
 
-  const scrollCarousel = (ref: React.RefObject<HTMLDivElement>, direction: 'left' | 'right') => {
+  const scrollCarousel = (ref: React.RefObject<HTMLDivElement | null>, direction: 'left' | 'right') => {
     if (!ref.current) return;
     const amount = 320;
     ref.current.scrollBy({
